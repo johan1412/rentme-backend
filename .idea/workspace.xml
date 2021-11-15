@@ -1,8 +1,103 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="ca7c7a5b-e82f-4dc2-9480-404b866dee85" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/outil_location_service/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/outil_location_service/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/outil_location_service/admin/.dockerignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/outil_location_service/admin/.env" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/outil_location_service/admin/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/outil_location_service/admin/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/outil_location_service/admin/docker/nginx/conf.d/default.conf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/outil_location_service/admin/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/outil_location_service/admin/public/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/outil_location_service/admin/public/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/outil_location_service/admin/public/logo192.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/outil_location_service/admin/public/logo512.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/outil_location_service/admin/public/manifest.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/outil_location_service/admin/public/robots.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/outil_location_service/admin/src/App.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/outil_location_service/admin/src/App.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/outil_location_service/admin/src/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/outil_location_service/admin/src/serviceWorker.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/outil_location_service/admin/src/setupTests.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/outil_location_service/admin/yarn.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/outil_location_service/client/.dockerignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/outil_location_service/client/.env" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/outil_location_service/client/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/outil_location_service/client/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/outil_location_service/client/docker/nginx/conf.d/default.conf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/outil_location_service/client/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/outil_location_service/client/public/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/outil_location_service/client/public/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/outil_location_service/client/public/logo192.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/outil_location_service/client/public/logo512.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/outil_location_service/client/public/manifest.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/outil_location_service/client/public/robots.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/outil_location_service/client/src/Welcome.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/outil_location_service/client/src/Welcome.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/outil_location_service/client/src/config/entrypoint.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/outil_location_service/client/src/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/outil_location_service/client/src/serviceWorker.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/outil_location_service/client/src/setupTests.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/outil_location_service/client/src/welcome.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/outil_location_service/client/yarn.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment_service/admin/.dockerignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment_service/admin/.env" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment_service/admin/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment_service/admin/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment_service/admin/docker/nginx/conf.d/default.conf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment_service/admin/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment_service/admin/public/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment_service/admin/public/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment_service/admin/public/logo192.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment_service/admin/public/logo512.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment_service/admin/public/manifest.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment_service/admin/public/robots.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment_service/admin/src/App.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment_service/admin/src/App.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment_service/admin/src/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment_service/admin/src/serviceWorker.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment_service/admin/src/setupTests.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment_service/admin/yarn.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment_service/client/.dockerignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment_service/client/.env" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment_service/client/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment_service/client/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment_service/client/docker/nginx/conf.d/default.conf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment_service/client/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment_service/client/public/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment_service/client/public/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment_service/client/public/logo192.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment_service/client/public/logo512.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment_service/client/public/manifest.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment_service/client/public/robots.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment_service/client/src/Welcome.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment_service/client/src/Welcome.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment_service/client/src/config/entrypoint.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment_service/client/src/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment_service/client/src/serviceWorker.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment_service/client/src/setupTests.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment_service/client/src/welcome.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment_service/client/yarn.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment_service/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/payment_service/docker-compose.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,11 +130,22 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1636986975486</updated>
-      <workItem from="1636986976767" duration="1742000" />
+      <workItem from="1636986976767" duration="3723000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
