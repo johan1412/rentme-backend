@@ -47,6 +47,4 @@ payment-deploy:
     - dpl --provider=heroku --app=$HEROKU_APP_DEV --api-key=$HEROKU_API_KEY
     - heroku run php bin/console d:s:u --force --exit-code --app $HEROKU_APP_DEV
   only:
-    changes:
-      - "payment/**/*"
     - main
