@@ -19,7 +19,7 @@ stages:
 payment-build:
   stage: build
   before_script:
-    - cd payment
+    - cd payment/api
     - ls
     - apt update -y
     - pecl install xdebug
@@ -37,7 +37,7 @@ payment-deploy:
   type: deploy
   image : ruby:latest
   script:
-    - cd payment
+    - cd payment/api
     - ls
     - curl https://cli-assets.heroku.com/install-ubuntu.sh | sh
     - gem install dpl
