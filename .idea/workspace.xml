@@ -21,184 +21,10 @@
   <component name="ChangeListManager">
     <list default="true" id="ca7c7a5b-e82f-4dc2-9480-404b866dee85" name="Default Changelist" comment="add doctrine cache">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/.idea/outil_location_service.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/.idea/php.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/api/.dockerignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/api/.env" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/api/.env.test" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/api/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/api/.php_cs.dist" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/api/Dockerfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/api/bin/console" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/api/bin/phpunit" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/api/composer.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/api/composer.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/api/config/bootstrap.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/api/config/bundles.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/api/config/packages/api_platform.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/api/config/packages/cache.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/api/config/packages/dev/debug.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/api/config/packages/dev/monolog.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/api/config/packages/dev/routing.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/api/config/packages/dev/web_profiler.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/api/config/packages/doctrine.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/api/config/packages/doctrine_migrations.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/api/config/packages/framework.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/api/config/packages/lexik_jwt_authentication.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/api/config/packages/mercure.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/api/config/packages/nelmio_cors.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/api/config/packages/prod/api_platform.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/api/config/packages/prod/deprecations.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/api/config/packages/prod/doctrine.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/api/config/packages/prod/monolog.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/api/config/packages/prod/routing.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/api/config/packages/routing.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/api/config/packages/security.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/api/config/packages/test/framework.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/api/config/packages/test/monolog.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/api/config/packages/test/routing.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/api/config/packages/test/twig.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/api/config/packages/test/validator.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/api/config/packages/test/web_profiler.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/api/config/packages/twig.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/api/config/packages/validator.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/api/config/routes.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/api/config/routes/annotations.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/api/config/routes/api_platform.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/api/config/routes/dev/framework.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/api/config/routes/dev/twig.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/api/config/routes/dev/web_profiler.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/api/config/services.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/api/docker/nginx/conf.d/default.conf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/api/docker/php/conf.d/api-platform.dev.ini" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/api/docker/php/conf.d/api-platform.prod.ini" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/api/docker/php/docker-entrypoint.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/api/docker/php/docker-healthcheck.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/api/docker/varnish/conf/default.vcl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/api/helm/api/.helmignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/api/helm/api/Chart.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/api/helm/api/templates/NOTES.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/api/helm/api/templates/_helpers.tpl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/api/helm/api/templates/configmap.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/api/helm/api/templates/ingress.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/api/helm/api/templates/nginx-deployment.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/api/helm/api/templates/nginx-service.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/api/helm/api/templates/php-deployment.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/api/helm/api/templates/php-service.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/api/helm/api/templates/secrets.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/api/helm/api/templates/serviceaccount.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/api/helm/api/templates/tests/test-connection.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/api/helm/api/templates/varnish-deployment.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/api/helm/api/templates/varnish-service.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/api/helm/api/values.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/api/migrations/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/api/migrations/Version20200828181711.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/api/phpunit.xml.dist" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/api/public/favicon.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/api/public/index.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/api/src/Controller/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/api/src/Entity/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/api/src/Entity/Greeting.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/api/src/Kernel.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/api/src/Repository/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/api/symfony.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/api/templates/base.html.twig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/api/tests/bootstrap.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/docker-compose.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/docker/dev-tls/Dockerfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outil_location_service/test" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/payment/api/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/payment/api/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/api/.dockerignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/api/.env" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/api/.env.test" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/api/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/api/.php_cs.dist" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/api/Dockerfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/api/bin/console" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/api/bin/phpunit" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/api/composer.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/api/composer.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/api/config/bootstrap.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/api/config/bundles.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/api/config/packages/api_platform.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/api/config/packages/cache.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/api/config/packages/dev/debug.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/api/config/packages/dev/monolog.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/api/config/packages/dev/routing.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/api/config/packages/dev/web_profiler.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/api/config/packages/doctrine.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/api/config/packages/doctrine_migrations.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/api/config/packages/framework.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/api/config/packages/mercure.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/api/config/packages/nelmio_cors.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/api/config/packages/prod/api_platform.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/api/config/packages/prod/deprecations.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/api/config/packages/prod/doctrine.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/api/config/packages/prod/monolog.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/api/config/packages/prod/routing.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/api/config/packages/routing.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/api/config/packages/security.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/api/config/packages/test/framework.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/api/config/packages/test/monolog.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/api/config/packages/test/routing.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/api/config/packages/test/twig.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/api/config/packages/test/validator.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/api/config/packages/test/web_profiler.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/api/config/packages/twig.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/api/config/packages/validator.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/api/config/routes.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/api/config/routes/annotations.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/api/config/routes/api_platform.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/api/config/routes/dev/framework.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/api/config/routes/dev/twig.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/api/config/routes/dev/web_profiler.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/api/config/services.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/api/docker/nginx/conf.d/default.conf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/api/docker/php/conf.d/api-platform.dev.ini" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/api/docker/php/conf.d/api-platform.prod.ini" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/api/docker/php/docker-entrypoint.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/api/docker/php/docker-healthcheck.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/api/docker/varnish/conf/default.vcl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/api/helm/api/.helmignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/api/helm/api/Chart.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/api/helm/api/templates/NOTES.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/api/helm/api/templates/_helpers.tpl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/api/helm/api/templates/configmap.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/api/helm/api/templates/ingress.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/api/helm/api/templates/nginx-deployment.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/api/helm/api/templates/nginx-service.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/api/helm/api/templates/php-deployment.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/api/helm/api/templates/php-service.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/api/helm/api/templates/secrets.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/api/helm/api/templates/serviceaccount.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/api/helm/api/templates/tests/test-connection.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/api/helm/api/templates/varnish-deployment.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/api/helm/api/templates/varnish-service.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/api/helm/api/values.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/api/migrations/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/api/migrations/Version20200828181711.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/api/phpunit.xml.dist" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/api/public/favicon.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/api/public/index.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/api/src/Controller/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/api/src/Entity/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/api/src/Entity/Greeting.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/api/src/Kernel.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/api/src/Repository/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/api/symfony.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/api/templates/base.html.twig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/api/tests/bootstrap.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/docker-compose.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment_service/docker/dev-tls/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment/api/composer.lock" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/rental/api/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rental/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/rental/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/composer.lock" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -233,7 +59,7 @@
       <option name="presentableId" value="Default" />
       <updated>1636986975486</updated>
       <workItem from="1636986976767" duration="10179000" />
-      <workItem from="1637082374468" duration="6026000" />
+      <workItem from="1637082374468" duration="6569000" />
     </task>
     <servers />
   </component>
@@ -261,5 +87,13 @@
       <screen x="0" y="0" width="1280" height="800" />
     </state>
     <state x="240" y="65" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.800@0.0.1280.800" timestamp="1637082841161" />
+    <state x="378" y="140" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1637164696738">
+      <screen x="0" y="23" width="1280" height="728" />
+    </state>
+    <state x="378" y="140" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1280.728/1280.23.1920.1057@0.23.1280.728" timestamp="1637164696738" />
+    <state x="305" y="75" width="670" height="676" key="search.everywhere.popup" timestamp="1637164490407">
+      <screen x="0" y="23" width="1280" height="728" />
+    </state>
+    <state x="305" y="75" width="670" height="676" key="search.everywhere.popup/0.23.1280.728/1280.23.1920.1057@0.23.1280.728" timestamp="1637164490407" />
   </component>
 </project>

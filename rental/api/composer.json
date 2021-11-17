@@ -11,8 +11,8 @@
         "doctrine/doctrine-bundle": "^2.1",
         "doctrine/doctrine-migrations-bundle": "^3.0",
         "doctrine/orm": "^2.7",
-        "doctrine/cache": "1.11",
         "guzzlehttp/guzzle": "^7.0",
+        "lexik/jwt-authentication-bundle": "v2.11.*",
         "nelmio/cors-bundle": "^2.1",
         "phpdocumentor/reflection-docblock": "^5.2",
         "symfony/asset": "5.1.*",
@@ -30,7 +30,6 @@
         "symfony/twig-bundle": "5.1.*",
         "symfony/validator": "5.1.*",
         "symfony/yaml": "5.1.*"
-
     },
     "require-dev": {
         "api-platform/schema-generator": "^2.2",
