@@ -1,19 +1,17 @@
 image: php:7.4
 
 variables:
-  MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
-  MYSQL_USER: $MYSQL_USER
-  MYSQL_PASSWORD: $MYSQL_PASSWORD
-  MYSQL_DATABASE: $MYSQL_DATABASE
-  DB_HOST: $DB_HOST
-  DATABASE_URL: $DATABASE_URL
+  POSTGRES_DB: $POSTGRES_DB
+  POSTGRES_USER: $POSTGRES_USER
+  POSTGRES_PASSWORD: $POSTGRES_PASSWORD
+  POSTGRES_HOST_AUTH_METHOD: trust
 
 cache:
   paths:
     - ./vendor/
 
 services:
-  - mysql:latest
+  - postgres:12.2-alpine
 
 stages:
   - build
@@ -33,6 +31,8 @@ payment-build:
   script:
     - composer install --prefer-dist --no-ansi --no-interaction --no-progress -d .
   only:
+    - main
+  rules:
     changes:
       - "payment/**/*"
 
@@ -44,7 +44,10 @@ payment-deploy:
     - ls
     - curl https://cli-assets.heroku.com/install-ubuntu.sh | sh
     - gem install dpl
-    - dpl --provider=heroku --app=$HEROKU_APP_DEV --api-key=$HEROKU_API_KEY
-    - heroku run php bin/console d:s:u --force --exit-code --app $HEROKU_APP_DEV
+    - dpl --provider=heroku --app=$HEROKU_APP_PROD --api-key=$HEROKU_API_KEY
+    - heroku run php bin/console d:s:u --force --exit-code --app $HEROKU_APP_PROD
   only:
     - main
+    rules:
+      changes:
+        - "payment/**/*"
