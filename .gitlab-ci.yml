@@ -17,10 +17,9 @@ services:
 
 stages:
   - build
-  - test
   - deploy
 payment-build:
-  stage: payment-build
+  stage: build
   before_script:
     - cd payment
     - ls
