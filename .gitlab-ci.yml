@@ -32,9 +32,6 @@ payment-build:
     - composer install --prefer-dist --no-ansi --no-interaction --no-progress -d .
   only:
     - main
-  rules:
-    changes:
-      - "payment/**/*"
 
 payment-deploy:
   type: deploy
@@ -48,6 +45,3 @@ payment-deploy:
     - heroku run php bin/console d:s:u --force --exit-code --app $HEROKU_APP_PROD
   only:
     - main
-    rules:
-      changes:
-        - "payment/**/*"
