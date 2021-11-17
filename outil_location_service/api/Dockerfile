@@ -74,6 +74,7 @@ RUN set -eux; \
 	composer global require "symfony/flex" --prefer-dist --no-progress --no-suggest --classmap-authoritative; \
 	composer clear-cache
 ENV PATH="${PATH}:/root/.composer/vendor/bin"
+ENV PHP_MEMORY_LIMIT=128M
 
 WORKDIR /srv/api
 
