@@ -1,0 +1,52 @@
+image: php:7.4
+
+variables:
+  MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
+  MYSQL_USER: $MYSQL_USER
+  MYSQL_PASSWORD: $MYSQL_PASSWORD
+  MYSQL_DATABASE: $MYSQL_DATABASE
+  DB_HOST: $DB_HOST
+  DATABASE_URL: $DATABASE_URL
+
+cache:
+  paths:
+    - ./vendor/
+
+services:
+  - mysql:latest
+
+stages:
+  - build
+  - test
+  - deploy
+payment-build:
+  stage: payment-build
+  before_script:
+    - cd payment
+    - ls
+    - apt update -y
+    - pecl install xdebug
+    - docker-php-ext-enable xdebug
+    - apt install -y libzip-dev zip
+    - docker-php-ext-install pdo pdo_mysql zip
+    - curl -sS https://getcomposer.org/installer | php
+    - mv composer.phar /usr/local/bin/composer
+  script:
+    - composer install --prefer-dist --no-ansi --no-interaction --no-progress -d .
+  only:
+    changes:
+      - "payment/**/*"
+
+payment-deploy:
+  type: deploy
+  image : ruby:latest
+  script:
+    - cd payment
+    - curl https://cli-assets.heroku.com/install-ubuntu.sh | sh
+    - gem install dpl
+    - dpl --provider=heroku --app=$HEROKU_APP_DEV --api-key=$HEROKU_API_KEY
+    - heroku run php bin/console d:s:u --force --exit-code --app $HEROKU_APP_DEV
+  only:
+    changes:
+      - "payment/**/*"
+    - main
