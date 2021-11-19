@@ -1,0 +1,70 @@
+image: php:7.4
+
+cache:
+  paths:
+    - ./vendor/
+
+stages:
+  - build
+  - deploy
+payment-build:
+  stage: build
+  before_script:
+    - cd payment/api
+    - ls
+    - apt update -y
+    - pecl install xdebug
+    - docker-php-ext-enable xdebug
+    - apt install -y libzip-dev zip
+    - docker-php-ext-install pdo pdo_mysql zip
+    - curl -sS https://getcomposer.org/installer | php
+    - mv composer.phar /usr/local/bin/composer
+  script:
+    - composer install --prefer-dist --no-ansi --no-interaction --no-progress -d .
+  only:
+    - develop
+    - main
+
+payment-deploy:
+  type: deploy
+  image : ruby:latest
+  script:
+    - cd payment/api
+    - ls
+    - curl https://cli-assets.heroku.com/install-ubuntu.sh | sh
+    - gem install dpl
+    - dpl --provider=heroku --app=$HEROKU_APP_PAYMENT --api-key=$HEROKU_API_KEY
+    - heroku run php bin/console d:s:u --force --exit-code --app $HEROKU_APP_PAYMENT
+  only:
+    - main
+
+rental-build:
+  stage: build
+  before_script:
+    - cd rental/api
+    - ls
+    - apt update -y
+    - pecl install xdebug
+    - docker-php-ext-enable xdebug
+    - apt install -y libzip-dev zip
+    - docker-php-ext-install pdo pdo_mysql zip
+    - curl -sS https://getcomposer.org/installer | php
+    - mv composer.phar /usr/local/bin/composer
+  script:
+    - composer install --prefer-dist --no-ansi --no-interaction --no-progress -d .
+  only:
+    - develop
+    - main
+
+rental-deploy:
+  type: deploy
+  image: ruby:latest
+  script:
+    - cd rental/api
+    - ls
+    - curl https://cli-assets.heroku.com/install-ubuntu.sh | sh
+    - gem install dpl
+    - dpl --provider=heroku --app=$HEROKU_APP_RENTAL --api-key=$HEROKU_API_KEY
+    - heroku run php bin/console d:s:u --force --exit-code --app $HEROKU_APP_RENTAL
+  only:
+    - main
