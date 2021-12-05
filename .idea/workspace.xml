@@ -20,7 +20,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ca7c7a5b-e82f-4dc2-9480-404b866dee85" name="Default Changelist" comment="add doctrine cache">
-      <change afterPath="$PROJECT_DIR$/.gitlab-ci.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/payment/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/payment/README.md" afterDir="false" />
     </list>
