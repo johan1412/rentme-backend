@@ -20,8 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ca7c7a5b-e82f-4dc2-9480-404b866dee85" name="Default Changelist" comment="add doctrine cache">
+      <change afterPath="$PROJECT_DIR$/.gitlab-ci.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/payment/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,9 +32,17 @@
     <execution />
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="20xWydSQlWCGQ1UKuT7tz4D2ypR" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -56,7 +64,7 @@
       <option name="presentableId" value="Default" />
       <updated>1636986975486</updated>
       <workItem from="1636986976767" duration="10179000" />
-      <workItem from="1637082374468" duration="11078000" />
+      <workItem from="1637082374468" duration="9331000" />
     </task>
     <servers />
   </component>
@@ -84,10 +92,15 @@
       <screen x="0" y="0" width="1280" height="800" />
     </state>
     <state x="240" y="65" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.800@0.0.1280.800" timestamp="1637082841161" />
-    <state x="378" y="140" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1637168068405">
+    <state x="378" y="140" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1637228946854">
       <screen x="0" y="23" width="1280" height="728" />
     </state>
     <state x="378" y="140" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1280.728/1280.23.1920.1057@0.23.1280.728" timestamp="1637168068405" />
+    <state x="378" y="140" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1280.728@0.23.1280.728" timestamp="1637228946854" />
+    <state x="351" y="96" key="git4idea.branch.GitSmartOperationDialog" timestamp="1637229110560">
+      <screen x="0" y="23" width="1280" height="728" />
+    </state>
+    <state x="351" y="96" key="git4idea.branch.GitSmartOperationDialog/0.23.1280.728@0.23.1280.728" timestamp="1637229110560" />
     <state x="305" y="75" width="670" height="676" key="search.everywhere.popup" timestamp="1637164490407">
       <screen x="0" y="23" width="1280" height="728" />
     </state>
