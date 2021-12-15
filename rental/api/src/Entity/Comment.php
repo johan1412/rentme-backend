@@ -5,11 +5,23 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\CommentRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ApiResource(
- *     normalizationContext={"groups"="comment_read"}
+ *     normalizationContext={"groups"="comment_read"},
+ *     attributes={"security"="is_granted('ROLE_USER')"},
+ *     collectionOperations={
+ *         "get",
+ *         "post"={"security"="is_granted('ROLE_USER')"}
+ *     },
+ *     itemOperations={
+ *         "get",
+ *         "put"={"security_post_denormalize"="is_granted('COMMENT_EDIT', comment)"},
+ *         "patch"={"security_post_denormalize"="is_granted('COMMENT_EDIT', comment)"},
+ *         "delete"={"security_post_denormalize"="is_granted('COMMENT_DELETE', comment)"},
+ *     }
  * )
  * @ORM\Entity(repositoryClass=CommentRepository::class)
  */
@@ -26,12 +38,18 @@ class Comment
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"user_read","product_read","comment_read"})
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *     min = 1,
+     *     max = 500
+     * )
      */
     private $text;
 
     /**
      * @ORM\Column(type="datetime")
      * @Groups({"user_read","product_read","comment_read"})
+     * @Assert\NotNull
      */
     private $createdAt;
 
@@ -44,12 +62,14 @@ class Comment
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="comments")
      * @Groups({"comment_read"})
+     * @Assert\NotNull
      */
     private $user;
 
     /**
      * @ORM\ManyToOne(targetEntity=Product::class, inversedBy="comments")
      * @Groups({"comment_read"})
+     * @Assert\NotNull
      */
     private $product;
 
