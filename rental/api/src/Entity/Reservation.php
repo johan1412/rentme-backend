@@ -10,7 +10,18 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ApiResource(
- *     normalizationContext={"groups"="reservation_read"}
+ *     normalizationContext={"groups"="reservation_read"},
+ *     attributes={"security"="is_granted('ROLE_USER')"},
+ *     collectionOperations={
+ *         "get",
+ *         "post"={"security"="is_granted('ROLE_USER')"}
+ *     },
+ *     itemOperations={
+ *         "get",
+ *         "put"={"security_post_denormalize"="is_granted('RESERVATION_EDIT', reservation)"},
+ *         "patch"={"security_post_denormalize"="is_granted('RESERVATION_EDIT', reservation)"},
+ *         "delete"={"security_post_denormalize"="is_granted('RESERVATION_DELETE', reservation)"},
+ *     }
  * )
  * @ORM\Entity(repositoryClass=ReservationRepository::class)
  */
@@ -27,36 +38,42 @@ class Reservation
     /**
      * @ORM\Column(type="datetime")
      * @Groups({"reservation_read","user_read","product_read"})
+     * @Assert\NotNull
      */
     private $createdAt;
 
     /**
      * @ORM\Column(type="datetime")
      * @Groups({"reservation_read","user_read","product_read"})
+     * @Assert\NotNull
      */
     private $rentalBeginDate;
 
     /**
      * @ORM\Column(type="datetime")
      * @Groups({"reservation_read","user_read","product_read"})
+     * @Assert\NotNull
      */
     private $rentalEndDate;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"reservation_read","user_read","product_read"})
+     * @Assert\NotBlank
      */
     private $state;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="reservations")
      * @Groups({"reservation_read"})
+     * @Assert\NotNull
      */
     private $user;
 
     /**
      * @ORM\ManyToOne(targetEntity=Product::class, inversedBy="reservations")
      * @Groups({"reservation_read"})
+     * @Assert\NotNull
      */
     private $product;
 

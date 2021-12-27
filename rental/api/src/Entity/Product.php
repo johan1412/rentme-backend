@@ -12,7 +12,18 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ApiResource(
- *     normalizationContext={"groups"="product_read"}
+ *     normalizationContext={"groups"="product_read"},
+ *     attributes={"security"="is_granted('ROLE_USER')"},
+ *     collectionOperations={
+ *         "get",
+ *         "post"={"security"="is_granted('ROLE_USER')"}
+ *     },
+ *     itemOperations={
+ *         "get",
+ *         "put"={"security_post_denormalize"="is_granted('PRODUCT_EDIT', product)"},
+ *         "patch"={"security_post_denormalize"="is_granted('PRODUCT_EDIT', product)"},
+ *         "delete"={"security_post_denormalize"="is_granted('PRODUCT_DELETE', product)"},
+ *     }
  * )
  * @ORM\Entity(repositoryClass=ProductRepository::class)
  */
@@ -29,30 +40,47 @@ class Product
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"user_read","product_read","reservation_read","file_read","comment_read","category_read"})
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *     min = 1,
+     *     max = 200
+     * )
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"user_read","product_read","reservation_read","file_read","comment_read","category_read"})
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *     min = 1,
+     *     max = 1000
+     * )
      */
     private $description;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"user_read","product_read","reservation_read","file_read","comment_read","category_read"})
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *     min = 1,
+     *     max = 500
+     * )
      */
     private $address;
 
     /**
      * @ORM\Column(type="integer")
      * @Groups({"user_read","product_read","reservation_read","file_read","comment_read","category_read"})
+     * @Assert\NotBlank
      */
     private $price;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="products")
      * @Groups({"product_read"})
+     * @Assert\NotNull
      */
     private $user;
 
@@ -72,6 +100,7 @@ class Product
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="products")
      * @ORM\JoinColumn(nullable=false)
      * @Groups({"product_read"})
+     * @Assert\NotNull
      */
     private $category;
 

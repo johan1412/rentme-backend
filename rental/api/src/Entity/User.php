@@ -13,7 +13,18 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ApiResource(
- *     normalizationContext={"groups"="user_read"}
+ *     normalizationContext={"groups"="user_read"},
+ *     attributes={"security"="is_granted('ROLE_USER')"},
+ *     collectionOperations={
+ *         "get"={"security"="is_granted('ROLE_ADMIN')"},
+ *         "post"
+ *     },
+ *     itemOperations={
+ *         "get",
+ *         "put"={"security_post_denormalize"="is_granted('USER_EDIT', user)"},
+ *         "patch"={"security_post_denormalize"="is_granted('USER_EDIT', user)"},
+ *         "delete"={"security_post_denormalize"="is_granted('USER_DELETE', user)"},
+ *     }
  * )
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @ORM\Table(name="`user`")
@@ -30,6 +41,8 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=180, unique=true)
      * @Groups({"user_read","product_read","reservation_read","comment_read"})
+     * @Assert\NotNull
+     * @Assert\Email
      */
     private $email;
 
@@ -43,24 +56,28 @@ class User implements UserInterface
      * @var string The hashed password
      * @ORM\Column(type="string")
      * @Groups({"user_read"})
+     * @Assert\NotBlank
      */
     private $password;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Groups({"user_read","product_read","reservation_read","comment_read"})
+     * @Assert\NotBlank
      */
     private $firstName;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Groups({"user_read","product_read","reservation_read","comment_read"})
+     * @Assert\NotBlank
      */
     private $lastName;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"user_read","product_read","reservation_read","comment_read"})
+     * @Assert\NotBlank
      */
     private $address;
 

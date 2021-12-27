@@ -6,12 +6,12 @@ use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-class CommentVoter extends Voter
+class FileVoter extends Voter
 {
     protected function supports(string $attribute, $subject): bool
     {
-        return in_array($attribute, ['COMMENT_EDIT', 'COMMENT_DELETE'])
-            && $subject instanceof \App\Entity\Comment;
+        return in_array($attribute, ['FILE_CREATE', 'FILE_EDIT', 'FILE_DELETE'])
+            && $subject instanceof \App\Entity\File;
     }
 
     protected function voteOnAttribute(string $attribute, $subject, TokenInterface $token): bool
@@ -23,16 +23,21 @@ class CommentVoter extends Voter
         }
 
         switch ($attribute) {
-            case 'COMMENT_EDIT':
-                if ($subject->getUser == $user) {
+            case 'FILE_CREATE':
+                if ($subject->getProduct()->getUser() == $user) {
                     return true;
                 }
                 break;
-            case 'COMMENT_DELETE':
+            case 'FILE_EDIT':
+                if ($subject->getProduct()->getUser() == $user) {
+                    return true;
+                }
+                break;
+            case 'FILE_DELETE':
                 if ( $this->security->isGranted(Role::ADMIN) ) {
                     return true;
                 }
-                if ($subject->getUser == $user) {
+                if ($subject->getProduct()->getUser() == $user) {
                     return true;
                 }
                 break;
