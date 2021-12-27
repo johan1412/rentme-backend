@@ -7,11 +7,23 @@ use App\Repository\CategoryRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ApiResource(
- *     normalizationContext={"groups"="category_read"}
+ *     normalizationContext={"groups"="category_read"},
+ *     attributes={"security"="is_granted('ROLE_USER')"},
+ *     collectionOperations={
+ *         "get",
+ *         "post"={"security"="is_granted('ROLE_ADMIN')"}
+ *     },
+ *     itemOperations={
+ *         "get",
+ *         "put"={"security"="is_granted('ROLE_ADMIN')"},
+ *         "patch"={"security"="is_granted('ROLE_ADMIN')"},
+ *         "delete"={"security"="is_granted('ROLE_ADMIN')"},
+ *     }
  * )
  * @ORM\Entity(repositoryClass=CategoryRepository::class)
  */
@@ -28,6 +40,7 @@ class Category
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"product_read","category_read"})
+     * @Assert\NotBlank
      */
     private $name;
 

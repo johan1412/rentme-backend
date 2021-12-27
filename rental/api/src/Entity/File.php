@@ -5,11 +5,23 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\FileRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ApiResource(
- *     normalizationContext={"groups"="file_read"}
+ *     normalizationContext={"groups"="file_read"},
+ *     attributes={"security"="is_granted('ROLE_USER')"},
+ *     collectionOperations={
+ *         "get",
+ *         "post"={"security_post_denormalize"="is_granted('FILE_CREATE', file)"}
+ *     },
+ *     itemOperations={
+ *         "get",
+ *         "put"={"security_post_denormalize"="is_granted('FILE_EDIT', file)"},
+ *         "patch"={"security_post_denormalize"="is_granted('FILE_EDIT', file)"},
+ *         "delete"={"security_post_denormalize"="is_granted('FILE_DELETE', file)"},
+ *     }
  * )
  * @ORM\Entity(repositoryClass=FileRepository::class)
  */
@@ -26,12 +38,14 @@ class File
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"product_read","file_read"})
+     * @Assert\NotBlank
      */
     private $path;
 
     /**
      * @ORM\ManyToOne(targetEntity=Product::class, inversedBy="files")
      * @Groups({"file_read"})
+     * @Assert\NotNull
      */
     private $product;
 
