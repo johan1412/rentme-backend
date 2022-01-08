@@ -20,13 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ca7c7a5b-e82f-4dc2-9480-404b866dee85" name="Default Changelist" comment="add doctrine cache">
-      <change afterPath="$PROJECT_DIR$/rental/api/src/EventListener/JWTCreatedListener.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/53e40d64-0375-4978-9279-2d6fc6e472b3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/53e40d64-0375-4978-9279-2d6fc6e472b3.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/53e40d64-0375-4978-9279-2d6fc6e472b3/storage_v2/_src_/database/outil_location.Qy8JBQ/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/53e40d64-0375-4978-9279-2d6fc6e472b3/storage_v2/_src_/database/outil_location.Qy8JBQ/schema/public.abK9xQ.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rental/api/.env" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rental/api/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/config/services.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/src/Entity/Category.php" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/src/Entity/Category.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +35,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="faeture/event-listener-jwt" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />

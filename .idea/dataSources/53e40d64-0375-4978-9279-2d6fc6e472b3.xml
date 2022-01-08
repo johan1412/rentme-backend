@@ -962,6 +962,7 @@ false posixrules
     </sequence>
     <table id="35" parent="15" name="category">
       <ObjectId>16503</ObjectId>
+      <Outdated>1</Outdated>
       <Owner>user</Owner>
       <StateNumber>580</StateNumber>
     </table>
