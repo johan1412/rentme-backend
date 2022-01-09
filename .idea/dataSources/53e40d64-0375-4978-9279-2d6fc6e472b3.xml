@@ -988,6 +988,7 @@ false posixrules
     </table>
     <table id="40" parent="15" name="product">
       <ObjectId>16521</ObjectId>
+      <Outdated>1</Outdated>
       <Owner>user</Owner>
       <StateNumber>577</StateNumber>
     </table>

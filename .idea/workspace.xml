@@ -22,7 +22,9 @@
     <list default="true" id="ca7c7a5b-e82f-4dc2-9480-404b866dee85" name="Default Changelist" comment="add doctrine cache">
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/53e40d64-0375-4978-9279-2d6fc6e472b3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/53e40d64-0375-4978-9279-2d6fc6e472b3.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/config/packages/api_platform.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/config/packages/api_platform.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rental/api/src/Entity/Category.php" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/src/Entity/Category.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/src/Entity/Product.php" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/src/Entity/Product.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,5 +109,11 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add doctrine cache" />
     <option name="LAST_COMMIT_MESSAGE" value="add doctrine cache" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="305" y="124" width="670" height="676" key="search.everywhere.popup" timestamp="1641731719207">
+      <screen x="0" y="23" width="1280" height="777" />
+    </state>
+    <state x="305" y="124" width="670" height="676" key="search.everywhere.popup/0.23.1280.777/1280.23.1920.1057@0.23.1280.777" timestamp="1641731719207" />
   </component>
 </project>

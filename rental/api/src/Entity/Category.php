@@ -46,12 +46,13 @@ class Category
 
     /**
      * @ORM\OneToMany(targetEntity=Product::class, mappedBy="category")
-     * @Groups({"product_read","category_read"})
+     * @Groups({"category_read"})
      */
     private $products;
 
     /**
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="children")
+     * @Groups({"product_read","category_read"})
      */
     private $parent;
 
