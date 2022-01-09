@@ -21,12 +21,15 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *     itemOperations={
  *         "get",
  *         "put"={"security_post_denormalize"="is_granted('PRODUCT_EDIT', product)"},
- *         "patch"={"security_post_denormalize"="is_granted('PRODUCT_EDIT', product)"},
- *         "delete"={"security_post_denormalize"="is_granted('PRODUCT_DELETE', product)"},
+ *         "patch"={"security"="is_granted('ROLE_ADMIN')"},
+ *         "delete"={"security"="is_granted('ROLE_ADMIN')"}
  *     }
  * )
  * @ORM\Entity(repositoryClass=ProductRepository::class)
  */
+
+// "patch"={"security_post_denormalize"="is_granted('PRODUCT_EDIT', product)"}, a remettre
+// "delete"={"security_post_denormalize"="is_granted('PRODUCT_DELETE', product)"},
 class Product
 {
     /**
@@ -109,6 +112,12 @@ class Product
      * @Groups({"product_read"})
      */
     private $reservations;
+
+    /**
+     * @ORM\Column(type="boolean")
+     * @Groups({"product_read"})
+     */
+    private $isValid = false;
 
     public function __construct()
     {
@@ -280,6 +289,18 @@ class Product
                 $reservation->setProduct(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getIsValid(): ?bool
+    {
+        return $this->isValid;
+    }
+
+    public function setIsValid(bool $isValid): self
+    {
+        $this->isValid = $isValid;
 
         return $this;
     }
