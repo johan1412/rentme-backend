@@ -16,8 +16,13 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *     normalizationContext={"groups"="user_read"},
  *     attributes={"security"="is_granted('ROLE_USER')"},
  *     collectionOperations={
+ *          "post"={},
  *         "get"={"security"="is_granted('ROLE_ADMIN')"},
- *         "post"
+ *         "create_user"={
+ *          "method"="POST",
+ *          "path"="/users/create",
+ *          "controller"=App\Controller\CreateUser::class
+ *     }
  *     },
  *     itemOperations={
  *         "get",
@@ -27,7 +32,6 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *     }
  * )
  * @ORM\Entity(repositoryClass=UserRepository::class)
- * @ORM\Table(name="`user`")
  */
 class User implements UserInterface
 {
