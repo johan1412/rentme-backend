@@ -14,7 +14,6 @@ use Symfony\Component\Serializer\Annotation\Groups;
 /**
  * @ApiResource(
  *     normalizationContext={"groups"="user_read"},
- *     attributes={"security"="is_granted('ROLE_USER')"},
  *     collectionOperations={
  *          "post"={},
  *         "get"={"security"="is_granted('ROLE_ADMIN')"},
@@ -32,6 +31,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *     }
  * )
  * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @ORM\Table(name="`user`")
  */
 class User implements UserInterface
 {
@@ -45,7 +45,7 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=180, unique=true)
      * @Groups({"user_read","product_read","reservation_read","comment_read"})
-     * @Assert\NotNull
+     * @Assert\NotBlank
      * @Assert\Email
      */
     private $email;

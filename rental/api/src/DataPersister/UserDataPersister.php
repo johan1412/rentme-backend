@@ -39,7 +39,7 @@ class UserDataPersister implements ContextAwareDataPersisterInterface
     {
         if ($data->getPassword()) {
             $data->setPassword(
-                $this->_passwordEncoder->encodePassword(
+                $this->passwordEncoder->encodePassword(
                     $data,
                     $data->getPassword()
                 )
