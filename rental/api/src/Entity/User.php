@@ -45,7 +45,7 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=180, unique=true)
      * @Groups({"user_read","product_read","reservation_read","comment_read"})
-     * @Assert\NotBlank
+     * @Assert\NotNull
      * @Assert\Email
      */
     private $email;
@@ -60,28 +60,28 @@ class User implements UserInterface
      * @var string The hashed password
      * @ORM\Column(type="string")
      * @Groups({"user_read"})
-     * @Assert\NotBlank
+     * @Assert\NotNull
      */
     private $password;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Groups({"user_read","product_read","reservation_read","comment_read"})
-     * @Assert\NotBlank
+     * @Assert\NotNull
      */
     private $firstName;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Groups({"user_read","product_read","reservation_read","comment_read"})
-     * @Assert\NotBlank
+     * @Assert\NotNull
      */
     private $lastName;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"user_read","product_read","reservation_read","comment_read"})
-     * @Assert\NotBlank
+     * @Assert\NotNull
      */
     private $address;
 

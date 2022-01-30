@@ -1,5 +1,4 @@
 <?php
-// src/DataPersister/UserDataPersister.php
 
 namespace App\DataPersister;
 
