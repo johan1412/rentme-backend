@@ -14,7 +14,6 @@ use Symfony\Component\Serializer\Annotation\Groups;
 /**
  * @ApiResource(
  *     normalizationContext={"groups"="user_read"},
- *     attributes={"security"="is_granted('ROLE_USER')"},
  *     collectionOperations={
  *          "post"={},
  *         "get"={"security"="is_granted('ROLE_ADMIN')"},
@@ -32,6 +31,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *     }
  * )
  * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @ORM\Table(name="`user`")
  */
 class User implements UserInterface
 {
@@ -60,28 +60,26 @@ class User implements UserInterface
      * @var string The hashed password
      * @ORM\Column(type="string")
      * @Groups({"user_read"})
-     * @Assert\NotBlank
+     * @Assert\NotNull
      */
     private $password;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Groups({"user_read","product_read","reservation_read","comment_read"})
-     * @Assert\NotBlank
      */
     private $firstName;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Groups({"user_read","product_read","reservation_read","comment_read"})
-     * @Assert\NotBlank
      */
     private $lastName;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"user_read","product_read","reservation_read","comment_read"})
-     * @Assert\NotBlank
+     * @Assert\NotNull
      */
     private $address;
 

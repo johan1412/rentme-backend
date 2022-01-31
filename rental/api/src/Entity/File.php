@@ -45,7 +45,7 @@ class File
     /**
      * @ORM\ManyToOne(targetEntity=Product::class, inversedBy="files")
      * @Groups({"file_read"})
-     * @Assert\NotNull
+     * @Assert\NotBlank
      */
     private $product;
 
