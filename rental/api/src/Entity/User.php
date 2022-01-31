@@ -67,14 +67,12 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Groups({"user_read","product_read","reservation_read","comment_read"})
-     * @Assert\NotNull
      */
     private $firstName;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Groups({"user_read","product_read","reservation_read","comment_read"})
-     * @Assert\NotNull
      */
     private $lastName;
 
