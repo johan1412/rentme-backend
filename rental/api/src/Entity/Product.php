@@ -16,6 +16,11 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *     attributes={"security"="is_granted('ROLE_USER')"},
  *     collectionOperations={
  *         "get",
+ *          "number_product_not_valid"={
+ *              "method"="GET",
+ *              "path"="/products/products-not-valid",
+ *              "controller"=App\Controller\ProductsNotValid::class
+ *          },
  *         "post"={"security"="is_granted('ROLE_USER')"}
  *     },
  *     itemOperations={
