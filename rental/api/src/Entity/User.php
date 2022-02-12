@@ -17,11 +17,6 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *     collectionOperations={
  *          "post"={},
  *         "get"={"security"="is_granted('ROLE_ADMIN')"},
- *         "create_user"={
- *          "method"="POST",
- *          "path"="/users/create",
- *          "controller"=App\Controller\CreateUser::class
- *     }
  *     },
  *     itemOperations={
  *         "get",
