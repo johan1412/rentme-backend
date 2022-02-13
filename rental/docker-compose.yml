@@ -57,7 +57,7 @@ services:
   db:
     image: postgres:12-alpine
     environment:
-      - POSTGRES_DB=outil_locationXDEBUG_MODE
+      - POSTGRES_DB=outil_location
       - POSTGRES_PASSWORD=pwd
       - POSTGRES_USER=user
     volumes:
@@ -76,7 +76,7 @@ services:
       - dev-certs:/certs:rw
     ports:
       - target: 80
-        published: 81
+        published: 82
         protocol: tcp
 
 volumes:
