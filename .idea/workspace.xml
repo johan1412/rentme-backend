@@ -20,16 +20,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ca7c7a5b-e82f-4dc2-9480-404b866dee85" name="Default Changelist" comment="add doctrine cache">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/53e40d64-0375-4978-9279-2d6fc6e472b3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/53e40d64-0375-4978-9279-2d6fc6e472b3.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/53e40d64-0375-4978-9279-2d6fc6e472b3/storage_v2/_src_/database/outil_location.Qy8JBQ/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/53e40d64-0375-4978-9279-2d6fc6e472b3/storage_v2/_src_/database/outil_location.Qy8JBQ/schema/public.abK9xQ.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rental/api/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment/api/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/payment/api/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment/api/src/Controller/Payment.php" beforeDir="false" afterPath="$PROJECT_DIR$/payment/api/src/Controller/Payment.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment/api/src/Entity/Transaction.php" beforeDir="false" afterPath="$PROJECT_DIR$/payment/api/src/Entity/Transaction.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment/api/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/payment/api/symfony.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rental/api/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/config/packages/security.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rental/api/src/DataPersister/UserDataPersister.php" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/src/DataPersister/UserDataPersister.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rental/api/src/Entity/File.php" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/src/Entity/File.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/src/Entity/Category.php" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/src/Entity/Category.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/src/Entity/Product.php" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/src/Entity/Product.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rental/api/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/src/Entity/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rental/api/src/Manager/UserManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/src/Manager/UserManager.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rental/api/src/Repository/UserRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/src/Repository/UserRepository.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,7 +45,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="feature/parent-categrory" />
+        <entry key="$PROJECT_DIR$" value="feature/role-heirarchy" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -77,6 +80,12 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -93,6 +102,8 @@
       <workItem from="1639593818115" duration="599000" />
       <workItem from="1639738578249" duration="1844000" />
       <workItem from="1641241125900" duration="4589000" />
+      <workItem from="1644349652253" duration="35174000" />
+      <workItem from="1644929828809" duration="15795000" />
     </task>
     <servers />
   </component>
@@ -116,26 +127,43 @@
     <option name="LAST_COMMIT_MESSAGE" value="add doctrine cache" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="353" y="242" key="#Notifications" timestamp="1642678273053">
+    <state x="2009" y="253" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1644351705929">
+      <screen x="1280" y="23" width="1920" height="1057" />
+    </state>
+    <state x="2009" y="253" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1280.777/1280.23.1920.1057@1280.23.1920.1057" timestamp="1644351705929" />
+    <state x="1964" y="360" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1644690820061">
+      <screen x="1280" y="23" width="1920" height="1057" />
+    </state>
+    <state x="1964" y="360" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1280.777/1280.23.1920.1057@1280.23.1920.1057" timestamp="1644690820061" />
+    <state x="1993" y="40" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1644351190511">
+      <screen x="1280" y="23" width="1920" height="1057" />
+    </state>
+    <state x="1993" y="40" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.23.1280.777/1280.23.1920.1057@1280.23.1920.1057" timestamp="1644351190511" />
+    <state x="378" y="165" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1644679949845">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
-    <state x="353" y="242" key="#Notifications/0.23.1280.777/1280.23.1920.1057@0.23.1280.777" timestamp="1642678273053" />
-    <state x="378" y="165" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1642675327911">
+    <state x="378" y="165" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1280.777/1280.23.1920.1057@0.23.1280.777" timestamp="1644679949845" />
+    <state x="1978" y="313" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1644698341646">
+      <screen x="1280" y="23" width="1920" height="1057" />
+    </state>
+    <state x="1978" y="313" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.23.1280.777/1280.23.1920.1057@1280.23.1920.1057" timestamp="1644698341646" />
+    <state x="2063" y="482" key="NewPhpFileDialog" timestamp="1644690962739">
+      <screen x="1280" y="23" width="1920" height="1057" />
+    </state>
+    <state x="2063" y="482" key="NewPhpFileDialog/0.23.1280.777/1280.23.1920.1057@1280.23.1920.1057" timestamp="1644690962739" />
+    <state width="500" height="400" key="SwitcherDM" timestamp="1644960485965">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
-    <state x="378" y="165" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1280.777/1280.23.1920.1057@0.23.1280.777" timestamp="1642675327911" />
-    <state x="378" y="173" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1642453966777">
-      <screen x="0" y="23" width="1280" height="777" />
+    <state width="500" height="400" key="SwitcherDM/0.23.1280.777/1280.23.1920.1057@0.23.1280.777" timestamp="1644960485965" />
+    <state width="500" height="445" key="SwitcherDM/0.23.1280.777/1280.23.1920.1057@1280.23.1920.1057" timestamp="1644530899606" />
+    <state x="2130" y="446" width="323" height="232" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1" timestamp="1644447480319">
+      <screen x="1280" y="23" width="1920" height="1057" />
     </state>
-    <state x="378" y="173" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.23.1280.777/1280.23.1920.1057@0.23.1280.777" timestamp="1642453966777" />
-    <state x="454" y="159" width="346" height="486" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1" timestamp="1642678652864">
-      <screen x="0" y="23" width="1280" height="777" />
+    <state x="2130" y="446" width="323" height="232" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1/0.23.1280.777/1280.23.1920.1057@1280.23.1920.1057" timestamp="1644447480319" />
+    <state x="2094" y="193" width="586" height="548" key="find.popup" timestamp="1644685184894">
+      <screen x="1280" y="23" width="1920" height="1057" />
     </state>
-    <state x="454" y="159" width="346" height="486" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1/0.23.1280.777/1280.23.1920.1057@0.23.1280.777" timestamp="1642678652864" />
-    <state x="360" y="208" key="refactoring.ChangeSignatureDialog" timestamp="1642453187821">
-      <screen x="0" y="23" width="1280" height="777" />
-    </state>
-    <state x="360" y="208" key="refactoring.ChangeSignatureDialog/0.23.1280.777/1280.23.1920.1057@0.23.1280.777" timestamp="1642453187821" />
+    <state x="2094" y="193" width="586" height="548" key="find.popup/0.23.1280.777/1280.23.1920.1057@1280.23.1920.1057" timestamp="1644685184894" />
     <state x="305" y="124" width="670" height="676" key="search.everywhere.popup" timestamp="1641731719207">
       <screen x="0" y="23" width="1280" height="777" />
     </state>

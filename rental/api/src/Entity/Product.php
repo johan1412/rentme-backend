@@ -13,7 +13,6 @@ use Symfony\Component\Serializer\Annotation\Groups;
 /**
  * @ApiResource(
  *     normalizationContext={"groups"="product_read"},
- *     attributes={"security"="is_granted('ROLE_USER')"},
  *     collectionOperations={
  *         "get",
  *          "number_product_not_valid"={
@@ -124,8 +123,15 @@ class Product
      */
     private $isValid = false;
 
+    /**
+     * @ORM\Column(type="date")
+     * @Groups({"product_read"})
+     */
+    private $publishedAt;
+
     public function __construct()
     {
+        $this->publishedAt = new Assert\DateTime();
         $this->comments = new ArrayCollection();
         $this->files = new ArrayCollection();
         $this->reservations = new ArrayCollection();
@@ -306,6 +312,18 @@ class Product
     public function setIsValid(bool $isValid): self
     {
         $this->isValid = $isValid;
+
+        return $this;
+    }
+
+    public function getPublishedAt(): ?\DateTimeInterface
+    {
+        return $this->publishedAt;
+    }
+
+    public function setPublishedAt(\DateTimeInterface $publishedAt): self
+    {
+        $this->publishedAt = $publishedAt;
 
         return $this;
     }

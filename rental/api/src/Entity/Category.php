@@ -13,7 +13,6 @@ use Symfony\Component\Serializer\Annotation\Groups;
 /**
  * @ApiResource(
  *     normalizationContext={"groups"="category_read"},
- *     attributes={"security"="is_granted('ROLE_USER')"},
  *     collectionOperations={
  *         "get",
  *         "post"={"security"="is_granted('ROLE_ADMIN')"}
