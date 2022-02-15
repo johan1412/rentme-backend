@@ -16,7 +16,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *     normalizationContext={"groups"="user_read"},
  *     collectionOperations={
  *          "post"={},
- *         "get"={"security"="is_granted('ROLE_ADMIN')"},
+ *         "get"={"security"="is_granted('ROLE_RENTER')"},
  *     },
  *     itemOperations={
  *         "get",
@@ -80,7 +80,7 @@ class User implements UserInterface
 
     /**
      * @ORM\OneToMany(targetEntity=Product::class, mappedBy="user")
-     * @Groups({"user_read"})
+     * @Groups({"user_read","product_read"})
      */
     private $products;
 
