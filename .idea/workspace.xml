@@ -20,6 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ca7c7a5b-e82f-4dc2-9480-404b866dee85" name="Default Changelist" comment="add doctrine cache">
+<<<<<<< HEAD
       <change afterPath="$PROJECT_DIR$/rental/.idea/.gitignore" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/rental/.idea/modules.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/rental/.idea/php.xml" afterDir="false" />
@@ -134,6 +135,10 @@
       <change beforePath="$PROJECT_DIR$/rental/api/tests/bootstrap.php" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/tests/bootstrap.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rental/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/rental/docker-compose.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rental/docker/dev-tls/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/rental/docker/dev-tls/Dockerfile" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/.gitlab-ci.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.gitlab-ci.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+>>>>>>> main
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -176,6 +181,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="DatabaseDriversLRU" value="postgresql" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
@@ -199,12 +205,16 @@
       <option name="presentableId" value="Default" />
       <updated>1636986975486</updated>
       <workItem from="1636986976767" duration="10179000" />
+<<<<<<< HEAD
       <workItem from="1637082374468" duration="9331000" />
       <workItem from="1639593818115" duration="599000" />
       <workItem from="1639738578249" duration="1844000" />
       <workItem from="1641241125900" duration="4589000" />
       <workItem from="1644349652253" duration="35174000" />
       <workItem from="1644929828809" duration="16145000" />
+=======
+      <workItem from="1637082374468" duration="17317000" />
+>>>>>>> main
     </task>
     <servers />
   </component>
@@ -224,6 +234,7 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="add doctrine cache" />
     <option name="LAST_COMMIT_MESSAGE" value="add doctrine cache" />
   </component>
