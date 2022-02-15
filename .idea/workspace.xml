@@ -20,19 +20,120 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ca7c7a5b-e82f-4dc2-9480-404b866dee85" name="Default Changelist" comment="add doctrine cache">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/53e40d64-0375-4978-9279-2d6fc6e472b3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/53e40d64-0375-4978-9279-2d6fc6e472b3.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/53e40d64-0375-4978-9279-2d6fc6e472b3/storage_v2/_src_/database/outil_location.Qy8JBQ/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/53e40d64-0375-4978-9279-2d6fc6e472b3/storage_v2/_src_/database/outil_location.Qy8JBQ/schema/public.abK9xQ.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment/api/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/payment/api/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment/api/src/Controller/Payment.php" beforeDir="false" afterPath="$PROJECT_DIR$/payment/api/src/Controller/Payment.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment/api/src/Entity/Transaction.php" beforeDir="false" afterPath="$PROJECT_DIR$/payment/api/src/Entity/Transaction.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment/api/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/payment/api/symfony.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rental/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rental/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rental/.idea/php.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rental/.idea/rental.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rental/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rental/api/config/packages/vich_uploader.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rental/api/src/Controller/CreateMediaObjectAction.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rental/api/src/Controller/ImageController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rental/api/src/Entity/MediaObject.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rental/api/src/EventSubscriber/ResolveMediaObjectContentUrlSubscriber.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rental/api/src/Repository/TestRepository.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rental/server.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mail/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/mail/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/rental/LICENSE" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/rental/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/.dockerignore" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/.dockerignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/.env" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/.env.test" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/.env.test" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/.php_cs.dist" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/.php_cs.dist" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/config/bootstrap.php" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/config/bootstrap.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/config/bundles.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/config/packages/api_platform.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/config/packages/api_platform.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/config/packages/cache.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/config/packages/cache.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/config/packages/dev/debug.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/config/packages/dev/debug.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/config/packages/dev/monolog.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/config/packages/dev/monolog.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/config/packages/dev/routing.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/config/packages/dev/routing.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/config/packages/dev/web_profiler.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/config/packages/dev/web_profiler.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/config/packages/doctrine.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/config/packages/doctrine.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/config/packages/doctrine_migrations.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/config/packages/doctrine_migrations.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/config/packages/framework.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/config/packages/framework.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/config/packages/lexik_jwt_authentication.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/config/packages/lexik_jwt_authentication.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/config/packages/mercure.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/config/packages/mercure.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/config/packages/nelmio_cors.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/config/packages/nelmio_cors.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/config/packages/prod/api_platform.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/config/packages/prod/api_platform.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/config/packages/prod/deprecations.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/config/packages/prod/deprecations.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/config/packages/prod/doctrine.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/config/packages/prod/doctrine.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/config/packages/prod/monolog.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/config/packages/prod/monolog.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/config/packages/prod/routing.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/config/packages/prod/routing.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/config/packages/routing.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/config/packages/routing.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rental/api/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/config/packages/security.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/config/packages/test/framework.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/config/packages/test/framework.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/config/packages/test/monolog.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/config/packages/test/monolog.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/config/packages/test/routing.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/config/packages/test/routing.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/config/packages/test/twig.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/config/packages/test/twig.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/config/packages/test/validator.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/config/packages/test/validator.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/config/packages/test/web_profiler.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/config/packages/test/web_profiler.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/config/packages/twig.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/config/packages/twig.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/config/packages/validator.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/config/packages/validator.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/config/routes.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/config/routes.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/config/routes/annotations.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/config/routes/annotations.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/config/routes/api_platform.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/config/routes/api_platform.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/config/routes/dev/framework.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/config/routes/dev/framework.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/config/routes/dev/twig.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/config/routes/dev/twig.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/config/routes/dev/web_profiler.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/config/routes/dev/web_profiler.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/config/services.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/docker/nginx/conf.d/default.conf" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/docker/nginx/conf.d/default.conf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/docker/php/conf.d/api-platform.dev.ini" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/docker/php/conf.d/api-platform.dev.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/docker/php/conf.d/api-platform.prod.ini" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/docker/php/conf.d/api-platform.prod.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/docker/varnish/conf/default.vcl" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/docker/varnish/conf/default.vcl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/helm/api/.helmignore" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/helm/api/.helmignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/helm/api/Chart.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/helm/api/Chart.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/helm/api/templates/NOTES.txt" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/helm/api/templates/NOTES.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/helm/api/templates/_helpers.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/helm/api/templates/_helpers.tpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/helm/api/templates/configmap.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/helm/api/templates/configmap.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/helm/api/templates/ingress.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/helm/api/templates/ingress.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/helm/api/templates/nginx-deployment.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/helm/api/templates/nginx-deployment.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/helm/api/templates/nginx-service.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/helm/api/templates/nginx-service.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/helm/api/templates/php-deployment.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/helm/api/templates/php-deployment.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/helm/api/templates/php-service.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/helm/api/templates/php-service.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/helm/api/templates/secrets.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/helm/api/templates/secrets.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/helm/api/templates/serviceaccount.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/helm/api/templates/serviceaccount.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/helm/api/templates/tests/test-connection.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/helm/api/templates/tests/test-connection.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/helm/api/templates/varnish-deployment.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/helm/api/templates/varnish-deployment.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/helm/api/templates/varnish-service.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/helm/api/templates/varnish-service.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/helm/api/values.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/helm/api/values.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/migrations/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/migrations/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/migrations/Version20200828181711.php" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/migrations/Version20200828181711.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/phpunit.xml.dist" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/phpunit.xml.dist" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/public/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/public/favicon.ico" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/public/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/public/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/src/Controller/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/src/Controller/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/src/Controller/ProductsNotValid.php" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/src/Controller/ProductsNotValid.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/src/DataPersister/UserDataPersister.php" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/src/DataPersister/UserDataPersister.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/src/Entity/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/src/Entity/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rental/api/src/Entity/Category.php" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/src/Entity/Category.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/src/Entity/Comment.php" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/src/Entity/Comment.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/src/Entity/File.php" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/src/Entity/File.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rental/api/src/Entity/Product.php" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/src/Entity/Product.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/src/Entity/Reservation.php" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/src/Entity/Reservation.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rental/api/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/src/Entity/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/src/EventListener/JWTCreatedListener.php" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/src/EventListener/JWTCreatedListener.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/src/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/src/Kernel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/src/Manager/ProductsNotValidManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/src/Manager/ProductsNotValidManager.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/src/Repository/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/src/Repository/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/src/Repository/CategoryRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/src/Repository/CategoryRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/src/Repository/CommentRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/src/Repository/CommentRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/src/Repository/FileRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/src/Repository/FileRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/src/Repository/ProductRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/src/Repository/ProductRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/src/Repository/ReservationRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/src/Repository/ReservationRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/src/Repository/UserRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/src/Repository/UserRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/src/Security/Voter/CommentVoter.php" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/src/Security/Voter/CommentVoter.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/src/Security/Voter/FileVoter.php" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/src/Security/Voter/FileVoter.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/src/Security/Voter/ProductVoter.php" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/src/Security/Voter/ProductVoter.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/src/Security/Voter/ReservationVoter.php" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/src/Security/Voter/ReservationVoter.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/src/Security/Voter/UserVoter.php" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/src/Security/Voter/UserVoter.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/symfony.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/templates/base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/api/tests/bootstrap.php" beforeDir="false" afterPath="$PROJECT_DIR$/rental/api/tests/bootstrap.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/rental/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rental/docker/dev-tls/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/rental/docker/dev-tls/Dockerfile" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,7 +204,7 @@
       <workItem from="1639738578249" duration="1844000" />
       <workItem from="1641241125900" duration="4589000" />
       <workItem from="1644349652253" duration="35174000" />
-      <workItem from="1644929828809" duration="15795000" />
+      <workItem from="1644929828809" duration="16145000" />
     </task>
     <servers />
   </component>
@@ -147,6 +248,14 @@
       <screen x="1280" y="23" width="1920" height="1057" />
     </state>
     <state x="1978" y="313" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.23.1280.777/1280.23.1920.1057@1280.23.1920.1057" timestamp="1644698341646" />
+    <state x="128" y="90" key="MergeDialog" timestamp="1644963450868">
+      <screen x="0" y="23" width="1280" height="777" />
+    </state>
+    <state x="128" y="90" key="MergeDialog/0.23.1280.777/1280.23.1920.1057@0.23.1280.777" timestamp="1644963450868" />
+    <state x="278" y="180" key="MultipleFileMergeDialog" timestamp="1644963450984">
+      <screen x="0" y="23" width="1280" height="777" />
+    </state>
+    <state x="278" y="180" key="MultipleFileMergeDialog/0.23.1280.777/1280.23.1920.1057@0.23.1280.777" timestamp="1644963450984" />
     <state x="2063" y="482" key="NewPhpFileDialog" timestamp="1644690962739">
       <screen x="1280" y="23" width="1920" height="1057" />
     </state>
