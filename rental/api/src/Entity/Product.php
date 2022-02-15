@@ -20,7 +20,10 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *              "path"="/products/products-not-valid",
  *              "controller"=App\Controller\ProductsNotValid::class
  *          },
- *         "post"={"security"="is_granted('ROLE_USER')"}
+ *         "post"={"security"="is_granted('ROLE_USER')",
+*          "denormalization_context"={"groups"={"product_write"}},
+
+ *     }
  *     },
  *     itemOperations={
  *         "get",
@@ -46,7 +49,7 @@ class Product
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"user_read","product_read","reservation_read","file_read","comment_read","category_read"})
+     * @Groups({"product_write","user_read","product_read","reservation_read","file_read","comment_read","category_read"})
      * @Assert\NotBlank
      * @Assert\Length(
      *     min = 1,
@@ -57,7 +60,7 @@ class Product
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"user_read","product_read","reservation_read","file_read","comment_read","category_read"})
+     * @Groups({"product_write","user_read","product_read","reservation_read","file_read","comment_read","category_read"})
      * @Assert\NotBlank
      * @Assert\Length(
      *     min = 1,
@@ -68,7 +71,7 @@ class Product
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"user_read","product_read","reservation_read","file_read","comment_read","category_read"})
+     * @Groups({"product_write","user_read","product_read","reservation_read","file_read","comment_read","category_read"})
      * @Assert\NotBlank
      * @Assert\Length(
      *     min = 1,
@@ -79,14 +82,14 @@ class Product
 
     /**
      * @ORM\Column(type="integer")
-     * @Groups({"user_read","product_read","reservation_read","file_read","comment_read","category_read"})
+     * @Groups({"product_write","user_read","product_read","reservation_read","file_read","comment_read","category_read"})
      * @Assert\NotBlank
      */
     private $price;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="products")
-     * @Groups({"product_read"})
+     * @Groups({"product_write","product_read"})
      * @Assert\NotNull
      */
     private $user;
@@ -98,15 +101,15 @@ class Product
     private $comments;
 
     /**
-     * @ORM\OneToMany(targetEntity=File::class, mappedBy="product")
-     * @Groups({"product_read"})
+     * @ORM\OneToMany(targetEntity=File::class, mappedBy="product", cascade={"persist"})
+     * @Groups({"product_read","product_write", "user_read"})
      */
     private $files;
 
     /**
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="products")
      * @ORM\JoinColumn(nullable=false)
-     * @Groups({"product_read"})
+     * @Groups({"product_write","product_read"})
      * @Assert\NotNull
      */
     private $category;
