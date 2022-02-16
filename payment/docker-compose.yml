@@ -66,7 +66,7 @@ services:
       # - ./api/docker/db/data:/var/lib/postgresql/data:rw
     ports:
       - target: 5432
-        published: 5434
+        published: 5436
         protocol: tcp
 
   dev-tls:
@@ -76,7 +76,7 @@ services:
       - dev-certs:/certs:rw
     ports:
       - target: 80
-        published: 82
+        published: 83
         protocol: tcp
 
 volumes:
