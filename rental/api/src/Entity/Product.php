@@ -18,7 +18,8 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *          "number_product_not_valid"={
  *              "method"="GET",
  *              "path"="/products/products-not-valid",
- *              "controller"=App\Controller\ProductsNotValid::class
+ *              "controller"=App\Controller\ProductsNotValid::class,
+ *
  *          },
  *         "post"={"security"="is_granted('ROLE_USER')",
 *          "denormalization_context"={"groups"={"product_write"}},
@@ -101,8 +102,8 @@ class Product
     private $comments;
 
     /**
-     * @ORM\OneToMany(targetEntity=File::class, mappedBy="product", cascade={"persist"})
-     * @Groups({"product_read","product_write", "user_read"})
+     * @ORM\OneToMany(targetEntity=File::class, mappedBy="product", cascade={"persist","remove"})
+     * @Groups({"product_read","product_write","user_read"})
      */
     private $files;
 
@@ -127,18 +128,19 @@ class Product
     private $isValid = false;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="datetime_immutable")
      * @Groups({"product_read"})
      */
     private $publishedAt;
 
     public function __construct()
     {
-        $this->publishedAt = new Assert\DateTime();
+        $this->publishedAt = new \DateTimeImmutable("now");
         $this->comments = new ArrayCollection();
         $this->files = new ArrayCollection();
         $this->reservations = new ArrayCollection();
     }
+
 
     public function getId(): ?int
     {

@@ -36,7 +36,7 @@ class File
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255, options={"default" : "ntm"})
+     * @ORM\Column(type="string", length=255)
      * @Groups({"product_read","file_read","product_write", "user_read"})
      * @Assert\NotBlank
      */
@@ -44,7 +44,7 @@ class File
 
     /**
      * @ORM\ManyToOne(targetEntity=Product::class, inversedBy="files", cascade={"persist"})
-     * @Groups({"file_read", "product_write"})
+     * @Groups({"file_read", "product_write", "product_read"})
      * @Assert\NotBlank
      */
     private $product;
