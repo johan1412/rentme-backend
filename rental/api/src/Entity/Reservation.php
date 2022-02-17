@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\ReservationRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Serializer\Annotation\Groups;
@@ -14,12 +15,17 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *     attributes={"security"="is_granted('ROLE_USER')"},
  *     collectionOperations={
  *         "get",
- *         "post"={"security"="is_granted('ROLE_USER')"}
+ *         "post"={"security"="is_granted('ROLE_USER')"},
+ *         "get_reservation_of_user"={
+ *              "method"="GET",
+ *              "path"="/reservations/user",
+ *              "controller"=App\Controller\UserReservations::class
+ *          },
  *     },
  *     itemOperations={
  *         "get",
  *         "put"={"security_post_denormalize"="is_granted('RESERVATION_EDIT', reservation)"},
- *         "patch"={"security_post_denormalize"="is_granted('RESERVATION_EDIT', reservation)"},
+ *         "patch"={},
  *         "delete"={"security_post_denormalize"="is_granted('RESERVATION_DELETE', reservation)"},
  *     }
  * )
@@ -27,6 +33,11 @@ use Symfony\Component\Serializer\Annotation\Groups;
  */
 class Reservation
 {
+
+    const STATUS_PAYED = 'payed';
+    const STATUS_RETRIEVED = 'retrieved';
+    const STATUS_RESTORED = 'restored';
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -77,6 +88,12 @@ class Reservation
      */
     private $product;
 
+    /**
+     * @ORM\Column(type="integer")
+     * @Groups({"reservation_read"})
+     */
+    private $price;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -125,6 +142,9 @@ class Reservation
 
     public function setState(string $state): self
     {
+        if (!in_array($state, array(self::STATUS_PAYED, self::STATUS_RETRIEVED,self::STATUS_RESTORED))) {
+            throw new \InvalidArgumentException("Invalid status");
+        }
         $this->state = $state;
 
         return $this;
@@ -150,6 +170,18 @@ class Reservation
     public function setProduct(?Product $product): self
     {
         $this->product = $product;
+
+        return $this;
+    }
+
+    public function getPrice(): ?int
+    {
+        return $this->price;
+    }
+
+    public function setPrice(int $price): self
+    {
+        $this->price = $price;
 
         return $this;
     }

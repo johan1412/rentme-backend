@@ -132,6 +132,12 @@ class Product
      */
     private $publishedAt;
 
+    /**
+     * @ORM\Column(type="integer")
+     * @Groups({"product_read","reservation_read"})
+     */
+    private $caution;
+
     public function __construct()
     {
         $this->publishedAt = new Assert\DateTime();
@@ -327,6 +333,18 @@ class Product
     public function setPublishedAt(\DateTimeInterface $publishedAt): self
     {
         $this->publishedAt = $publishedAt;
+
+        return $this;
+    }
+
+    public function getCaution(): ?int
+    {
+        return $this->caution;
+    }
+
+    public function setCaution(int $caution): self
+    {
+        $this->caution = $caution;
 
         return $this;
     }
