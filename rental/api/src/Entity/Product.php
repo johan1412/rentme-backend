@@ -12,6 +12,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ApiResource(
+ *     attributes={"force_eager"=false},
  *     normalizationContext={"groups"="product_read"},
  *     collectionOperations={
  *         "get",
