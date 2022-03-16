@@ -14,9 +14,10 @@ use Symfony\Component\Serializer\Annotation\Groups;
 /**
  * @ApiResource(
  *     normalizationContext={"groups"="user_read"},
+ *     denormalizationContext={"groups"={"user_write"}},
  *     collectionOperations={
- *          "post"={},
  *         "get"={"security"="is_granted('ROLE_RENTER')"},
+ *         "post"={},
  *     },
  *     itemOperations={
  *         "get",
@@ -40,7 +41,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
-     * @Groups({"user_read","product_read","reservation_read","comment_read"})
+     * @Groups({"user_read","user_write","product_read","reservation_read","comment_read"})
      * @Assert\NotNull
      * @Assert\Email
      */
@@ -48,36 +49,29 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="json")
-     * @Groups({"user_read","product_read","reservation_read","comment_read"})
+     * @Groups({"user_read","user_write","product_read","reservation_read","comment_read"})
      */
     private $roles = [];
 
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
-     * @Groups({"user_read"})
+     * @Groups({"user_read", "user_write"})
      * @Assert\NotNull
      */
     private $password;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"user_read","product_read","reservation_read","comment_read"})
+     * @Groups({"user_read","user_write","product_read","reservation_read","comment_read"})
      */
     private $firstName;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"user_read","product_read","reservation_read","comment_read"})
+     * @Groups({"user_read","user_write","product_read","reservation_read","comment_read"})
      */
     private $lastName;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     * @Groups({"user_read","product_read","reservation_read","comment_read"})
-     * @Assert\NotNull
-     */
-    private $address;
 
     /**
      * @ORM\OneToMany(targetEntity=Product::class, mappedBy="user")
@@ -96,6 +90,13 @@ class User implements UserInterface
      * @Groups({"user_read"})
      */
     private $comments;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Address::class, cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false)
+     * @Groups({"user_read","user_write","address_read"})
+     */
+    private $address;
 
     public function __construct()
     {
@@ -209,18 +210,6 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getAddress(): ?string
-    {
-        return $this->address;
-    }
-
-    public function setAddress(string $address): self
-    {
-        $this->address = $address;
-
-        return $this;
-    }
-
     /**
      * @return Collection|Product[]
      */
@@ -307,6 +296,18 @@ class User implements UserInterface
                 $comment->setClient(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getAddress(): ?Address
+    {
+        return $this->address;
+    }
+
+    public function setAddress(Address $address): self
+    {
+        $this->address = $address;
 
         return $this;
     }
