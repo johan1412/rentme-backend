@@ -53,6 +53,12 @@ services:
       - target: 443
         published: 8443
         protocol: tcp
+  
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8083:8080
 
   db:
     image: postgres:12-alpine
