@@ -121,6 +121,66 @@ Class Payment extends AbstractController{
                 'success_url' => $this->generateUrl('success',["productId"=>$parameters["product"]["id"],"price"=>$parameters["product"]["price"],"renterId"=>$parameters["product"]["user"]["id"],"tenantId"=>$parameters["tenant"]["id"]],UrlGeneratorInterface::ABSOLUTE_URL),
                 'cancel_url' => $this->generateUrl('error',[],UrlGeneratorInterface::ABSOLUTE_URL),
             ]);
-        return new JsonResponse(['id'=>$checkout_session->id]);
+        return new JsonResponse(['checkout_session'=>$checkout_session]);
     }
+
+
+    /**
+     * @Route("/refund", name="refund",methods={"POST"})
+     */
+    public function refund(Request $request): Response
+    {
+        $parameters = json_decode($request->getContent(), true);
+        if(!$parameters["caution"]){
+            return new BadResponseException(['message'=> "Wrong data, caution doesn't exist"]);
+        }
+        if(!$parameters["paymentIntent"]){
+            return new BadResponseException(['message'=> "Wrong data, paymentIntent doesn't exist"]);
+        }
+
+        $stripe = new \Stripe\StripeClient(
+            'sk_test_51ImJIiH1ST2SneRlI5texYpM1EjkRwX5h0sXH8lWH6BxPP2sFmNCXW3KqXvOCnVFnaKxOeSZd9ZhGqaYm2D1mVyl00xvAeAezq'
+        );
+        $stripe->refunds->create([
+            'payment_intent' => $parameters["paymentIntent"],
+            'amount' => $parameters["caution"]*100
+        ]);
+
+        $url = 'http://localhost:8080/refund';
+        return $this->redirect($url);
+    }
+    // pi_3KdFfZH1ST2SneRl1CyAwTX3
+
+    /**
+     * @Route("/transfer", name="transfer",methods={"POST"})
+     */
+    public function transfer(Request $request): Response
+    {
+        $stripe = new \Stripe\StripeClient(
+            'sk_test_51ImJIiH1ST2SneRlI5texYpM1EjkRwX5h0sXH8lWH6BxPP2sFmNCXW3KqXvOCnVFnaKxOeSZd9ZhGqaYm2D1mVyl00xvAeAezq'
+        );
+
+        $account = $stripe->accounts->create([
+            'type' => 'custom',
+            'country' => 'US',
+            'email' => 'abdellatifchalal06@gmail.com',
+            'capabilities' => [
+                'card_payments' => ['requested' => true],
+                'transfers' => ['requested' => true],
+            ],
+        ]);
+        dd($account);
+
+        $payout = \Stripe\Payout::create([
+            'amount' => 1000,
+            'currency' => 'usd',
+            'method' => 'instant',
+        ], [
+            'stripe_account' => $account.id,
+        ]);
+
+       // $url = 'http://localhost:8080/success';
+        return new JsonResponse(['payout'=>    $payout]);
+    }
+    // pi_3KdFfZH1ST2SneRl1CyAwTX3
 }

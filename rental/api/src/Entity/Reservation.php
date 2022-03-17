@@ -94,6 +94,12 @@ class Reservation
      */
     private $price;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Groups({"reservation_read","user_read","product_read"})
+     */
+    private $paymentIntent;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -182,6 +188,18 @@ class Reservation
     public function setPrice(int $price): self
     {
         $this->price = $price;
+
+        return $this;
+    }
+
+    public function getPaymentIntent(): ?string
+    {
+        return $this->paymentIntent;
+    }
+
+    public function setPaymentIntent(string $paymentIntent): self
+    {
+        $this->paymentIntent = $paymentIntent;
 
         return $this;
     }
