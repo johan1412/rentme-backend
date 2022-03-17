@@ -13,5 +13,11 @@
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://localhost:5433/payment</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="mail@localhost [2]" uuid="e54d9f86-920e-4feb-a74c-353481b7b5b5">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5434/outil_location</jdbc-url>
+    </data-source>
   </component>
 </project>

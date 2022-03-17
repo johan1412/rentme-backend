@@ -130,7 +130,7 @@ class Product
 
     /**
      * @ORM\ManyToOne(targetEntity=Address::class, inversedBy="products")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      * @Groups({"product_write","user_read","product_read","reservation_read","file_read","comment_read","category_read"})
      * @Assert\NotNull
      */
