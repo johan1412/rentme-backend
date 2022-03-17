@@ -71,17 +71,6 @@ class Product
     private $description;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     * @Groups({"product_write","user_read","product_read","reservation_read","file_read","comment_read","category_read"})
-     * @Assert\NotBlank
-     * @Assert\Length(
-     *     min = 1,
-     *     max = 500
-     * )
-     */
-    private $address;
-
-    /**
      * @ORM\Column(type="integer")
      * @Groups({"product_write","user_read","product_read","reservation_read","file_read","comment_read","category_read"})
      * @Assert\NotBlank
@@ -139,6 +128,14 @@ class Product
      */
     private $caution;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Address::class, inversedBy="products")
+     * @ORM\JoinColumn(nullable=false)
+     * @Groups({"product_write","user_read","product_read","reservation_read","file_read","comment_read","category_read"})
+     * @Assert\NotNull
+     */
+    private $address;
+
     public function __construct()
     {
         $this->publishedAt = new Assert\DateTime();
@@ -172,18 +169,6 @@ class Product
     public function setDescription(string $description): self
     {
         $this->description = $description;
-
-        return $this;
-    }
-
-    public function getAddress(): ?string
-    {
-        return $this->address;
-    }
-
-    public function setAddress(string $address): self
-    {
-        $this->address = $address;
 
         return $this;
     }
@@ -346,6 +331,18 @@ class Product
     public function setCaution(int $caution): self
     {
         $this->caution = $caution;
+
+        return $this;
+    }
+
+    public function getAddress(): ?Address
+    {
+        return $this->address;
+    }
+
+    public function setAddress(?Address $address): self
+    {
+        $this->address = $address;
 
         return $this;
     }
