@@ -58,7 +58,7 @@ class Address
     private $city;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Region::class, cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity=Region::class)
      * @ORM\JoinColumn(nullable=false)
      * @Groups({"address_read","user_read", "user_write"})
      */
