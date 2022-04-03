@@ -21,6 +21,11 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *              "path"="/products/products-not-valid",
  *              "controller"=App\Controller\ProductsNotValid::class
  *          },
+ *          "number_product_valid"={
+ *              "method"="GET",
+ *              "path"="/products/products-valid",
+ *              "controller"=App\Controller\ProductsValid::class
+ *          },
  *         "post"={"security"="is_granted('ROLE_USER')",
 *          "denormalization_context"={"groups"={"product_write"}},
 
