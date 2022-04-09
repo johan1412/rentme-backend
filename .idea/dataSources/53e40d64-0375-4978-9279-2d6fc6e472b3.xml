@@ -1015,6 +1015,7 @@ true posixrules
     </table>
     <table id="45" parent="15" name="product">
       <ObjectId>16691</ObjectId>
+      <Outdated>1</Outdated>
       <Owner>user</Owner>
       <StateNumber>772</StateNumber>
     </table>
@@ -1030,6 +1031,7 @@ true posixrules
     </table>
     <table id="48" parent="15" name="user">
       <ObjectId>16708</ObjectId>
+      <Outdated>1</Outdated>
       <Owner>user</Owner>
       <StateNumber>646</StateNumber>
     </table>
