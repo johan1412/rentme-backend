@@ -93,7 +93,7 @@ class User implements UserInterface
 
     /**
      * @ORM\OneToOne(targetEntity=Address::class, cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\JoinColumn(nullable=false)
      * @Groups({"user_read","user_write","address_read"})
      */
     private $address;
