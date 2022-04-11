@@ -57,7 +57,7 @@ Class Payment extends AbstractController{
                     'Content-Type' => 'application/json',
                 ],
                 'body' => [
-                    'email' => 'dev@gmail.com',
+                    'email' => 'admin@gmail.com',
                     'password' => 'mdpmdpmdp'
                 ]
             ]
@@ -95,6 +95,7 @@ Class Payment extends AbstractController{
      */
     public function checkout(Request $request): Response
     {
+        return $this->getToken();
         $parameters = json_decode($request->getContent(), true);
         if(!$parameters["tenant"]){
             return new BadResponseException(['message'=> "Wrong data, tenant doesn't exist"]);
