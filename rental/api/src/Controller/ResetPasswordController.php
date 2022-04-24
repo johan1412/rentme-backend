@@ -127,7 +127,7 @@ class ResetPasswordController extends AbstractController
             // The session is cleaned up after the password has been changed.
             $this->cleanSessionAfterReset();
 
-            return $this->redirectToRoute('authentication_token');
+            return $this->redirect('http://localhost:8080/authentication_token');
         }
 
         return $this->render('reset_password/reset.html.twig', [
@@ -165,7 +165,7 @@ class ResetPasswordController extends AbstractController
         }
 
         $email = (new TemplatedEmail())
-            ->from(new Address('mbouhadjar1@myges.fr', 'RENTME'))
+            ->from(new Address('devfullstack44@gmail.com', 'developper'))
             ->to($user->getEmail())
             ->subject('Your password reset request')
             ->htmlTemplate('reset_password/email.html.twig')

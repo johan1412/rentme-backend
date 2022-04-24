@@ -42,7 +42,7 @@ class EmailSubscriber implements EventSubscriberInterface
         ) {
             $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
                 (new TemplatedEmail())
-                    ->from(new Address('contact@rentme.fr', 'Rentme Mail Bot'))
+                    ->from(new Address('devfullstack44@gmail.com', 'Rentme Mail Bot'))
                     ->to($user->getEmail())
                     ->subject('Please Confirm your Email')
                     ->htmlTemplate('registration/confirmation_email.html.twig')

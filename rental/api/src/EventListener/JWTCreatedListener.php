@@ -39,6 +39,9 @@ class JWTCreatedListener
         }
 
         if ($user instanceof User) {
+            if (!$user->isVerified()){
+                return;
+            }
             if (in_array("ROLE_ADMIN", $user->getRoles())){
                 $data['data'] = array(
                     'id'        => $user->getId(),
