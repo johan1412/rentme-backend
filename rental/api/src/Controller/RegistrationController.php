@@ -13,16 +13,19 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mime\Address;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
 
 class RegistrationController extends AbstractController
 {
     private EmailVerifier $emailVerifier;
+    private TokenStorageInterface $tokenStorage;
 
-    public function __construct(EmailVerifier $emailVerifier)
+    public function __construct(EmailVerifier $emailVerifier,TokenStorageInterface $tokenStorage)
     {
         $this->emailVerifier = $emailVerifier;
+        $this->tokenStorage = $tokenStorage;
     }
 
     /**
@@ -31,7 +34,6 @@ class RegistrationController extends AbstractController
     public function verifyUserEmail(Request $request, UserRepository $userRepository): Response
     {
         $id = $request->get('id');
-
         if (null === $id) {
             return $this->redirect('http://localhost:8080/register');
         }
@@ -54,5 +56,22 @@ class RegistrationController extends AbstractController
         return $this->redirect('http://localhost:8080/login');
     }
 
+
+    public function getUser(): ?User
+    {
+        $token = $this->tokenStorage->getToken();
+
+        if (!$token) {
+            return null;
+        }
+
+        $user = $token->getUser();
+
+        if (!$user instanceof User) {
+            return null;
+        }
+
+        return $user;
+    }
 
 }
