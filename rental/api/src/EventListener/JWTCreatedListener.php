@@ -48,6 +48,11 @@ class JWTCreatedListener
                     'email'     => $user->getEmail(),
                     'firstName'     => $user->getFirstName(),
                     'lastName'     => $user->getLastName(),
+                    'address'     => array(
+                        'streetName' => $user->getAddress()->getStreetName(),
+                        'city' => $user->getAddress()->getCity(),
+                        'region' => $user->getAddress()->getRegion()->getName(),
+                    ),
                     'roles'     => $user->getRoles(),
                     'numberOfProductsNotValid' => $this->getNumberOfProductsNotValid(),
                 );
@@ -57,6 +62,11 @@ class JWTCreatedListener
                     'email'     => $user->getEmail(),
                     'firstName'     => $user->getFirstName(),
                     'lastName'     => $user->getLastName(),
+                    'address'     => array(
+                        'streetName' => $user->getAddress()->getStreetName(),
+                        'city' => $user->getAddress()->getCity(),
+                        'region' => $user->getAddress()->getRegion()->getName(),
+                    ),
                     'roles'     => $user->getRoles()
                 );
             }
