@@ -61,6 +61,11 @@ class Category
      */
     private $children;
 
+    /**
+     * @ORM\OneToOne(targetEntity=File::class, inversedBy="category", cascade={"persist", "remove"})
+     */
+    private $img;
+
 
     public function __construct()
     {
@@ -154,6 +159,18 @@ class Category
                 $category->setParent(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getImg(): ?File
+    {
+        return $this->img;
+    }
+
+    public function setImg(?File $img): self
+    {
+        $this->img = $img;
 
         return $this;
     }

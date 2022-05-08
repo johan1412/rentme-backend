@@ -49,6 +49,11 @@ class File
      */
     private $product;
 
+    /**
+     * @ORM\OneToOne(targetEntity=Category::class, mappedBy="img", cascade={"persist", "remove"})
+     */
+    private $category;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -74,6 +79,28 @@ class File
     public function setProduct(?Product $product): self
     {
         $this->product = $product;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($category === null && $this->category !== null) {
+            $this->category->setImg(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($category !== null && $category->getImg() !== $this) {
+            $category->setImg($this);
+        }
+
+        $this->category = $category;
 
         return $this;
     }
