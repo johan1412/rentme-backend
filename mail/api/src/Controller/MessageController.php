@@ -13,8 +13,6 @@ class MessageController extends AbstractController
 {
     public function getConversations(ManagerRegistry $doctrine, $id, Request $req){
 
-        //TODO : check token from req object : req->headers
-
         $repository = $doctrine->getRepository(Message::class);
         $em = $doctrine->getManager();
         $query = $em->createQuery(

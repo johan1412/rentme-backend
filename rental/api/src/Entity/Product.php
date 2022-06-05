@@ -141,12 +141,18 @@ class Product
      */
     private $address;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Message::class, mappedBy="product")
+     */
+    private $messages;
+
     public function __construct()
     {
         $this->publishedAt = new Assert\DateTime();
         $this->comments = new ArrayCollection();
         $this->files = new ArrayCollection();
         $this->reservations = new ArrayCollection();
+        $this->messages = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -348,6 +354,36 @@ class Product
     public function setAddress(?Address $address): self
     {
         $this->address = $address;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Message>
+     */
+    public function getMessages(): Collection
+    {
+        return $this->messages;
+    }
+
+    public function addMessage(Message $message): self
+    {
+        if (!$this->messages->contains($message)) {
+            $this->messages[] = $message;
+            $message->setProduct($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMessage(Message $message): self
+    {
+        if ($this->messages->removeElement($message)) {
+            // set the owning side to null (unless already changed)
+            if ($message->getProduct() === $this) {
+                $message->setProduct(null);
+            }
+        }
 
         return $this;
     }
