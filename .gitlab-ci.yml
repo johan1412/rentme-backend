@@ -27,7 +27,6 @@ payment-build:
   only:
     - develop
     - main
-    - cicd
 
 payment-deploy:
   stage: deploy_payment
@@ -41,7 +40,6 @@ payment-deploy:
     - heroku run php bin/console d:s:u --force --exit-code --app $HEROKU_APP_PAYMENT
   only:
     - main
-    - cicd
 
 rental-build:
   stage: build_rental
