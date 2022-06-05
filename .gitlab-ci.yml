@@ -5,10 +5,12 @@ cache:
     - ./vendor/
 
 stages:
-  - build
-  - deploy
+  - build_payment
+  - deploy_payment
+  - build_rental
+  - deploy_rental
 payment-build:
-  stage: build
+  stage: build_payment
   before_script:
     - cd payment/api
     - ls
@@ -27,6 +29,7 @@ payment-build:
     - cicd
 
 payment-deploy:
+  stage: deploy_payment
   image : ruby:latest
   script:
     - cd payment/api
@@ -40,7 +43,7 @@ payment-deploy:
     - cicd
 
 rental-build:
-  stage: build
+  stage: build_rental
   before_script:
     - cd rental/api
     - ls
@@ -59,6 +62,7 @@ rental-build:
     - cicd
 
 rental-deploy:
+  stage: deploy_rental
   image: ruby:latest
   script:
     - cd rental/api
