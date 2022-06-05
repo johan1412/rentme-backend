@@ -24,9 +24,9 @@ payment-build:
   only:
     - develop
     - main
+    - cicd
 
 payment-deploy:
-  type: deploy
   image : ruby:latest
   script:
     - cd payment/api
@@ -37,6 +37,7 @@ payment-deploy:
     - heroku run php bin/console d:s:u --force --exit-code --app $HEROKU_APP_PAYMENT
   only:
     - main
+    - cicd
 
 rental-build:
   stage: build
@@ -55,9 +56,9 @@ rental-build:
   only:
     - develop
     - main
+    - cicd
 
 rental-deploy:
-  type: deploy
   image: ruby:latest
   script:
     - cd rental/api
@@ -68,3 +69,4 @@ rental-deploy:
     - heroku run php bin/console d:s:u --force --exit-code --app $HEROKU_APP_RENTAL
   only:
     - main
+    - cicd
