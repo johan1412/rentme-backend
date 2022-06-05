@@ -2,7 +2,8 @@ image: php:7.4
 
 cache:
   paths:
-    - ./vendor/
+    - ./rental/vendor/
+    - ./payment/vendor/
 
 stages:
   - build_payment
