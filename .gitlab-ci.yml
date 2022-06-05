@@ -56,7 +56,6 @@ rental-build:
     - main
 
 rental-deploy:
-  type: deploy
   image: ruby:latest
   script:
     - cd rental/api
