@@ -26,7 +26,6 @@ payment-build:
     - main
 
 payment-deploy:
-  type: deploy
   image : ruby:latest
   script:
     - cd payment/api
