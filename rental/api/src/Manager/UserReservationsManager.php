@@ -41,7 +41,7 @@ class UserReservationsManager extends AbstractController
     }
 
     public function getReservations(){
-        $reservations = $this->reservationRepository->findBy(["user" => $this->getUser()]);
+        $reservations = $this->reservationRepository->findBy(["tenant" => $this->getUser()]);
         return $reservations;
     }
 

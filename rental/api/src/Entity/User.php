@@ -82,7 +82,7 @@ class User implements UserInterface
     private $products;
 
     /**
-     * @ORM\OneToMany(targetEntity=Reservation::class, mappedBy="user")
+     * @ORM\OneToMany(targetEntity=Reservation::class, mappedBy="renter")
      * @Groups({"user_read"})
      */
     private $reservations;
@@ -105,11 +105,23 @@ class User implements UserInterface
      */
     private $isVerified = false;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Reservation::class, mappedBy="tenant")
+     * @Groups({"user_read"})
+     */
+    private $transactions;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $stripeToken;
+
     public function __construct()
     {
         $this->products = new ArrayCollection();
         $this->reservations = new ArrayCollection();
         $this->comments = new ArrayCollection();
+        $this->transactions = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -327,6 +339,48 @@ class User implements UserInterface
     public function setIsVerified(bool $isVerified): self
     {
         $this->isVerified = $isVerified;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Reservation>
+     */
+    public function getTransactions(): Collection
+    {
+        return $this->transactions;
+    }
+
+    public function addTransaction(Reservation $transaction): self
+    {
+        if (!$this->transactions->contains($transaction)) {
+            $this->transactions[] = $transaction;
+            $transaction->setRenter($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTransaction(Reservation $transaction): self
+    {
+        if ($this->transactions->removeElement($transaction)) {
+            // set the owning side to null (unless already changed)
+            if ($transaction->getRenter() === $this) {
+                $transaction->setRenter(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getStripeToken(): ?string
+    {
+        return $this->stripeToken;
+    }
+
+    public function setStripeToken(?string $stripeToken): self
+    {
+        $this->stripeToken = $stripeToken;
 
         return $this;
     }

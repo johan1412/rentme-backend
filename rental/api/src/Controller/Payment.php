@@ -2,11 +2,13 @@
 
 namespace App\Controller;
 
-use App\Entity\Pack;
-use App\Entity\Transaction;
-use GuzzleHttp\Exception\BadResponseException;
-use http\Client;
-use phpDocumentor\Reflection\Types\Integer;
+
+use App\Entity\Product;
+use App\Entity\Reservation;
+use App\Entity\User;
+use App\Repository\ProductRepository;
+use App\Repository\UserRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,69 +19,32 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 Class Payment extends AbstractController{
 
-    private $client;
 
-    public function __construct(HttpClientInterface $client)
+    private $productRepository;
+    private $userRepository;
+
+    public function __construct(ProductRepository $productRepository,UserRepository $userRepository)
     {
-        $this->client = $client;
+        $this->productRepository = $productRepository;
+        $this->userRepository = $userRepository;
     }
 
     /**
-     * @Route("/success/{productId}/{price}/{renterId}/{tenantId}", name="success",methods={"GET"})
+     * @Route("/success/{tok_stripe}/{id}", name="success",methods={"GET"})
      */
-    public function success(Request $request,$productId,$price,$renterId,$tenantId): Response
+    public function success(Request $request,$tok_stripe,$id): Response
     {
-        if(!$productId && !$price && !$renterId && !$tenantId){
-            return new BadResponseException(['message'=> "Wrong data, product doesn't exist"]);
-        }
+        $user = $this->getUserRepository()->find($id);
+        $databaseToken = $user->getStripeToken();
+        $user->setStripeToken(null);
 
-        $em = $this->getDoctrine()->getManager();
-        $transaction = new Transaction();
-        $transaction->setAmount($price);
-        $transaction->setProductId($productId);
-        $transaction->setRenterId($renterId);
-        $transaction->setTenantId($tenantId);
-        $transaction->setDate(new \DateTime());
-        $em->persist($transaction);
-        $em->flush();
+        if ($tok_stripe != $databaseToken) {
+            $url = 'http://localhost:8080/cancel';
+            return $this->redirect($url);
+        }
 
         $url = 'http://localhost:8080/success';
         return $this->redirect($url);
-    }
-
-    public function getToken(){
-
-        $response = $this->client->request(
-            'POST',
-            'https://localhost:8443/authentication_token',
-            [
-                'headers' => [
-                    'Content-Type' => 'application/json',
-                ],
-                'body' => [
-                    'email' => 'admin@gmail.com',
-                    'password' => 'mdpmdpmdp'
-                ]
-            ]
-
-        );
-        return $response->toArray()['token'];
-    }
-
-    public function fetchInformationFromRentMe($objectName,$id){
-        $response = $this->client->request(
-            'GET',
-            'https://localhost:8443/'.$objectName.'/'.$id,
-            [
-                'headers' => [
-                'Authorization' => 'Bearer '.$this->getToken(),
-                ]
-            ]
-        );
-        if ($response->getStatusCode() === 200){
-            return $response->toArray();
-        }
-        return [];
     }
 
     /**
@@ -91,17 +56,31 @@ Class Payment extends AbstractController{
     }
 
     /**
-     * @Route("/create-checkout-session", name="checkout",methods={"POST"})
+     * @Route("/create-checkout-session/{productId}/{tenantId}", name="checkout",methods={"POST"})
      */
-    public function checkout(Request $request): Response
+    public function checkout(Request $request,$productId,$tenantId,EntityManagerInterface $em): Response
     {
+
+        $stripeToken = base64_encode(random_bytes(16));
+        $user = $this->getUser();
+        $user->setStripeToken($stripeToken);
+        $em->persist($user);
+        $em->flush();
+
+        $url = 'http://localhost:8080/cancel';
         $parameters = json_decode($request->getContent(), true);
-        if(!$parameters["tenant"]){
-            return new BadResponseException(['message'=> "Wrong data, tenant doesn't exist"]);
+        if(!$productId || !$tenantId || !$parameters['price']){
+            return $this->redirect($url);
         }
-        if(!$parameters["product"]){
-            return new BadResponseException(['message'=> "Wrong data, product doesn't exist"]);
+        $product = $this->getProductRepository()->find($productId);
+        if(!$product || !$product->getIsValid()){
+            return $this->redirect($url);
         }
+        $tenant = $this->getUserRepository()->find($tenantId);
+        if(!$tenant){
+            return $this->redirect($url);
+        }
+
 
         // This is your test secret API key.
         \Stripe\Stripe::setApiKey('sk_test_51ImJIiH1ST2SneRlI5texYpM1EjkRwX5h0sXH8lWH6BxPP2sFmNCXW3KqXvOCnVFnaKxOeSZd9ZhGqaYm2D1mVyl00xvAeAezq');
@@ -111,14 +90,14 @@ Class Payment extends AbstractController{
                     'price_data' => [
                         'currency' => 'eur',
                         'product_data' => [
-                            'name' => $parameters["product"]["name"],
+                            'name' => $product->getName(),
                         ],
-                        'unit_amount' => $parameters["product"]["price"]*100,
+                        'unit_amount' => $parameters['price']*100,
                     ],
                     'quantity' => 1,
                 ]],
                 'mode' => 'payment',
-                'success_url' => $this->generateUrl('success',["productId"=>$parameters["product"]["id"],"price"=>$parameters["product"]["price"],"renterId"=>$parameters["product"]["user"]["id"],"tenantId"=>$parameters["tenant"]["id"]],UrlGeneratorInterface::ABSOLUTE_URL),
+                'success_url' => $this->generateUrl('success',['tok_stripe' => $stripeToken,'id' => $user->getId()],UrlGeneratorInterface::ABSOLUTE_URL),
                 'cancel_url' => $this->generateUrl('error',[],UrlGeneratorInterface::ABSOLUTE_URL),
             ]);
         return new JsonResponse(['checkout_session'=>$checkout_session]);
@@ -126,16 +105,17 @@ Class Payment extends AbstractController{
 
 
     /**
-     * @Route("/refund", name="refund",methods={"POST"})
+     * @Route("/refund", name="refund",methods={"GET"})
      */
     public function refund(Request $request): Response
     {
         $parameters = json_decode($request->getContent(), true);
+        $url = 'http://localhost:8080/cancel';
         if(!$parameters["caution"]){
-            return new BadResponseException(['message'=> "Wrong data, caution doesn't exist"]);
+            return $this->redirect($url);
         }
         if(!$parameters["paymentIntent"]){
-            return new BadResponseException(['message'=> "Wrong data, paymentIntent doesn't exist"]);
+            return $this->redirect($url);
         }
 
         $stripe = new \Stripe\StripeClient(
@@ -145,8 +125,7 @@ Class Payment extends AbstractController{
             'payment_intent' => $parameters["paymentIntent"],
             'amount' => $parameters["caution"]*100
         ]);
-
-        $url = 'http://localhost:8080/refund';
+        $url = 'http://localhost:8080/success';
         return $this->redirect($url);
     }
 
@@ -254,4 +233,23 @@ Class Payment extends AbstractController{
         //acct_1Kxey9QiQedsUT5N
         return new JsonResponse(['$transfer'=> $transfer]);
     }
+
+    /**
+     * @return ProductRepository
+     */
+    public function getProductRepository(): ProductRepository
+    {
+        return $this->productRepository;
+    }
+
+    /**
+     * @return UserRepository
+     */
+    public function getUserRepository(): UserRepository
+    {
+        return $this->userRepository;
+    }
+
+
+
 }
