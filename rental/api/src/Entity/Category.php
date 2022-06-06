@@ -13,9 +13,12 @@ use Symfony\Component\Serializer\Annotation\Groups;
 /**
  * @ApiResource(
  *     normalizationContext={"groups"="category_read"},
+ *     denormalization_context={"groups"={"category_write"}},
+ *
  *     collectionOperations={
  *         "get",
- *         "post"
+ *         "post",
+ *
  *     },
  *     itemOperations={
  *         "get",
@@ -38,7 +41,7 @@ class Category
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"product_read","category_read"})
+     * @Groups({"product_read","category_read", "category_write"})
      * @Assert\NotBlank
      */
     private $name;
@@ -51,7 +54,7 @@ class Category
 
     /**
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="children")
-     * @Groups({"product_read","category_read"})
+     * @Groups({"product_read","category_read","category_write"})
      */
     private $parent;
 
@@ -63,6 +66,7 @@ class Category
 
     /**
      * @ORM\OneToOne(targetEntity=File::class, inversedBy="category", cascade={"persist", "remove"})
+     * @Groups({"category_write","category_read"})
      */
     private $img;
 

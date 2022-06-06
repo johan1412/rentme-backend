@@ -37,7 +37,7 @@ class File
 
     /**
      * @ORM\Column(type="string", length=255, options={"default" : "ntm"})
-     * @Groups({"product_read","file_read","product_write", "user_read"})
+     * @Groups({"product_read","file_read","product_write", "user_read", "category_write"})
      * @Assert\NotBlank
      */
     private $path;
@@ -45,12 +45,13 @@ class File
     /**
      * @ORM\ManyToOne(targetEntity=Product::class, inversedBy="files", cascade={"persist"})
      * @Groups({"file_read", "product_write"})
-     * @Assert\NotBlank
      */
     private $product;
 
     /**
      * @ORM\OneToOne(targetEntity=Category::class, mappedBy="img", cascade={"persist", "remove"})
+     * @Groups({"category_write"})
+     *
      */
     private $category;
 

@@ -35,7 +35,7 @@ class Region
 
     /**
      * @ORM\Column(type="integer")
-     * @Groups({"region_read","address_read"})
+     * @Groups({"region_read","address_read","user_write"})
      * @Assert\NotBlank
      * @Assert\Type(
      *     type="integer",
@@ -46,7 +46,7 @@ class Region
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"region_read","address_read"})
+     * @Groups({"region_read","address_read", "user_write"})
      * @Assert\NotBlank
      * @Assert\Type(
      *     type="string",
