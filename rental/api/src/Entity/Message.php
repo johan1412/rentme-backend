@@ -36,6 +36,11 @@ class Message
      */
     private $product;
 
+    /**
+     * @ORM\Column(type="string", length=1000)
+     */
+    private $text;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -73,6 +78,18 @@ class Message
     public function setProduct(?Product $product): self
     {
         $this->product = $product;
+
+        return $this;
+    }
+
+    public function getText(): ?string
+    {
+        return $this->text;
+    }
+
+    public function setText(string $text): self
+    {
+        $this->text = $text;
 
         return $this;
     }
