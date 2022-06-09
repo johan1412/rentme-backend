@@ -7,6 +7,7 @@ use App\Entity\Product;
 use App\Entity\Reservation;
 use App\Entity\User;
 use App\Repository\ProductRepository;
+use App\Repository\ReservationRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -22,11 +23,13 @@ Class Payment extends AbstractController{
 
     private $productRepository;
     private $userRepository;
+    private $reservationRepository;
 
-    public function __construct(ProductRepository $productRepository,UserRepository $userRepository)
+    public function __construct(ProductRepository $productRepository,UserRepository $userRepository,ReservationRepository $reservationRepository)
     {
         $this->productRepository = $productRepository;
         $this->userRepository = $userRepository;
+        $this->reservationRepository = $reservationRepository;
     }
 
     /**
@@ -105,28 +108,23 @@ Class Payment extends AbstractController{
 
 
     /**
-     * @Route("/refund", name="refund",methods={"GET"})
+     * @Route("/refund/{reservationId}", name="refund",methods={"GET"})
      */
-    public function refund(Request $request): Response
+    public function refund(Request $request, $reservationId): Response
     {
-        $parameters = json_decode($request->getContent(), true);
         $url = 'http://localhost:8080/cancel';
-        if(!$parameters["caution"]){
+        if(!$reservationId){
             return $this->redirect($url);
         }
-        if(!$parameters["paymentIntent"]){
-            return $this->redirect($url);
-        }
-
+        $reservation = $this->reservationRepository->find($reservationId);
         $stripe = new \Stripe\StripeClient(
             'sk_test_51ImJIiH1ST2SneRlI5texYpM1EjkRwX5h0sXH8lWH6BxPP2sFmNCXW3KqXvOCnVFnaKxOeSZd9ZhGqaYm2D1mVyl00xvAeAezq'
         );
         $stripe->refunds->create([
-            'payment_intent' => $parameters["paymentIntent"],
-            'amount' => $parameters["caution"]*100
+            'payment_intent' => $reservation->getPaymentIntent(),
+            'amount' => $reservation->getProduct()->getCaution()*100
         ]);
-        $url = 'http://localhost:8080/success';
-        return $this->redirect($url);
+        return new JsonResponse(['message'=>'Refund is successfully completed']);
     }
 
 
