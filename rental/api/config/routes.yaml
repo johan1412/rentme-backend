@@ -3,3 +3,7 @@ authentication_token:
   path: /authentication_token
   methods: ['POST']
 
+get_conversations:
+  path:       /conversations/{id}
+  controller: App\Controller\MessageController::getConversations
+  methods:    GET
