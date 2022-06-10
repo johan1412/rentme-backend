@@ -9,11 +9,14 @@ use App\Entity\User;
 use App\Repository\ProductRepository;
 use App\Repository\ReservationRepository;
 use App\Repository\UserRepository;
+use App\Security\EmailVerifier;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mime\Address;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
@@ -24,12 +27,14 @@ Class Payment extends AbstractController{
     private $productRepository;
     private $userRepository;
     private $reservationRepository;
+    private EmailVerifier $emailVerifier;
 
-    public function __construct(ProductRepository $productRepository,UserRepository $userRepository,ReservationRepository $reservationRepository)
+    public function __construct(ProductRepository $productRepository,UserRepository $userRepository,ReservationRepository $reservationRepository,EmailVerifier $emailVerifier)
     {
         $this->productRepository = $productRepository;
         $this->userRepository = $userRepository;
         $this->reservationRepository = $reservationRepository;
+        $this->emailVerifier = $emailVerifier;
     }
 
     /**
@@ -124,6 +129,20 @@ Class Payment extends AbstractController{
             'payment_intent' => $reservation->getPaymentIntent(),
             'amount' => $reservation->getProduct()->getCaution()*100
         ]);
+
+        $this->emailVerifier->sendEmailConfirmation('app_verify_email', $reservation->getTenant(),
+            (new TemplatedEmail())
+                ->from(new Address('devfullstack44@gmail.com', 'Rentme Mail Bot'))
+                ->to($reservation->getTenant()->getEmail())
+                ->subject('Remboursement products')
+                ->htmlTemplate('refund/tenant.html.twig')
+                ->context([
+                    'tenant' => $reservation->getTenant()->getFullName(),
+                    'product' => $reservation->getProduct()->getName(),
+                    'caution' => $reservation->getProduct()->getCaution(),
+                ])
+        );
+
         return new JsonResponse(['message'=>'Refund is successfully completed']);
     }
 
@@ -176,13 +195,13 @@ Class Payment extends AbstractController{
         );
         */
 
-        \Stripe\Stripe::setApiKey('sk_test_51ImJIiH1ST2SneRlI5texYpM1EjkRwX5h0sXH8lWH6BxPP2sFmNCXW3KqXvOCnVFnaKxOeSZd9ZhGqaYm2D1mVyl00xvAeAezq');
+        $stripe = \Stripe\Stripe::setApiKey('sk_test_51ImJIiH1ST2SneRlI5texYpM1EjkRwX5h0sXH8lWH6BxPP2sFmNCXW3KqXvOCnVFnaKxOeSZd9ZhGqaYm2D1mVyl00xvAeAezq');
 
-        \Stripe\Charge::create(array(
+       /* \Stripe\Charge::create(array(
             'currency' => 'eur',
             'amount'   => 10000,
             'card'     => 4000000000000077
-        ));
+        ));*/
 
         /*
         $response = \Stripe\OAuth::token([
@@ -193,7 +212,13 @@ Class Payment extends AbstractController{
 // Access the connected account id in the response
         //$connected_account_id = $response->stripe_user_id;
 
-        return new JsonResponse(['$connected_account_id'=> 'correct']);
+        $id_account = $stripe->accounts->retrieve(
+            [
+                "type" => "express",
+                "object" => "account",
+                'email' => 'abdellatifchalala44@gmail.com']
+        );
+        return new JsonResponse(['account'=> $id_account]);
     }
 
 
