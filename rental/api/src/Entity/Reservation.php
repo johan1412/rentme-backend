@@ -75,11 +75,11 @@ class Reservation
     private $state;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="reservations")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="transactions")
      * @Groups({"reservation_read"})
      * @Assert\NotNull
      */
-    private $user;
+    private $renter;
 
     /**
      * @ORM\ManyToOne(targetEntity=Product::class, inversedBy="reservations")
@@ -99,6 +99,13 @@ class Reservation
      * @Groups({"reservation_read","user_read","product_read"})
      */
     private $paymentIntent;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="reservations")
+     * @Groups({"reservation_read"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $tenant;
 
     public function getId(): ?int
     {
@@ -156,14 +163,14 @@ class Reservation
         return $this;
     }
 
-    public function getUser(): ?User
+    public function getRenter(): ?User
     {
-        return $this->user;
+        return $this->renter;
     }
 
-    public function setUser(?User $user): self
+    public function setRenter(?User $renter): self
     {
-        $this->user = $user;
+        $this->renter = $renter;
 
         return $this;
     }
@@ -200,6 +207,18 @@ class Reservation
     public function setPaymentIntent(string $paymentIntent): self
     {
         $this->paymentIntent = $paymentIntent;
+
+        return $this;
+    }
+
+    public function getTenant(): ?User
+    {
+        return $this->tenant;
+    }
+
+    public function setTenant(?User $tenant): self
+    {
+        $this->tenant = $tenant;
 
         return $this;
     }

@@ -39,5 +39,11 @@ services:
         autowire: true
         tags:
             - { name: kernel.event_subscriber, event: kernel.view }
+
+#    App\EventSubscriber\EmailReservation:
+#        autoconfigure: true
+#        autowire: true
+#        tags:
+#            - { name: kernel.event_subscriber, event: kernel.view }
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
