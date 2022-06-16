@@ -12,6 +12,7 @@
         "doctrine/doctrine-bundle": "^2.1",
         "doctrine/doctrine-migrations-bundle": "^3.0",
         "doctrine/orm": "^2.7",
+        "elasticsearch/elasticsearch": "^6.0",
         "guzzlehttp/guzzle": "^7.4",
         "lexik/jwt-authentication-bundle": "*",
         "nelmio/cors-bundle": "^2.1",
