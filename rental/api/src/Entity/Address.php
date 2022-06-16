@@ -37,7 +37,7 @@ class Address
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"address_read","user_read", "user_write"})
+     * @Groups({"address_read","user_read", "user_write", "product_write"})
      * @Assert\NotBlank
      * @Assert\Length(
      *     min = 1,
@@ -48,7 +48,7 @@ class Address
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"address_read","user_read", "user_write"})
+     * @Groups({"address_read","user_read", "user_write", "product_write"})
      * @Assert\NotBlank
      * @Assert\Length(
      *     min = 1,
@@ -60,7 +60,7 @@ class Address
     /**
      * @ORM\ManyToOne(targetEntity=Region::class, cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
-     * @Groups({"address_read","user_read", "user_write"})
+     * @Groups({"address_read","user_read", "user_write", "product_write"})
      */
     private $region;
 
