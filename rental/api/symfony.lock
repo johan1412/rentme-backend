@@ -113,6 +113,15 @@
     "egulias/email-validator": {
         "version": "2.1.25"
     },
+    "elasticsearch/elasticsearch": {
+        "version": "v6.8.2"
+    },
+    "ezimuel/guzzlestreams": {
+        "version": "3.0.1"
+    },
+    "ezimuel/ringphp": {
+        "version": "1.2.0"
+    },
     "fig/link-util": {
         "version": "1.1.1"
     },
@@ -226,6 +235,9 @@
     },
     "ralouphie/getallheaders": {
         "version": "3.0.3"
+    },
+    "react/promise": {
+        "version": "v2.9.0"
     },
     "stripe/stripe-php": {
         "version": "v8.5.0"

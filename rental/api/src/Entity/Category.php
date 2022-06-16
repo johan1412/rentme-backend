@@ -12,6 +12,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ApiResource(
+ *     attributes={"force_eager"=false},
  *     normalizationContext={"groups"="category_read"},
  *     denormalization_context={"groups"={"category_write"}},
  *
