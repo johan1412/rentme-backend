@@ -1,5 +1,0 @@
-# api/config/routes.yaml
-get_conversations:
-  path:       /conversations/{id}
-  controller: App\Controller\MessageController::getConversations
-  methods:    GET
