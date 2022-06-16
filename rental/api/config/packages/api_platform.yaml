@@ -1,14 +1,10 @@
 parameters:
-    # ...
-    env(ELASTICSEARCH_HOST): 'http://localhost:9200'
 
 api_platform:
     title: Hello API Platform
     version: 1.0.0
     mapping:
         paths: ['%kernel.project_dir%/src/Entity']
-    elasticsearch:
-        hosts: [ '%env(ELASTICSEARCH_HOST)%' ]
     patch_formats:
         json: ['application/json']
     swagger:
