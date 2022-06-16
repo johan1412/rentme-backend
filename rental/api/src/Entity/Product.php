@@ -129,12 +129,12 @@ class Product
 
     /**
      * @ORM\Column(type="integer")
-     * @Groups({"product_read","reservation_read"})
+     * @Groups({"product_read","reservation_read", "product_write"})
      */
     private $caution;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Address::class, inversedBy="products")
+     * @ORM\ManyToOne(targetEntity=Address::class, inversedBy="products", cascade={"persist"})
      * @ORM\JoinColumn(nullable=true)
      * @Groups({"product_write","user_read","product_read","reservation_read","file_read","comment_read","category_read"})
      * @Assert\NotNull
@@ -143,7 +143,7 @@ class Product
 
     public function __construct()
     {
-        $this->publishedAt = new Assert\DateTime();
+        $this->publishedAt = new \DateTime();
         $this->comments = new ArrayCollection();
         $this->files = new ArrayCollection();
         $this->reservations = new ArrayCollection();
