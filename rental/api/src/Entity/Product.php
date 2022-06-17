@@ -141,12 +141,28 @@ class Product
      */
     private $address;
 
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $averageRatings;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $numbersOfRatings;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Reporting::class, mappedBy="product", orphanRemoval=true)
+     */
+    private $reportings;
+
     public function __construct()
     {
         $this->publishedAt = new \DateTime();
         $this->comments = new ArrayCollection();
         $this->files = new ArrayCollection();
         $this->reservations = new ArrayCollection();
+        $this->reportings = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -348,6 +364,60 @@ class Product
     public function setAddress(?Address $address): self
     {
         $this->address = $address;
+
+        return $this;
+    }
+
+    public function getAverageRatings(): ?float
+    {
+        return $this->averageRatings;
+    }
+
+    public function setAverageRatings(?float $averageRatings): self
+    {
+        $this->averageRatings = $averageRatings;
+
+        return $this;
+    }
+
+    public function getNumbersOfRatings(): ?int
+    {
+        return $this->numbersOfRatings;
+    }
+
+    public function setNumbersOfRatings(?int $numbersOfRatings): self
+    {
+        $this->numbersOfRatings = $numbersOfRatings;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Reporting>
+     */
+    public function getReportings(): Collection
+    {
+        return $this->reportings;
+    }
+
+    public function addReporting(Reporting $reporting): self
+    {
+        if (!$this->reportings->contains($reporting)) {
+            $this->reportings[] = $reporting;
+            $reporting->setProduct($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReporting(Reporting $reporting): self
+    {
+        if ($this->reportings->removeElement($reporting)) {
+            // set the owning side to null (unless already changed)
+            if ($reporting->getProduct() === $this) {
+                $reporting->setProduct(null);
+            }
+        }
 
         return $this;
     }

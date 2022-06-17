@@ -116,12 +116,18 @@ class User implements UserInterface
      */
     private $stripeToken;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Reporting::class, mappedBy="sender", orphanRemoval=true)
+     */
+    private $reportings;
+
     public function __construct()
     {
         $this->products = new ArrayCollection();
         $this->reservations = new ArrayCollection();
         $this->comments = new ArrayCollection();
         $this->transactions = new ArrayCollection();
+        $this->reportings = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -389,5 +395,35 @@ class User implements UserInterface
     public function getFullName(): ?string
     {
         return $this->getFirstName().' '.$this->getLastName();
+    }
+
+    /**
+     * @return Collection<int, Reporting>
+     */
+    public function getReportings(): Collection
+    {
+        return $this->reportings;
+    }
+
+    public function addReporting(Reporting $reporting): self
+    {
+        if (!$this->reportings->contains($reporting)) {
+            $this->reportings[] = $reporting;
+            $reporting->setSender($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReporting(Reporting $reporting): self
+    {
+        if ($this->reportings->removeElement($reporting)) {
+            // set the owning side to null (unless already changed)
+            if ($reporting->getSender() === $this) {
+                $reporting->setSender(null);
+            }
+        }
+
+        return $this;
     }
 }
