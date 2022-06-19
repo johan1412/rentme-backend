@@ -55,13 +55,13 @@ class Category
 
     /**
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="children")
-     * @Groups({"product_read","category_read","category_write"})
+     * @Groups({"category_read","category_write"})
      */
     private $parent;
 
     /**
      * @ORM\OneToMany(targetEntity=Category::class, mappedBy="parent")
-     * @Groups({"product_read","category_read"})
+     * @Groups({"category_read"})
      */
     private $children;
 

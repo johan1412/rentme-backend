@@ -7,3 +7,8 @@ get_conversations:
   path:       /conversations/{id}
   controller: App\Controller\MessageController::getConversations
   methods:    GET
+
+search_products:
+  path:       /productsSearch
+  controller: App\Controller\ProductsSearchController::searchProducts
+  methods:    ['GET']

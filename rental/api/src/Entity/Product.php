@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\ProductRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -27,8 +28,8 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *              "controller"=App\Controller\ProductsValid::class
  *          },
  *         "post"={"security"="is_granted('ROLE_USER')",
-*          "denormalization_context"={"groups"={"product_write"}},
-
+ *          "denormalization_context"={"groups"={"product_write"}},
+ *
  *     }
  *     },
  *     itemOperations={
@@ -50,6 +51,8 @@ class Product
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      * @Groups({"user_read","product_read","reservation_read","file_read","comment_read","category_read"})
+     * @ApiProperty(identifier=true)
+     *
      */
     private $id;
 
