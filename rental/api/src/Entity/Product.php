@@ -35,7 +35,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *     itemOperations={
  *         "get",
  *         "put"={"security_post_denormalize"="is_granted('PRODUCT_EDIT', product)"},
- *         "patch"={"security"="is_granted('ROLE_ADMIN')"},
+ *         "patch"={"security"="is_granted('ROLE_USER')"},
  *         "delete"={"security"="is_granted('ROLE_ADMIN')"}
  *     }
  * )
@@ -99,7 +99,7 @@ class Product
     private $comments;
 
     /**
-     * @ORM\OneToMany(targetEntity=File::class, mappedBy="product", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity=File::class, mappedBy="product", cascade={"persist","remove"})
      * @Groups({"product_read","product_write", "user_read"})
      */
     private $files;
@@ -120,7 +120,7 @@ class Product
 
     /**
      * @ORM\Column(type="boolean")
-     * @Groups({"product_read"})
+     * @Groups({"product_read","user_read"})
      */
     private $isValid = false;
 
@@ -132,7 +132,7 @@ class Product
 
     /**
      * @ORM\Column(type="integer")
-     * @Groups({"product_read","reservation_read", "product_write"})
+     * @Groups({"product_read","reservation_read", "product_write", "user_read"})
      */
     private $caution;
 
@@ -146,13 +146,15 @@ class Product
 
     /**
      * @ORM\Column(type="float", nullable=true)
+     * @Groups({"product_read","user_read"})
      */
-    private $averageRatings;
+    private $averageRatings = 0;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Groups({"product_read","user_read"})
      */
-    private $numbersOfRatings;
+    private $numbersOfRatings = 0;
 
     /**
      * @ORM\OneToMany(targetEntity=Reporting::class, mappedBy="product", orphanRemoval=true)

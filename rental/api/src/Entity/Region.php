@@ -29,7 +29,7 @@ class Region
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups({"region_read","address_read", "user_write"})
+     * @Groups({"region_read","address_read", "user_write", "user_read"})
      */
     private $id;
 

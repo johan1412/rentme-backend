@@ -43,7 +43,7 @@ class File
     private $path;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Product::class, inversedBy="files", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity=Product::class, inversedBy="files", cascade={"persist","remove"})
      * @Groups({"file_read", "product_write"})
      */
     private $product;
