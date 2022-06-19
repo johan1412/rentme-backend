@@ -99,7 +99,7 @@ class Product
     private $comments;
 
     /**
-     * @ORM\OneToMany(targetEntity=File::class, mappedBy="product", cascade={"persist","remove"})
+     * @ORM\OneToMany(targetEntity=File::class, mappedBy="product", cascade={"all"}, orphanRemoval=true)
      * @Groups({"product_read","product_write", "user_read"})
      */
     private $files;
