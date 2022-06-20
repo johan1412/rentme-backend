@@ -17,7 +17,7 @@ class ProductsNotValidManager
     }
 
     public function getProductsNotValid(){
-        $products = $this->productRepository->findBy(["isValid" => false]);
+        $products = $this->productRepository->findBy(["isValid" => false,"hasRight" => true]);
         return $products;
     }
 

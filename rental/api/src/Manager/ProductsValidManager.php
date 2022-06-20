@@ -17,7 +17,7 @@ class ProductsValidManager
     }
 
     public function getProductsValid(){
-        $products = $this->productRepository->findBy(["isValid" => true]);
+        $products = $this->productRepository->findBy(["isValid" => true,"hasRight" => true]);
         return $products;
     }
 

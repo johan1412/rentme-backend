@@ -449,6 +449,7 @@ return array(
     'App\\Controller\\MessageController' => $baseDir . '/src/Controller/MessageController.php',
     'App\\Controller\\Payment' => $baseDir . '/src/Controller/Payment.php',
     'App\\Controller\\ProductsNotValid' => $baseDir . '/src/Controller/ProductsNotValid.php',
+    'App\\Controller\\ProductsSearchController' => $baseDir . '/src/Controller/ProductsSearchController.php',
     'App\\Controller\\ProductsValid' => $baseDir . '/src/Controller/ProductsValid.php',
     'App\\Controller\\RegistrationController' => $baseDir . '/src/Controller/RegistrationController.php',
     'App\\Controller\\ResetPasswordController' => $baseDir . '/src/Controller/ResetPasswordController.php',
