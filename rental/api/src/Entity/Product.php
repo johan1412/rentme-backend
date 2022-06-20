@@ -161,8 +161,15 @@ class Product
      */
     private $reportings;
 
+    /**
+     * @ORM\Column(type="boolean")
+     * @Groups({"product_read","user_read"})
+     */
+    private $hasRight;
+
     public function __construct()
     {
+        $this->hasRight = true;
         $this->publishedAt = new \DateTime();
         $this->comments = new ArrayCollection();
         $this->files = new ArrayCollection();
@@ -423,6 +430,18 @@ class Product
                 $reporting->setProduct(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getHasRight(): ?bool
+    {
+        return $this->hasRight;
+    }
+
+    public function setHasRight(bool $hasRight): self
+    {
+        $this->hasRight = $hasRight;
 
         return $this;
     }

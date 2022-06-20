@@ -1158,6 +1158,7 @@ class ComposerStaticInit25528297b5ee04487763c7972cf61d63
         'App\\Controller\\MessageController' => __DIR__ . '/../..' . '/src/Controller/MessageController.php',
         'App\\Controller\\Payment' => __DIR__ . '/../..' . '/src/Controller/Payment.php',
         'App\\Controller\\ProductsNotValid' => __DIR__ . '/../..' . '/src/Controller/ProductsNotValid.php',
+        'App\\Controller\\ProductsSearchController' => __DIR__ . '/../..' . '/src/Controller/ProductsSearchController.php',
         'App\\Controller\\ProductsValid' => __DIR__ . '/../..' . '/src/Controller/ProductsValid.php',
         'App\\Controller\\RegistrationController' => __DIR__ . '/../..' . '/src/Controller/RegistrationController.php',
         'App\\Controller\\ResetPasswordController' => __DIR__ . '/../..' . '/src/Controller/ResetPasswordController.php',
