@@ -45,4 +45,5 @@ security:
         - { path: ^/regions, methods:["GET"], roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/success, methods:["GET"], roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/productsSearch, methods: [ "GET" ], roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/products/search, methods: [ "GET" ], roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/, roles: IS_AUTHENTICATED_FULLY }

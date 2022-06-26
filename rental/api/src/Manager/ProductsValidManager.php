@@ -4,7 +4,8 @@
 namespace App\Manager;
 
 use App\Repository\ProductRepository;
-use Symfony\Component\HttpFoundation\JsonResponse;
+use App\Service\ElasticSearchService;
+use Elastic\Elasticsearch\ClientBuilder;
 
 
 class ProductsValidManager
@@ -15,6 +16,8 @@ class ProductsValidManager
     {
         $this->productRepository = $productRepository;
     }
+
+
 
     public function getProductsValid(){
         $products = $this->productRepository->findBy(["isValid" => true,"hasRight" => true]);
