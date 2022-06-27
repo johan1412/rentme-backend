@@ -26,6 +26,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *         "put"={"security"="is_granted('ROLE_ADMIN')"},
  *         "patch"={"security"="is_granted('ROLE_ADMIN')"},
  *         "delete"={"security"="is_granted('ROLE_ADMIN')"},
+ *         "post"={"security"="is_granted('ROLE_ADMIN')"},
  *     }
  * )
  * @ORM\Entity(repositoryClass=CategoryRepository::class)

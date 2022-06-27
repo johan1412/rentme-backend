@@ -266,7 +266,7 @@ final class MakeRegistrationForm extends AbstractMaker
             );
 
             $generator->generateTemplate(
-                'registration/renter.html.twig',
+                'registration/confirmation_email.html.twig',
                 'registration/twig_email.tpl.php'
             );
         }
