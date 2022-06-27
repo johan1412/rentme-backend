@@ -41,7 +41,7 @@ security:
         - { path: ^/verify/email, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/users, methods:["POST"], roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/categories, methods:["GET"], roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/categories, methods: [ "POST" ], roles: ["ROLE_ADMIN"] }
+        - { path: ^/categories, methods: [ "POST","PATCH","DELETE"], roles: ["ROLE_ADMIN"] }
         - { path: ^/products, methods:["GET"], roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/regions, methods:["GET"], roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/success, methods:["GET"], roles: IS_AUTHENTICATED_ANONYMOUSLY }
