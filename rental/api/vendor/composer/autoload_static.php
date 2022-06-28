@@ -4,23 +4,23 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit25528297b5ee04487763c7972cf61d63
+class ComposerStaticInit8dd9cd4f1e934722e779b16dc6a40354
 {
     public static $files = array (
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
         '6e3fae29631ef280660b3cdad06f25a8' => __DIR__ . '/..' . '/symfony/deprecation-contracts/function.php',
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
-        '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
         'e69f7f6ee287b969198c3c9d6777bd38' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/bootstrap.php',
         '8825ede83f2f289127722d4e842cf7e8' => __DIR__ . '/..' . '/symfony/polyfill-intl-grapheme/bootstrap.php',
         'b6b991a57620e2fb6b2f66f03fe9ddc2' => __DIR__ . '/..' . '/symfony/string/Resources/functions.php',
+        '92c8763cd6170fce6fcfe7e26b4e8c10' => __DIR__ . '/..' . '/symfony/phpunit-bridge/bootstrap.php',
+        '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
         'f598d06aa772fa33d905e87be6398fb1' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/bootstrap.php',
-        'c2aad8997a98dfc4771bdbffea3d62b7' => __DIR__ . '/..' . '/laminas/laminas-code/polyfill/ReflectionEnumPolyfill.php',
-        '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
         'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
         '6a47392539ca2329373e0d33e1dba053' => __DIR__ . '/..' . '/symfony/polyfill-intl-icu/bootstrap.php',
+        '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
+        'c2aad8997a98dfc4771bdbffea3d62b7' => __DIR__ . '/..' . '/laminas/laminas-code/polyfill/ReflectionEnumPolyfill.php',
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
-        '92c8763cd6170fce6fcfe7e26b4e8c10' => __DIR__ . '/..' . '/symfony/phpunit-bridge/bootstrap.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -203,8 +203,8 @@ class ComposerStaticInit25528297b5ee04487763c7972cf61d63
         'phpDocumentor\\Reflection\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
-            1 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
-            2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
+            1 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
+            2 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
         ),
         'Webmozart\\Assert\\' => 
         array (
@@ -496,8 +496,8 @@ class ComposerStaticInit25528297b5ee04487763c7972cf61d63
         ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-factory/src',
-            1 => __DIR__ . '/..' . '/psr/http-message/src',
+            0 => __DIR__ . '/..' . '/psr/http-message/src',
+            1 => __DIR__ . '/..' . '/psr/http-factory/src',
         ),
         'Psr\\Http\\Client\\' => 
         array (
@@ -665,9 +665,9 @@ class ComposerStaticInit25528297b5ee04487763c7972cf61d63
         ),
         'Doctrine\\Common\\' => 
         array (
-            0 => __DIR__ . '/..' . '/doctrine/common/lib/Doctrine/Common',
-            1 => __DIR__ . '/..' . '/doctrine/event-manager/lib/Doctrine/Common',
-            2 => __DIR__ . '/..' . '/doctrine/persistence/src/Common',
+            0 => __DIR__ . '/..' . '/doctrine/event-manager/lib/Doctrine/Common',
+            1 => __DIR__ . '/..' . '/doctrine/persistence/src/Common',
+            2 => __DIR__ . '/..' . '/doctrine/common/lib/Doctrine/Common',
         ),
         'Doctrine\\Bundle\\MigrationsBundle\\' => 
         array (
@@ -1186,6 +1186,7 @@ class ComposerStaticInit25528297b5ee04487763c7972cf61d63
         'App\\EventSubscriber\\EmailSubscriber' => __DIR__ . '/../..' . '/src/EventSubscriber/EmailSubscriber.php',
         'App\\EventSubscriber\\IndexProductToElasticSearch' => __DIR__ . '/../..' . '/src/EventSubscriber/IndexProductToElasticSearch.php',
         'App\\EventSubscriber\\ResolveMediaObjectContentUrlSubscriber' => __DIR__ . '/../..' . '/src/EventSubscriber/ResolveMediaObjectContentUrlSubscriber.php',
+        'App\\EventSubscriber\\UpdateProductInElasticSearch' => __DIR__ . '/../..' . '/src/EventSubscriber/UpdateProductInElasticSearch.php',
         'App\\Form\\ChangePasswordFormType' => __DIR__ . '/../..' . '/src/Form/ChangePasswordFormType.php',
         'App\\Form\\ResetPasswordRequestFormType' => __DIR__ . '/../..' . '/src/Form/ResetPasswordRequestFormType.php',
         'App\\Kernel' => __DIR__ . '/../..' . '/src/Kernel.php',
@@ -2633,6 +2634,7 @@ class ComposerStaticInit25528297b5ee04487763c7972cf61d63
         'GuzzleHttp\\Psr7\\StreamWrapper' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/StreamWrapper.php',
         'GuzzleHttp\\Psr7\\UploadedFile' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/UploadedFile.php',
         'GuzzleHttp\\Psr7\\Uri' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/Uri.php',
+        'GuzzleHttp\\Psr7\\UriComparator' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/UriComparator.php',
         'GuzzleHttp\\Psr7\\UriNormalizer' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/UriNormalizer.php',
         'GuzzleHttp\\Psr7\\UriResolver' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/UriResolver.php',
         'GuzzleHttp\\Psr7\\Utils' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/Utils.php',
@@ -3023,6 +3025,7 @@ class ComposerStaticInit25528297b5ee04487763c7972cf61d63
         'Monolog\\Handler\\SqsHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Handler/SqsHandler.php',
         'Monolog\\Handler\\StreamHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Handler/StreamHandler.php',
         'Monolog\\Handler\\SwiftMailerHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Handler/SwiftMailerHandler.php',
+        'Monolog\\Handler\\SymfonyMailerHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Handler/SymfonyMailerHandler.php',
         'Monolog\\Handler\\SyslogHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Handler/SyslogHandler.php',
         'Monolog\\Handler\\SyslogUdpHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Handler/SyslogUdpHandler.php',
         'Monolog\\Handler\\SyslogUdp\\UdpSocket' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Handler/SyslogUdp/UdpSocket.php',
@@ -3926,6 +3929,7 @@ class ComposerStaticInit25528297b5ee04487763c7972cf61d63
         'ProxyManager\\Generator\\Util\\IdentifierSuffixer' => __DIR__ . '/..' . '/friendsofphp/proxy-manager-lts/src/ProxyManager/Generator/Util/IdentifierSuffixer.php',
         'ProxyManager\\Generator\\Util\\ProxiedMethodReturnExpression' => __DIR__ . '/..' . '/friendsofphp/proxy-manager-lts/src/ProxyManager/Generator/Util/ProxiedMethodReturnExpression.php',
         'ProxyManager\\Generator\\Util\\UniqueIdentifierGenerator' => __DIR__ . '/..' . '/friendsofphp/proxy-manager-lts/src/ProxyManager/Generator/Util/UniqueIdentifierGenerator.php',
+        'ProxyManager\\Generator\\ValueGenerator' => __DIR__ . '/..' . '/friendsofphp/proxy-manager-lts/src/ProxyManager/Generator/ValueGenerator.php',
         'ProxyManager\\Inflector\\ClassNameInflector' => __DIR__ . '/..' . '/friendsofphp/proxy-manager-lts/src/ProxyManager/Inflector/ClassNameInflector.php',
         'ProxyManager\\Inflector\\ClassNameInflectorInterface' => __DIR__ . '/..' . '/friendsofphp/proxy-manager-lts/src/ProxyManager/Inflector/ClassNameInflectorInterface.php',
         'ProxyManager\\Inflector\\Util\\ParameterEncoder' => __DIR__ . '/..' . '/friendsofphp/proxy-manager-lts/src/ProxyManager/Inflector/Util/ParameterEncoder.php',
@@ -4273,6 +4277,7 @@ class ComposerStaticInit25528297b5ee04487763c7972cf61d63
         'Stripe\\Service\\Terminal\\LocationService' => __DIR__ . '/..' . '/stripe/stripe-php/lib/Service/Terminal/LocationService.php',
         'Stripe\\Service\\Terminal\\ReaderService' => __DIR__ . '/..' . '/stripe/stripe-php/lib/Service/Terminal/ReaderService.php',
         'Stripe\\Service\\Terminal\\TerminalServiceFactory' => __DIR__ . '/..' . '/stripe/stripe-php/lib/Service/Terminal/TerminalServiceFactory.php',
+        'Stripe\\Service\\TestHelpers\\CustomerService' => __DIR__ . '/..' . '/stripe/stripe-php/lib/Service/TestHelpers/CustomerService.php',
         'Stripe\\Service\\TestHelpers\\RefundService' => __DIR__ . '/..' . '/stripe/stripe-php/lib/Service/TestHelpers/RefundService.php',
         'Stripe\\Service\\TestHelpers\\Terminal\\ReaderService' => __DIR__ . '/..' . '/stripe/stripe-php/lib/Service/TestHelpers/Terminal/ReaderService.php',
         'Stripe\\Service\\TestHelpers\\Terminal\\TerminalServiceFactory' => __DIR__ . '/..' . '/stripe/stripe-php/lib/Service/TestHelpers/Terminal/TerminalServiceFactory.php',
@@ -6778,10 +6783,7 @@ class ComposerStaticInit25528297b5ee04487763c7972cf61d63
         'Symfony\\Flex\\Command\\GenerateIdCommand' => __DIR__ . '/..' . '/symfony/flex/src/Command/GenerateIdCommand.php',
         'Symfony\\Flex\\Command\\InstallRecipesCommand' => __DIR__ . '/..' . '/symfony/flex/src/Command/InstallRecipesCommand.php',
         'Symfony\\Flex\\Command\\RecipesCommand' => __DIR__ . '/..' . '/symfony/flex/src/Command/RecipesCommand.php',
-        'Symfony\\Flex\\Command\\RemoveCommand' => __DIR__ . '/..' . '/symfony/flex/src/Command/RemoveCommand.php',
-        'Symfony\\Flex\\Command\\RequireCommand' => __DIR__ . '/..' . '/symfony/flex/src/Command/RequireCommand.php',
         'Symfony\\Flex\\Command\\UnpackCommand' => __DIR__ . '/..' . '/symfony/flex/src/Command/UnpackCommand.php',
-        'Symfony\\Flex\\Command\\UpdateCommand' => __DIR__ . '/..' . '/symfony/flex/src/Command/UpdateCommand.php',
         'Symfony\\Flex\\Command\\UpdateRecipesCommand' => __DIR__ . '/..' . '/symfony/flex/src/Command/UpdateRecipesCommand.php',
         'Symfony\\Flex\\ComposerRepository' => __DIR__ . '/..' . '/symfony/flex/src/ComposerRepository.php',
         'Symfony\\Flex\\Configurator' => __DIR__ . '/..' . '/symfony/flex/src/Configurator.php',
@@ -7215,10 +7217,10 @@ class ComposerStaticInit25528297b5ee04487763c7972cf61d63
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit25528297b5ee04487763c7972cf61d63::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit25528297b5ee04487763c7972cf61d63::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit25528297b5ee04487763c7972cf61d63::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit25528297b5ee04487763c7972cf61d63::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit8dd9cd4f1e934722e779b16dc6a40354::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit8dd9cd4f1e934722e779b16dc6a40354::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit8dd9cd4f1e934722e779b16dc6a40354::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit8dd9cd4f1e934722e779b16dc6a40354::$classMap;
 
         }, null, ClassLoader::class);
     }
