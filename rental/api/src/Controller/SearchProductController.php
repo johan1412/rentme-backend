@@ -69,7 +69,8 @@ class SearchProductController extends AbstractController
             return new JsonResponse($dataFormatted);
         }
 
-        if ($page !== null && $word !== null){
+        if ($page !== null && $word !== null && $word !== ""){
+
             $keyword = [
                 'body' => [
                     "from" => 15*($page-1),

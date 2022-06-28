@@ -50,7 +50,7 @@ class Product
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups({"user_read","product_read","reservation_read","file_read","comment_read","category_read"})
+     * @Groups({"user_read","product_read","reservation_read","file_read","comment_read","category_read","reporting_read"})
      * @ApiProperty(identifier=true)
      *
      */

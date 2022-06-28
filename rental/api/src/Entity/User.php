@@ -37,7 +37,7 @@ class User implements UserInterface
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups({"user_read","product_read","reservation_read","comment_read"})
+     * @Groups({"user_read","product_read","reservation_read","comment_read","reporting_read"})
      */
     private $id;
 

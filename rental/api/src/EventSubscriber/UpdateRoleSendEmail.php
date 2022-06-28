@@ -16,60 +16,62 @@ use Symfony\Component\HttpKernel\Event\ViewEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 use Symfony\Component\Mime\Address;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 
-class DeleteProductFromElasticSearch implements EventSubscriberInterface
+class UpdateRoleSendEmail implements EventSubscriberInterface
 {
 
-    private ElasticSearchService $elasticSearchService;
-    private EmailVerifier $emailVerifier;
     private TokenStorageInterface $tokenStorage;
+    private EmailVerifier $emailVerifier;
 
-    public function __construct(ElasticSearchService $elasticSearchService,EmailVerifier $emailVerifier,TokenStorageInterface $tokenStorage)
+    public function __construct(TokenStorageInterface $tokenStorage,EmailVerifier $emailVerifier)
     {
-        $this->elasticSearchService = $elasticSearchService;
-        $this->emailVerifier = $emailVerifier;
         $this->tokenStorage = $tokenStorage;
+        $this->emailVerifier = $emailVerifier;
     }
 
     public static function getSubscribedEvents(): array
     {
+
         return [
-            KernelEvents::VIEW => ['deleteProductAndSendEmail', EventPriorities::PRE_WRITE],
+            KernelEvents::VIEW => ['sendEmail', EventPriorities::PRE_WRITE],
         ];
     }
 
-
-
-    public function deleteProductAndSendEmail(ViewEvent $event)
+    public function sendEmail(ViewEvent $event)
     {
-
-        $product = $event->getControllerResult();
+        $user = $event->getControllerResult();
         $method = $event->getRequest()->getMethod();
 
 
-        if ($product instanceof Product
-            && Request::METHOD_DELETE === $method
+        if ($user instanceof User
+            && Request::METHOD_PATCH === $method
         ) {
-
-            if (in_array('ROLE_ADMIN',$this->getUser()->getRoles())){
+            if (!in_array('ROLE_RENTER',$user->getRoles())){
                 $this->emailVerifier->sendEmailConfirmation('app_verify_email', $this->getUser(),
                     (new TemplatedEmail())
                         ->from(new Address('devfullstack44@gmail.com', 'Rentme Mail Bot'))
-                        ->to($product->getUser()->getEmail())
-                        ->subject('Suppression product')
-                        ->htmlTemplate('admin/delete_product.html.twig')
+                        ->to($user->getEmail())
+                        ->subject("Vous n'êtes plus loueur(se)")
+                        ->htmlTemplate('role/not_have_role_renter.html.twig')
                         ->context([
-                            'product' => $product->getName(),
-                            'category' => $product->getCategory()->getName(),
+                            'name' => $user->getFullName()
                         ])
                 );
             }
 
-            $params = [
-                'index' => 'product',
-                'id'    => $product->getId()
-            ];
-            $this->elasticSearchService->getElasticClient()->delete($params);
+            if (in_array('ROLE_RENTER',$user->getRoles())){
+                $this->emailVerifier->sendEmailConfirmation('app_verify_email', $this->getUser(),
+                    (new TemplatedEmail())
+                        ->from(new Address('devfullstack44@gmail.com', 'Rentme Mail Bot'))
+                        ->to($user->getEmail())
+                        ->subject('Devenir loueur(se)')
+                        ->htmlTemplate('role/have_role_renter.html.twig')
+                        ->context([
+                            'name' => $user->getFullName()
+                        ])
+                );
+            }
         }
     }
 
@@ -89,6 +91,5 @@ class DeleteProductFromElasticSearch implements EventSubscriberInterface
 
         return $user;
     }
-
 
 }
