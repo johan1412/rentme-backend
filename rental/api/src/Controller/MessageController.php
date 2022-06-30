@@ -11,26 +11,28 @@ use Symfony\Component\HttpFoundation\Response;
 
 class MessageController extends AbstractController
 {
-    public function getConversations(ManagerRegistry $doctrine, $id, Request $req): Response
+    public function getConversations(ManagerRegistry $doctrine, $id): Response
     {
 
-        $repository = $doctrine->getRepository(Message::class);
         $em = $doctrine->getManager();
         $query = $em->createQuery(
-            'SELECT IDENTITY(m.sender) as sender, IDENTITY(m.reciever) as reciever,
-               IDENTITY(m.product) as productId, m.text
-        FROM App\Entity\Message m 
-        JOIN App\Entity\User u WITH (u.id = m.sender OR u.id = m.reciever)
-        WHERE m.reciever = '. $id .
-            'OR m.sender ='.$id
+          'SELECT IDENTITY(m.sender) as sender, IDENTITY(m.reciever) as reciever,
+            IDENTITY(m.product) as productId, m.text, p.name as productName, u.id as userId, u.firstName as firstname, u.lastName as lastname
+          FROM App\Entity\Message m
+          JOIN App\Entity\User u WITH (u.id = m.sender OR u.id = m.reciever)
+          JOIN App\Entity\Product p WITH (p.id = m.product)
+          WHERE (m.reciever = '. $id .
+              'OR m.sender ='.$id . 
+              ') AND u.id <> '.$id
         );
         $messages = $query->getArrayResult();
         $conversations = array();
         foreach ($messages as $message){
-            if($message['sender'] != $id)
-                $conversations[$message['productId']][$message['sender']][] = $message;
-            else
-                $conversations[$message['productId']][$message['reciever']][] = $message;
+            if($message['sender'] != $id) {
+              $conversations[$message['productId']][$message['firstname'] . ' ' . $message['lastname']][] = $message;
+            } else {
+              $conversations[$message['productId']][$message['firstname'] . ' ' . $message['lastname']][] = $message;
+            }
         }
 
         return new Response(json_encode($conversations));
