@@ -6,9 +6,14 @@ authentication_token:
 get_conversations:
   path:       /conversations/{id}
   controller: App\Controller\MessageController::getConversations
-  methods:    GET
+  methods:    ['GET']
 
 search_products:
   path:       /productsSearch
   controller: App\Controller\ProductsSearchController::searchProducts
+  methods:    ['GET']
+
+get_products_by_category:
+  path:       /products/sub-category/{id}
+  controller: App\Controller\ProductsSearchController::getProductsBySubCategory
   methods:    ['GET']
