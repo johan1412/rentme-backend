@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Message;
 use App\Entity\Product;
-use App\Manager\SearchProductsManager;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -13,6 +12,33 @@ use Symfony\Component\HttpFoundation\Response;
 
 class ProductsSearchController extends AbstractController
 {
+
+    public function getProductsBySubCategory(ManagerRegistry $doctrine, $id)
+    {
+        $subCategoryId = intval($id);
+
+        if ($subCategoryId == null) {
+            return new JsonResponse(['error' => 'No subCategoryId provided'], Response::HTTP_BAD_REQUEST);
+        }
+
+        $query = $doctrine->getManager()->createQuery(
+          'SELECT p.id, p.name, p.averageRatings, p.numbersOfRatings,
+          r.number as region, r.name as regionName,
+          p.price, f.path, a.city as city, p.isValid
+          FROM App\Entity\Product p
+          JOIN APP\Entity\Category c WITH c.id = p.category
+          JOIN APP\Entity\Address a WITH a.id = p.address
+          JOIN APP\Entity\Region r WITH r.id = a.region
+          LEFT JOIN p.files f
+          WHERE c.id = :subCategoryId'
+        )->setParameter('subCategoryId', $subCategoryId)
+        ->setMaxResults(10);
+
+        // returns an array of Product objects
+        $products = $query->getArrayResult();
+
+        return new JsonResponse(array('products' => $products));
+    }
 
     public function searchProducts(ManagerRegistry $doctrine, Request $req): Response
     {
@@ -102,87 +128,6 @@ class ProductsSearchController extends AbstractController
       $results = array('products' => $products, 'totalProducts' => count($query2));
 
       return new JsonResponse($results);
-
-        /*$params = json_decode($req->getContent());
-        $conditions = ['p.isValid = true' ];
-
-        $em = $doctrine->getManager();
-
-        $queryText = 'SELECT p.id, p.name, p.description, p.averageRatings, p.numbersOfRatings,
-        r.number as region, r.name as regionName,
-        p.price, f.path, a.city as city
-        FROM App\Entity\Product p
-        JOIN APP\Entity\Category c WITH c.id = p.category
-        JOIN APP\Entity\Address a WITH a.id = p.address
-        JOIN APP\Entity\Region r WITH r.id = a.region
-        LEFT JOIN p.files f
-        ';
-
-        //$page = $params->page ?? 1;
-
-        if(isset($params->sort)){
-          switch ($params->sort){
-            case "ratingAsc" :
-              $sort = " p.averageRatings ASC ";
-              $conditions[] = " p.averageRatings IS NOT NULL ";
-              break;
-            case "ratingDesc" :
-              $sort = " p.averageRatings DESC ";
-              $conditions[] = " p.averageRatings IS NOT NULL ";
-              break;
-            case "priceAsc" :
-              $sort = " p.price ASC ";
-              break;
-            case "priceDesc" :
-              $sort = " p.price DESC ";
-              break;
-            default : $sort = " p.id DESC ";
-          }
-        }else{
-          $sort = " p.id DESC ";
-        }
-        $sort = " ORDER BY ".$sort;
-
-
-        if(isset($params->category)){
-            $conditions[] = 'p.category IN ('.implode(',',$params->category).")";
-        }
-
-        if(isset($params->minPrice)){
-            $conditions[] = 'p.price >= '.$params->minPrice;
-        }
-
-        if(isset($params->maxPrice)){
-            $conditions[] = 'p.price <= '.$params->maxPrice;
-        }
-
-        if(isset($params->region)){
-            $conditions[] = 'r.id IN ('.implode(',',$params->region).")";
-        }
-
-        if(isset($params->averageRatings)){
-            $conditions[] = 'p.averageRatings >= '.$params->averageRatings;
-        }
-
-       // $sort = " ORDER BY p.id ASC ";
-        $queryText .= " WHERE ".implode(" AND ", $conditions).$sort;
-
-
-        $query = $em->createQuery(
-            $queryText
-        )
-        ->setFirstResult(($page-1)*15)
-        ->setMaxResults(15);
-        $products = $query->getArrayResult();
-
-        $query2 = $em->createQuery(
-          $queryText
-        )
-        ->getArrayResult();
-
-        $results = array('products' => $products, 'totalProducts' => count($query2));
-
-        return new JsonResponse($results);*/
     }
 
 }

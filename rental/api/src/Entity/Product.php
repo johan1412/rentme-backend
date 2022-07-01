@@ -100,7 +100,7 @@ class Product
 
     /**
      * @ORM\OneToMany(targetEntity=File::class, mappedBy="product", cascade={"all"}, orphanRemoval=true)
-     * @Groups({"product_read","product_write", "user_read"})
+     * @Groups({"product_read","product_write", "user_read", "category_read"})
      */
     private $files;
 
@@ -120,7 +120,7 @@ class Product
 
     /**
      * @ORM\Column(type="boolean")
-     * @Groups({"product_read","user_read"})
+     * @Groups({"product_read","user_read", "category_read"})
      */
     private $isValid = false;
 
