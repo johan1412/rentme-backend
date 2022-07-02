@@ -18,9 +18,9 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *     },
  *     itemOperations={
  *         "get",
- *         "put"={"security_post_denormalize"="is_granted('COMMENT_EDIT', comment)"},
- *         "patch"={"security_post_denormalize"="is_granted('ROLE_USER')"},
- *         "delete"={"security_post_denormalize"="is_granted('COMMENT_DELETE', comment)"},
+ *         "put"={"security_post_denormalize"="is_granted('ROLE_ADMIN') or object.user == user"},
+ *         "patch"={"security_post_denormalize"="is_granted('ROLE_ADMIN') or object.user == user"},
+ *         "delete"={"security_post_denormalize"="is_granted('ROLE_ADMIN') or object.user == user"},
  *     }
  * )
  * @ORM\Entity(repositoryClass=CommentRepository::class)
