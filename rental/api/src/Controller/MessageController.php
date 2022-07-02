@@ -3,16 +3,37 @@
 
 namespace App\Controller;
 use App\Entity\Message;
+use App\Repository\UserRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+
 
 class MessageController extends AbstractController
 {
+
+    private $userRepository;
+
+
+    public function __construct(UserRepository $userRepository )
+    {
+        $this->userRepository = $userRepository;
+    }
+
     public function getConversations(ManagerRegistry $doctrine, $id): Response
     {
+
+        $user = $this->userRepository->find($id);
+        if(!$user){
+            throw $this->createNotFoundException('The user does not exist');
+        }else{
+            if($user != $this->getUser() ){
+                throw  $this->createAccessDeniedException();
+            }
+        }
 
         $em = $doctrine->getManager();
         $query = $em->createQuery(
@@ -28,11 +49,7 @@ class MessageController extends AbstractController
         $messages = $query->getArrayResult();
         $conversations = array();
         foreach ($messages as $message){
-            if($message['sender'] != $id) {
-              $conversations[$message['productId']][$message['firstname'] . ' ' . $message['lastname']][] = $message;
-            } else {
-              $conversations[$message['productId']][$message['firstname'] . ' ' . $message['lastname']][] = $message;
-            }
+            $conversations[$message['productId']][$message['firstname'] . ' ' . $message['lastname']][] = $message;
         }
 
         return new Response(json_encode($conversations));

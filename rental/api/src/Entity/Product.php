@@ -34,9 +34,9 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *     },
  *     itemOperations={
  *         "get",
- *         "put"={"security_post_denormalize"="is_granted('PRODUCT_EDIT', product)"},
- *         "patch"={"security"="is_granted('ROLE_USER')"},
- *         "delete"={"security"="is_granted('ROLE_ADMIN')"}
+ *         "put"={"security_post_denormalize"="is_granted('ROLE_ADMIN') or object.user == user"},
+ *         "patch"={"security"="is_granted('ROLE_ADMIN') or object.user == user"},
+ *         "delete"={"security"="is_granted('ROLE_ADMIN') or object.user == user"}
  *     }
  * )
  * @ORM\Entity(repositoryClass=ProductRepository::class)

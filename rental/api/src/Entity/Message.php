@@ -7,7 +7,18 @@ use App\Repository\MessageRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *     normalizationContext={"groups"="comment_read"},
+ *     attributes={"security"="is_granted('ROLE_USER')"},
+ *     collectionOperations={
+ *         "post"={"security"="is_granted('ROLE_USER')"}
+ *     },
+ *     itemOperations={
+ *         "put"={"security_post_denormalize"="object.sender == user and previous_object.sender == user"},
+ *         "patch"={"security_post_denormalize"="object.sender == user and previous_object.sender == user"},
+ *         "delete"={"security_post_denormalize"="is_granted('ROLE_ADMIN') or object.sender == user"},
+ *     }
+ * )
  * @ORM\Entity(repositoryClass=MessageRepository::class)
  */
 class Message
