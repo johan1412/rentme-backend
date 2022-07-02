@@ -31,7 +31,8 @@ deploy:
   image: ruby:latest
   script:
     - cd rental/api
-    - ls
+    - mkdir public/media
+    - chmod -R 775 public/media
     - curl https://cli-assets.heroku.com/install-ubuntu.sh | sh
     - gem install dpl
     - dpl --provider=heroku --app=$HEROKU_APP_RENTAL --api-key=$HEROKU_API_KEY
