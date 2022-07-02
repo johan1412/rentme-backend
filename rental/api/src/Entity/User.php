@@ -77,7 +77,7 @@ class User implements UserInterface
 
     /**
      * @ORM\OneToMany(targetEntity=Product::class, mappedBy="user")
-     * @Groups({"user_read","product_read"})
+     * @Groups({"user_read"})
      */
     private $products;
 
