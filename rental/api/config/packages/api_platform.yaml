@@ -1,3 +1,5 @@
+parameters:
+
 api_platform:
     title: Hello API Platform
     version: 1.0.0

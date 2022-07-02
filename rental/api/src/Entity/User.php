@@ -7,6 +7,7 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
@@ -14,9 +15,10 @@ use Symfony\Component\Serializer\Annotation\Groups;
 /**
  * @ApiResource(
  *     normalizationContext={"groups"="user_read"},
+ *     denormalizationContext={"groups"={"user_write"}},
  *     collectionOperations={
- *          "post"={},
  *         "get"={"security"="is_granted('ROLE_RENTER')"},
+ *         "post"={},
  *     },
  *     itemOperations={
  *         "get",
@@ -27,6 +29,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  * )
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @ORM\Table(name="`user`")
+ * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
  */
 class User implements UserInterface
 {
@@ -34,13 +37,13 @@ class User implements UserInterface
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups({"user_read","product_read","reservation_read","comment_read"})
+     * @Groups({"user_read","product_read","reservation_read","comment_read","reporting_read"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
-     * @Groups({"user_read","product_read","reservation_read","comment_read"})
+     * @Groups({"user_read","user_write","product_read","reservation_read","comment_read"})
      * @Assert\NotNull
      * @Assert\Email
      */
@@ -48,36 +51,29 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="json")
-     * @Groups({"user_read","product_read","reservation_read","comment_read"})
+     * @Groups({"user_read","user_write","product_read","reservation_read","comment_read"})
      */
     private $roles = [];
 
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
-     * @Groups({"user_read"})
+     * @Groups({"user_read", "user_write"})
      * @Assert\NotNull
      */
     private $password;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"user_read","product_read","reservation_read","comment_read"})
+     * @Groups({"user_read","user_write","product_read","reservation_read","comment_read"})
      */
     private $firstName;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"user_read","product_read","reservation_read","comment_read"})
+     * @Groups({"user_read","user_write","product_read","reservation_read","comment_read"})
      */
     private $lastName;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     * @Groups({"user_read","product_read","reservation_read","comment_read"})
-     * @Assert\NotNull
-     */
-    private $address;
 
     /**
      * @ORM\OneToMany(targetEntity=Product::class, mappedBy="user")
@@ -86,7 +82,7 @@ class User implements UserInterface
     private $products;
 
     /**
-     * @ORM\OneToMany(targetEntity=Reservation::class, mappedBy="user")
+     * @ORM\OneToMany(targetEntity=Reservation::class, mappedBy="renter")
      * @Groups({"user_read"})
      */
     private $reservations;
@@ -97,11 +93,41 @@ class User implements UserInterface
      */
     private $comments;
 
+    /**
+     * @ORM\OneToOne(targetEntity=Address::class, cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false)
+     * @Groups({"user_read","user_write","address_read"})
+     */
+    private $address;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isVerified = false;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Reservation::class, mappedBy="tenant")
+     * @Groups({"user_read"})
+     */
+    private $transactions;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $stripeToken;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Reporting::class, mappedBy="sender", orphanRemoval=true)
+     */
+    private $reportings;
+
     public function __construct()
     {
         $this->products = new ArrayCollection();
         $this->reservations = new ArrayCollection();
         $this->comments = new ArrayCollection();
+        $this->transactions = new ArrayCollection();
+        $this->reportings = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -209,18 +235,6 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getAddress(): ?string
-    {
-        return $this->address;
-    }
-
-    public function setAddress(string $address): self
-    {
-        $this->address = $address;
-
-        return $this;
-    }
-
     /**
      * @return Collection|Product[]
      */
@@ -305,6 +319,108 @@ class User implements UserInterface
             // set the owning side to null (unless already changed)
             if ($comment->getClient() === $this) {
                 $comment->setClient(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getAddress(): ?Address
+    {
+        return $this->address;
+    }
+
+    public function setAddress(Address $address): self
+    {
+        $this->address = $address;
+
+        return $this;
+    }
+
+    public function isVerified(): bool
+    {
+        return $this->isVerified;
+    }
+
+    public function setIsVerified(bool $isVerified): self
+    {
+        $this->isVerified = $isVerified;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Reservation>
+     */
+    public function getTransactions(): Collection
+    {
+        return $this->transactions;
+    }
+
+    public function addTransaction(Reservation $transaction): self
+    {
+        if (!$this->transactions->contains($transaction)) {
+            $this->transactions[] = $transaction;
+            $transaction->setRenter($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTransaction(Reservation $transaction): self
+    {
+        if ($this->transactions->removeElement($transaction)) {
+            // set the owning side to null (unless already changed)
+            if ($transaction->getRenter() === $this) {
+                $transaction->setRenter(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getStripeToken(): ?string
+    {
+        return $this->stripeToken;
+    }
+
+    public function setStripeToken(?string $stripeToken): self
+    {
+        $this->stripeToken = $stripeToken;
+
+        return $this;
+    }
+
+
+    public function getFullName(): ?string
+    {
+        return $this->getFirstName().' '.$this->getLastName();
+    }
+
+    /**
+     * @return Collection<int, Reporting>
+     */
+    public function getReportings(): Collection
+    {
+        return $this->reportings;
+    }
+
+    public function addReporting(Reporting $reporting): self
+    {
+        if (!$this->reportings->contains($reporting)) {
+            $this->reportings[] = $reporting;
+            $reporting->setSender($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReporting(Reporting $reporting): self
+    {
+        if ($this->reportings->removeElement($reporting)) {
+            // set the owning side to null (unless already changed)
+            if ($reporting->getSender() === $this) {
+                $reporting->setSender(null);
             }
         }
 

@@ -37,8 +37,16 @@ security:
     access_control:
         - { path: ^/docs, roles: IS_AUTHENTICATED_ANONYMOUSLY } # Allows accessing the Swagger UI
         - { path: ^/authentication_token, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/reset-password, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/verify/email, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/users, methods:["POST"], roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/categories, methods:["GET"], roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/categories, methods: [ "POST","PATCH","PUT","DELETE"], roles: ["ROLE_ADMIN"] }
         - { path: ^/products, methods:["GET"], roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/media_objects, roles: IS_AUTHENTICATED_ANONYMOUSLY, methods: [ "POST" ] }
+        - { path: ^/regions, methods:["GET"], roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/reportings, methods: [ "GET","PATCH","PUT","DELETE" ], roles: ["ROLE_ADMIN"] }
+        - { path: ^/reportings, methods: [ "POST" ], roles: [ "ROLE_USER" ] }
+        - { path: ^/success, methods:["GET"], roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/productsSearch, methods: [ "GET" ], roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/products/search, methods: [ "GET" ], roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/, roles: IS_AUTHENTICATED_FULLY }

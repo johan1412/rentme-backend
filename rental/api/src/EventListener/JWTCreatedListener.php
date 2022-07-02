@@ -4,6 +4,7 @@ namespace App\EventListener;
 
 use App\Entity\User;
 use App\Repository\ProductRepository;
+use App\Repository\ReportingRepository;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Lexik\Bundle\JWTAuthenticationBundle\Event\AuthenticationSuccessEvent;
@@ -16,14 +17,16 @@ class JWTCreatedListener
      */
     private $requestStack;
     private $productRepository;
+    private $reportingRepository;
 
     /**
      * @param RequestStack $requestStack
      */
-    public function __construct(RequestStack $requestStack,ProductRepository $productRepository)
+    public function __construct(RequestStack $requestStack,ProductRepository $productRepository,ReportingRepository $reportingRepository)
     {
         $this->requestStack = $requestStack;
         $this->productRepository = $productRepository;
+        $this->reportingRepository = $reportingRepository;
     }
 
     /**
@@ -39,14 +42,24 @@ class JWTCreatedListener
         }
 
         if ($user instanceof User) {
+            if (!$user->isVerified()){
+                return;
+            }
+            $user->getRoles();
             if (in_array("ROLE_ADMIN", $user->getRoles())){
                 $data['data'] = array(
                     'id'        => $user->getId(),
                     'email'     => $user->getEmail(),
                     'firstName'     => $user->getFirstName(),
                     'lastName'     => $user->getLastName(),
+                    'address'     => array(
+                        'streetName' => $user->getAddress()->getStreetName(),
+                        'city' => $user->getAddress()->getCity(),
+                        'region' => $user->getAddress()->getRegion()->getName(),
+                    ),
                     'roles'     => $user->getRoles(),
                     'numberOfProductsNotValid' => $this->getNumberOfProductsNotValid(),
+                    'numberOfProductsReported' => $this->getNumberOfProductsReported(),
                 );
             }else{
                 $data['data'] = array(
@@ -54,6 +67,11 @@ class JWTCreatedListener
                     'email'     => $user->getEmail(),
                     'firstName'     => $user->getFirstName(),
                     'lastName'     => $user->getLastName(),
+                    'address'     => array(
+                        'streetName' => $user->getAddress()->getStreetName(),
+                        'city' => $user->getAddress()->getCity(),
+                        'region' => $user->getAddress()->getRegion()->getName(),
+                    ),
                     'roles'     => $user->getRoles()
                 );
             }
@@ -64,13 +82,18 @@ class JWTCreatedListener
 
 
     public function getProductsNotValid(){
-        $products = $this->productRepository->findBy(["isValid" => false]);
-        return $products;
+      $products = $this->productRepository->findBy(["isValid" => false,"hasRight" => true]);
+      return $products;
     }
 
     public function getNumberOfProductsNotValid(){
-        $products = $this->getProductsNotValid();
-        return count($products);
+      $products = $this->getProductsNotValid();
+      return count($products);
+    }
+
+    public function getNumberOfProductsReported() {
+      $products = $this->reportingRepository->findAll();
+      return count($products);
     }
 
 }

@@ -36,18 +36,25 @@ class File
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     * @Groups({"product_read","file_read","product_write", "user_read"})
+     * @ORM\Column(type="string", length=255, options={"default" : "ntm"})
+     * @Groups({"product_read","file_read","product_write", "user_read", "category_write"})
      * @Assert\NotBlank
      */
     private $path;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Product::class, inversedBy="files", cascade={"persist"})
-     * @Groups({"file_read", "product_write", "product_read"})
-     * @Assert\NotBlank
+     * @ORM\ManyToOne(targetEntity=Product::class, inversedBy="files")
+     * @Groups({"file_read", "product_write"})
+      * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $product;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Category::class, mappedBy="img", cascade={"persist", "remove"})
+     * @Groups({"category_write"})
+     *
+     */
+    private $category;
 
     public function getId(): ?int
     {
@@ -74,6 +81,28 @@ class File
     public function setProduct(?Product $product): self
     {
         $this->product = $product;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($category === null && $this->category !== null) {
+            $this->category->setImg(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($category !== null && $category->getImg() !== $this) {
+            $category->setImg($this);
+        }
+
+        $this->category = $category;
 
         return $this;
     }

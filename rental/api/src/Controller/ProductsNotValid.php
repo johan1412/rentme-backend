@@ -3,8 +3,9 @@
 namespace App\Controller;
 
 use App\Manager\ProductsNotValidManager;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class ProductsNotValid
+class ProductsNotValid extends AbstractController
 {
     protected $productsNotValidManager;
     public function __construct(ProductsNotValidManager $productsNotValidManager){

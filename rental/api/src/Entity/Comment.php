@@ -18,9 +18,9 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *     },
  *     itemOperations={
  *         "get",
- *         "put"={"security_post_denormalize"="is_granted('COMMENT_EDIT', comment)"},
- *         "patch"={"security_post_denormalize"="is_granted('COMMENT_EDIT', comment)"},
- *         "delete"={"security_post_denormalize"="is_granted('COMMENT_DELETE', comment)"},
+ *         "put"={"security_post_denormalize"="is_granted('ROLE_ADMIN') or object.getUser() == user"},
+ *         "patch"={"security_post_denormalize"="is_granted('ROLE_ADMIN') or object.getUser() == user"},
+ *         "delete"={"security_post_denormalize"="is_granted('ROLE_ADMIN') or object.getUser() == user"},
  *     }
  * )
  * @ORM\Entity(repositoryClass=CommentRepository::class)
@@ -38,41 +38,41 @@ class Comment
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"user_read","product_read","comment_read"})
-     * @Assert\NotBlank
-     * @Assert\Length(
-     *     min = 1,
-     *     max = 500
-     * )
      */
     private $text;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="date")
      * @Groups({"user_read","product_read","comment_read"})
      * @Assert\NotNull
      */
     private $createdAt;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="float", nullable=true)
      * @Groups({"user_read","product_read","comment_read"})
      */
     private $rating;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="comments")
-     * @Groups({"comment_read"})
+     * @Groups({"product_read","comment_read"})
      * @Assert\NotNull
      */
     private $user;
 
     /**
      * @ORM\ManyToOne(targetEntity=Product::class, inversedBy="comments")
-     * @Groups({"comment_read"})
+     * @Groups({"user_read","comment_read"})
      * @Assert\NotNull
      */
     private $product;
 
+
+    public function __construct()
+    {
+        $this->createdAt = new \DateTime();
+    }
     public function getId(): ?int
     {
         return $this->id;
@@ -102,12 +102,12 @@ class Comment
         return $this;
     }
 
-    public function getRating(): ?int
+    public function getRating(): ?float
     {
         return $this->rating;
     }
 
-    public function setRating(?int $rating): self
+    public function setRating(?float $rating): self
     {
         $this->rating = $rating;
 

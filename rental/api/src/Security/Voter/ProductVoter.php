@@ -29,7 +29,7 @@ class ProductVoter extends Voter
                 }
                 break;
             case 'PRODUCT_DELETE':
-                if ( $this->security->isGranted(Role::ADMIN) ) {
+                if ( $this->security->isGranted('ROLE_ADMIN') ) {
                     return true;
                 }
                 if ($subject->getUser() == $user) {
