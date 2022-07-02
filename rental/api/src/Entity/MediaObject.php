@@ -88,14 +88,4 @@ class MediaObject
     {
         return $this->id;
     }
-
-    /**
-     * @return File|null
-     */
-    public function getFile(): ?File
-    {
-        return $this->file;
-    }
-
-
 }
