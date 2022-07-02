@@ -27,6 +27,7 @@ build:
     - main
 
 deploy:
+  stage: deploy
   image: ruby:latest
   script:
     - cd rental/api
