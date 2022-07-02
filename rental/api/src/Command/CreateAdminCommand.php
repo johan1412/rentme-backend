@@ -16,12 +16,12 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 class CreateAdminCommand extends Command
 {
     protected static $defaultName = 'app:create-admin';
-    private $em;
-    private $encoder;
+    private EntityManagerInterface $em;
+    private UserPasswordEncoderInterface $encoder;
 
-    public function __construct(string $name = null, EntityManagerInterface $em, UserPasswordEncoderInterface $encoder)
+    public function __construct(EntityManagerInterface $em, UserPasswordEncoderInterface $encoder)
     {
-        parent::__construct($name);
+        parent::__construct();
 
         $this->em = $em;
         $this->encoder = $encoder;
@@ -34,7 +34,7 @@ class CreateAdminCommand extends Command
             ->setHelp('This command allows you to create an administrator...');
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $output->writeln([
             'Admin Creator',
