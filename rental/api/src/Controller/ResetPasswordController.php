@@ -127,7 +127,7 @@ class ResetPasswordController extends AbstractController
             // The session is cleaned up after the password has been changed.
             $this->cleanSessionAfterReset();
 
-            return $this->redirect('http://localhost:8080/authentication_token');
+            return $this->redirect(getenv('RENTME_URL').'login');
         }
 
         return $this->render('reset_password/reset.html.twig', [

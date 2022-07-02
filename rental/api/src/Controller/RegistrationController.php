@@ -35,13 +35,13 @@ class RegistrationController extends AbstractController
     {
         $id = $request->get('id');
         if (null === $id) {
-            return $this->redirect('http://localhost:8080/register');
+            return $this->redirect(getenv('RENTME_URL').'register');
         }
 
         $user = $userRepository->find($id);
 
         if (null === $user) {
-            return $this->redirect('http://localhost:8080/register');
+            return $this->redirect(getenv('RENTME_URL').'register');
         }
 
         // validate email confirmation link, sets User::isVerified=true and persists
@@ -50,10 +50,10 @@ class RegistrationController extends AbstractController
         } catch (VerifyEmailExceptionInterface $exception) {
             $this->addFlash('verify_email_error', $exception->getReason());
 
-            return $this->redirect('http://localhost:8080/register');
+            return $this->redirect(getenv('RENTME_URL').'register');
         }
 
-        return $this->redirect('http://localhost:8080/login');
+        return $this->redirect(getenv('RENTME_URL').'login');
     }
 
 
