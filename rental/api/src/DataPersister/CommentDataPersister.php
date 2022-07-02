@@ -32,6 +32,7 @@ class CommentDataPersister implements ContextAwareDataPersisterInterface
      */
     public function persist($data, array $context = [])
     {
+        ini_set("precision", 3);
         $this->_entityManager->persist($data);
         $this->_entityManager->flush();
 
@@ -47,8 +48,7 @@ class CommentDataPersister implements ContextAwareDataPersisterInterface
                 $nb++;
             }
         }
-
-        $product->setAverageRatings($sum/$nb);
+        $product->setAverageRatings($nb == 0 ? 0 : $sum/$nb);
         $product->setNumbersOfRatings($nb);
 
         $this->_entityManager->persist($product);

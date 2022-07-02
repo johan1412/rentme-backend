@@ -34,9 +34,9 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *     },
  *     itemOperations={
  *         "get",
- *         "put"={"security_post_denormalize"="is_granted('ROLE_ADMIN') or object.user == user"},
- *         "patch"={"security"="is_granted('ROLE_ADMIN') or object.user == user"},
- *         "delete"={"security"="is_granted('ROLE_ADMIN') or object.user == user"}
+ *         "put"={"security_post_denormalize"="is_granted('ROLE_ADMIN') or object.getUser() == user"},
+ *         "patch"={"security"="is_granted('ROLE_ADMIN') or object.getUser() == user"},
+ *         "delete"={"security"="is_granted('ROLE_ADMIN') or object.getUser() == user"}
  *     }
  * )
  * @ORM\Entity(repositoryClass=ProductRepository::class)
@@ -146,13 +146,13 @@ class Product
 
     /**
      * @ORM\Column(type="float", nullable=true)
-     * @Groups({"product_read","user_read"})
+     * @Groups({"product_read","user_read","comment_read"})
      */
     private $averageRatings = 0;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
-     * @Groups({"product_read","user_read"})
+     * @Groups({"product_read","user_read","comment_read"})
      */
     private $numbersOfRatings = 0;
 

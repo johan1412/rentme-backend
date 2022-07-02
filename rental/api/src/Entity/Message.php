@@ -14,9 +14,9 @@ use Doctrine\ORM\Mapping as ORM;
  *         "post"={"security"="is_granted('ROLE_USER')"}
  *     },
  *     itemOperations={
- *         "put"={"security_post_denormalize"="object.sender == user and previous_object.sender == user"},
- *         "patch"={"security_post_denormalize"="object.sender == user and previous_object.sender == user"},
- *         "delete"={"security_post_denormalize"="is_granted('ROLE_ADMIN') or object.sender == user"},
+ *         "put"={"security_post_denormalize"="object.sender == user and previous_object.getSender() == user"},
+ *         "patch"={"security_post_denormalize"="object.sender == user and previous_object.getSender() == user"},
+ *         "delete"={"security_post_denormalize"="is_granted('ROLE_ADMIN') or object.getSender() == user"},
  *     }
  * )
  * @ORM\Entity(repositoryClass=MessageRepository::class)

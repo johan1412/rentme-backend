@@ -18,9 +18,9 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *     },
  *     itemOperations={
  *         "get",
- *         "put"={"security_post_denormalize"="is_granted('ROLE_ADMIN') or object.user == user"},
- *         "patch"={"security_post_denormalize"="is_granted('ROLE_ADMIN') or object.user == user"},
- *         "delete"={"security_post_denormalize"="is_granted('ROLE_ADMIN') or object.user == user"},
+ *         "put"={"security_post_denormalize"="is_granted('ROLE_ADMIN') or object.getUser() == user"},
+ *         "patch"={"security_post_denormalize"="is_granted('ROLE_ADMIN') or object.getUser() == user"},
+ *         "delete"={"security_post_denormalize"="is_granted('ROLE_ADMIN') or object.getUser() == user"},
  *     }
  * )
  * @ORM\Entity(repositoryClass=CommentRepository::class)
@@ -102,12 +102,12 @@ class Comment
         return $this;
     }
 
-    public function getRating(): ?int
+    public function getRating(): ?float
     {
         return $this->rating;
     }
 
-    public function setRating(?int $rating): self
+    public function setRating(?float $rating): self
     {
         $this->rating = $rating;
 
