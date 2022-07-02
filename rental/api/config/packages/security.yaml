@@ -39,7 +39,7 @@ security:
         - { path: ^/authentication_token, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/reset-password, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/verify/email, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/users, methods:["POST"], roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/users, methods:["POST","GET"], roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/categories, methods:["GET"], roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/categories, methods: [ "POST","PATCH","PUT","DELETE"], roles: ["ROLE_ADMIN"] }
         - { path: ^/products, methods:["GET"], roles: IS_AUTHENTICATED_ANONYMOUSLY }
