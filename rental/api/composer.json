@@ -39,7 +39,8 @@
         "symfony/yaml": "5.1.*",
         "symfonycasts/reset-password-bundle": "^1.13",
         "symfonycasts/verify-email-bundle": "^1.10",
-        "vich/uploader-bundle": "^1.19"
+        "vich/uploader-bundle": "^1.19",
+        "symfony/apache-pack": "^1.0"
     },
     "require-dev": {
         "api-platform/schema-generator": "^2.2",
