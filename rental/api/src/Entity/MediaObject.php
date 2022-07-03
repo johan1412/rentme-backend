@@ -110,7 +110,7 @@ class MediaObject
      */
     public function getFile(): ?MyFile
     {
-        return (object)$this->file;
+        return $this->file;
     }
 
     /**
