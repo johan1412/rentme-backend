@@ -110,6 +110,8 @@ class MediaObject
      */
     public function getFile(): ?MyFile
     {
+        error_log("TEST----------");
+        error_log(gettype($this->file));
         return $this->file;
     }
 
