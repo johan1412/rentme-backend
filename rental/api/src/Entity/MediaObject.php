@@ -7,7 +7,7 @@ use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Controller\CreateMediaObjectAction;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\HttpFoundation\File\File as FileSymfony;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
@@ -70,7 +70,7 @@ class MediaObject
     public $contentUrl;
 
     /**
-     * @var FileSymfony|null
+     * @var File|null
      *
      * @Assert\NotNull(groups={"media_object_create"})
      * @Vich\UploadableField(mapping="media_object", fileNameProperty="filePath")
