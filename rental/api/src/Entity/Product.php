@@ -100,7 +100,7 @@ class Product
 
     /**
      * @ORM\OneToMany(targetEntity=File::class, mappedBy="product", cascade={"all"}, orphanRemoval=true)
-     * @Groups({"product_read","product_write", "user_read", "category_read"})
+     * @Groups({"product_read","product_write", "user_read", "category_read","reservation_read"})
      */
     private $files;
 

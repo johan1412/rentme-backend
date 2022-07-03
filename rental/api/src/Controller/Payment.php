@@ -43,6 +43,7 @@ Class Payment extends AbstractController{
     public function success(Request $request,$tok_stripe,$id): Response
     {
         $user = $this->getUserRepository()->find($id);
+
         $databaseToken = $user->getStripeToken();
         $user->setStripeToken(null);
 
@@ -69,7 +70,7 @@ Class Payment extends AbstractController{
     public function checkout(Request $request,$productId,$tenantId,EntityManagerInterface $em): Response
     {
 
-        $stripeToken = base64_encode(random_bytes(16));
+        $stripeToken = strval(random_int(0,10000000000));
         $user = $this->getUser();
         $user->setStripeToken($stripeToken);
         $em->persist($user);
@@ -80,15 +81,16 @@ Class Payment extends AbstractController{
         if(!$productId || !$tenantId || !$parameters['price']){
             return $this->redirect($url);
         }
+
         $product = $this->getProductRepository()->find($productId);
         if(!$product || !$product->getIsValid()){
             return $this->redirect($url);
         }
+
         $tenant = $this->getUserRepository()->find($tenantId);
         if(!$tenant){
             return $this->redirect($url);
         }
-
 
         // This is your test secret API key.
         \Stripe\Stripe::setApiKey('sk_test_51ImJIiH1ST2SneRlI5texYpM1EjkRwX5h0sXH8lWH6BxPP2sFmNCXW3KqXvOCnVFnaKxOeSZd9ZhGqaYm2D1mVyl00xvAeAezq');
@@ -122,6 +124,12 @@ Class Payment extends AbstractController{
             return $this->redirect($url);
         }
         $reservation = $this->reservationRepository->find($reservationId);
+        if (!$reservation){
+            return new JsonResponse(['message'=>'Refund is failed']);
+        }
+        if ($reservation->getRentalEndDate() < (new \DateTime())){
+            return new JsonResponse(['message'=>'Refund not possible']);
+        }
         $stripe = new \Stripe\StripeClient(
             'sk_test_51ImJIiH1ST2SneRlI5texYpM1EjkRwX5h0sXH8lWH6BxPP2sFmNCXW3KqXvOCnVFnaKxOeSZd9ZhGqaYm2D1mVyl00xvAeAezq'
         );

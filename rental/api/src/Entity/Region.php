@@ -30,13 +30,13 @@ class Region
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups({"region_read","address_read", "user_write", "user_read","product_read"})
+     * @Groups({"region_read","address_read", "user_write", "user_read","product_read","reservation_read"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="integer")
-     * @Groups({"region_read","address_read","user_write", "user_read","product_read"})
+     * @Groups({"region_read","address_read","user_write", "user_read","product_read","reservation_read"})
      * @Assert\NotBlank
      * @Assert\Type(
      *     type="integer",
@@ -47,7 +47,7 @@ class Region
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"region_read","address_read", "user_write", "user_read","product_read"})
+     * @Groups({"region_read","address_read", "user_write", "user_read","product_read","reservation_read"})
      * @Assert\NotBlank
      * @Assert\Type(
      *     type="string",
