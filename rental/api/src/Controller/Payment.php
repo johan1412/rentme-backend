@@ -48,11 +48,11 @@ Class Payment extends AbstractController{
         $user->setStripeToken(null);
 
         if ($tok_stripe != $databaseToken) {
-            $url = 'http://localhost:8080/cancel';
+            $url = getenv('RENTME_URL').'cancel';
             return $this->redirect($url);
         }
 
-        $url = 'http://localhost:8080/success';
+        $url = getenv('RENTME_URL').'success';
         return $this->redirect($url);
     }
 
@@ -76,7 +76,7 @@ Class Payment extends AbstractController{
         $em->persist($user);
         $em->flush();
 
-        $url = 'http://localhost:8080/cancel';
+        $url = getenv('RENTME_URL').'cancel';
         $parameters = json_decode($request->getContent(), true);
         if(!$productId || !$tenantId || !$parameters['price']){
             return $this->redirect($url);
@@ -92,8 +92,8 @@ Class Payment extends AbstractController{
             return $this->redirect($url);
         }
 
-        // This is your test secret API key.
-        \Stripe\Stripe::setApiKey('sk_test_51ImJIiH1ST2SneRlI5texYpM1EjkRwX5h0sXH8lWH6BxPP2sFmNCXW3KqXvOCnVFnaKxOeSZd9ZhGqaYm2D1mVyl00xvAeAezq');
+
+        \Stripe\Stripe::setApiKey(getenv('STRIPE_KEY'));
 
         $checkout_session = \Stripe\Checkout\Session::create([
                 'line_items' => [[
@@ -119,7 +119,7 @@ Class Payment extends AbstractController{
      */
     public function refund(Request $request, $reservationId): Response
     {
-        $url = 'http://localhost:8080/cancel';
+        $url = getenv('RENTME_URL').'cancel';
         if(!$reservationId){
             return $this->redirect($url);
         }
@@ -131,7 +131,7 @@ Class Payment extends AbstractController{
             return new JsonResponse(['message'=>'Refund not possible']);
         }
         $stripe = new \Stripe\StripeClient(
-            'sk_test_51ImJIiH1ST2SneRlI5texYpM1EjkRwX5h0sXH8lWH6BxPP2sFmNCXW3KqXvOCnVFnaKxOeSZd9ZhGqaYm2D1mVyl00xvAeAezq'
+            getenv('STRIPE_KEY')
         );
         $stripe->refunds->create([
             'payment_intent' => $reservation->getPaymentIntent(),
@@ -152,117 +152,6 @@ Class Payment extends AbstractController{
         );
 
         return new JsonResponse(['message'=>'Refund is successfully completed']);
-    }
-
-
-    /**
-     * @Route("/stripe/account", name="stripe_account",methods={"POST"})
-     */
-    public function createCustomAccountStripe(Request $request): Response
-    {
-        /*$parameters = json_decode($request->getContent(), true);
-        if(!$parameters["email"]){
-            return new BadResponseException(['message'=> "Wrong data, email doesn't exist"]);
-        }
-
-        $stripe = new \Stripe\StripeClient(
-            'sk_test_51ImJIiH1ST2SneRlI5texYpM1EjkRwX5h0sXH8lWH6BxPP2sFmNCXW3KqXvOCnVFnaKxOeSZd9ZhGqaYm2D1mVyl00xvAeAezq'
-        );
-
-        $account = $stripe->accounts->create([
-            'type' => 'custom',
-            'country' => 'FR',
-            'email' => $parameters["email"],
-            'capabilities' => [
-                'card_payments' => ['requested' => true],
-                'transfers' => ['requested' => true],
-            ],
-        ]);*/
-
-        /*$stripe = new \Stripe\StripeClient(
-            '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'
-        );
-        */
-
-        /*
-        $bank_token = $stripe->tokens->create([
-            'bank_account' => [
-                'country' => 'FR',
-                'currency' => 'eur',
-                'account_holder_name' => 'Jenny Rosen',
-                'account_holder_type' => 'individual',
-                'account_number' => 'FR1420041010050500013M02606',
-            ],
-        ]);
-        /*
-        $bank_account = $stripe->accounts->createExternalAccount(
-            'acct_1ImJIiH1ST2SneRl',
-            [
-                'external_account' => 'btok_1KufLlH1ST2SneRlGut0nLvV',
-            ]
-        );
-        */
-
-        $stripe = \Stripe\Stripe::setApiKey('sk_test_51ImJIiH1ST2SneRlI5texYpM1EjkRwX5h0sXH8lWH6BxPP2sFmNCXW3KqXvOCnVFnaKxOeSZd9ZhGqaYm2D1mVyl00xvAeAezq');
-
-       /* \Stripe\Charge::create(array(
-            'currency' => 'eur',
-            'amount'   => 10000,
-            'card'     => 4000000000000077
-        ));*/
-
-        /*
-        $response = \Stripe\OAuth::token([
-            'grant_type' => 'authorization_code',
-            'code' => 'ac_LfKkGVjObSFnDmwCAXJHwa7k5qp9mYU9',
-        ]);
-*/
-// Access the connected account id in the response
-        //$connected_account_id = $response->stripe_user_id;
-
-        $id_account = $stripe->accounts->retrieve(
-            [
-                "type" => "express",
-                "object" => "account",
-                'email' => 'abdellatifchalala44@gmail.com']
-        );
-        return new JsonResponse(['account'=> $id_account]);
-    }
-
-
-    /**
-     * @Route("/transfer", name="transfer",methods={"POST"})
-     */
-    public function transfer(Request $request): Response
-    {
-        /*
-        $parameters = json_decode($request->getContent(), true);
-        if(!$parameters["stripe_account_id"]){
-            return new BadResponseException(['message'=> "Wrong data, stripe_account_id doesn't exist"]);
-        }
-
-        $stripe = new \Stripe\StripeClient(
-            'sk_test_51ImJIiH1ST2SneRlI5texYpM1EjkRwX5h0sXH8lWH6BxPP2sFmNCXW3KqXvOCnVFnaKxOeSZd9ZhGqaYm2D1mVyl00xvAeAezq'
-        );
-        $transfer = $stripe->transfers->create([
-            'amount' => 2000,
-            'currency' => 'usd',
-            'destination' => $parameters["stripe_account_id"],
-            'transfer_group' => 'ORDER_95',
-        ]);
-        */
-        $stripe = new \Stripe\StripeClient(
-            'sk_test_51ImJIiH1ST2SneRlI5texYpM1EjkRwX5h0sXH8lWH6BxPP2sFmNCXW3KqXvOCnVFnaKxOeSZd9ZhGqaYm2D1mVyl00xvAeAezq'
-        );
-
-        $transfer = $stripe->transfers->create([
-            'amount' => 1,
-            'currency' => 'eur',
-            'destination' => 'acct_1Ky04NQZa3U3Hol5'
-        ]);
-
-        //acct_1Kxey9QiQedsUT5N
-        return new JsonResponse(['$transfer'=> $transfer]);
     }
 
     /**
