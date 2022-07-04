@@ -16,7 +16,7 @@ class ElasticSearchService
     {
         $this->client = \Elastic\Elasticsearch\ClientBuilder::create()
             ->setElasticCloudId(getenv('ELASTIC_CLOUD_ID'))
-            ->setApiKey('ELASTIC_API_KEY')
+            ->setApiKey(getenv('ELASTIC_API_KEY'))
             ->build();
     }
 
