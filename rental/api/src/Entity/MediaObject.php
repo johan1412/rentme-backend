@@ -7,7 +7,7 @@ use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Controller\CreateMediaObjectAction;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\File as MyFile;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
@@ -15,7 +15,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 /**
  * @ORM\Entity
  * @ApiResource(
- *     iri="https://schema.org/MediaObject",
+ *     iri="http://schema.org/MediaObject",
  *     normalizationContext={
  *         "groups"={"media_object_read"}
  *     },
@@ -64,13 +64,13 @@ class MediaObject
     /**
      * @var string|null
      *
-     * @ApiProperty(iri="https://schema.org/contentUrl")
+     * @ApiProperty(iri="http://schema.org/contentUrl")
      * @Groups({"media_object_read"})
      */
     public $contentUrl;
 
     /**
-     * @var File|null
+     * @var MyFile|null
      *
      * @Assert\NotNull(groups={"media_object_create"})
      * @Vich\UploadableField(mapping="media_object", fileNameProperty="filePath")
@@ -88,4 +88,55 @@ class MediaObject
     {
         return $this->id;
     }
+
+    /**
+     * @return string|null
+     */
+    public function getContentUrl(): ?string
+    {
+        return $this->contentUrl;
+    }
+
+    /**
+     * @param string|null $contentUrl
+     */
+    public function setContentUrl(?string $contentUrl): void
+    {
+        $this->contentUrl = $contentUrl;
+    }
+
+    /**
+     * @return MyFile|null
+     */
+    public function getFile(): ?MyFile
+    {
+        return $this->file;
+    }
+
+    /**
+     * @param MyFile|null $file
+     */
+    public function setFile(?MyFile $file): void
+    {
+        $this->file = $file;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getFilePath(): ?string
+    {
+        return $this->filePath;
+    }
+
+    /**
+     * @param string|null $filePath
+     */
+    public function setFilePath(?string $filePath): void
+    {
+        $this->filePath = $filePath;
+    }
+
+
+
 }
