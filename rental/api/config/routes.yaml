@@ -8,6 +8,18 @@ get_conversations:
   controller: App\Controller\MessageController::getConversations
   methods:    ['GET']
 
+get_nb_unread_msgs:
+  path:       /messages/unread/{id}
+  controller: App\Controller\MessageController::getNbUnreadMessages
+  methods:    ['GET']
+
+set_read_msgs:
+  path:       /messages/setread/{senderId}/{recieverId}/{productId}
+  controller: App\Controller\MessageController::setReadMessages
+  defaults:
+    productId: 'none'
+  methods:    ['PATCH']
+
 search_products:
   path:       /productsSearch
   controller: App\Controller\ProductsSearchController::searchProducts
