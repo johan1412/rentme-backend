@@ -114,7 +114,7 @@ class Product
 
     /**
      * @ORM\OneToMany(targetEntity=Reservation::class, mappedBy="product")
-     * @Groups({"product_read"})
+     * @Groups({"product_read","user_read"})
      */
     private $reservations;
 
