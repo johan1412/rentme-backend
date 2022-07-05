@@ -14,8 +14,9 @@ use Doctrine\ORM\Mapping as ORM;
  *         "post"={"security"="is_granted('ROLE_USER')"}
  *     },
  *     itemOperations={
- *         "put"={"security_post_denormalize"="object.sender == user and previous_object.getSender() == user"},
- *         "patch"={"security_post_denormalize"="object.sender == user and previous_object.getSender() == user"},
+ *         "get"={"security_post_denormalize"="object.getSender() == user"},
+ *         "put"={"security_post_denormalize"="object.getSender() == user and previous_object.getSender() == user"},
+ *         "patch"={"security_post_denormalize"="object.getSender() == user and previous_object.getSender() == user"},
  *         "delete"={"security_post_denormalize"="is_granted('ROLE_ADMIN') or object.getSender() == user"},
  *     }
  * )
@@ -51,6 +52,17 @@ class Message
      * @ORM\Column(type="string", length=1000)
      */
     private $text;
+
+    /**
+     * @ORM\Column(type="boolean",options={"default":false})
+     */
+    private $isRead;
+
+
+    public function __construct()
+    {
+        $this->isRead = false;
+    }
 
     public function getId(): ?int
     {
@@ -101,6 +113,18 @@ class Message
     public function setText(string $text): self
     {
         $this->text = $text;
+
+        return $this;
+    }
+
+    public function getIsRead(): ?bool
+    {
+        return $this->isRead;
+    }
+
+    public function setIsRead(bool $isRead): self
+    {
+        $this->isRead = $isRead;
 
         return $this;
     }

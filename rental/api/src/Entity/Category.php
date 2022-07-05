@@ -60,7 +60,7 @@ class Category
     private $parent;
 
     /**
-     * @ORM\OneToMany(targetEntity=Category::class, mappedBy="parent")
+     * @ORM\OneToMany(targetEntity=Category::class, mappedBy="parent",cascade={"all"}, orphanRemoval=true)
      * @Groups({"category_read"})
      */
     private $children;
