@@ -93,7 +93,7 @@ class Product
     private $user;
 
     /**
-     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="product")
+     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="product",cascade={"all"}, orphanRemoval=true)
      * @Groups({"product_read"})
      */
     private $comments;

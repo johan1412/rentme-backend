@@ -37,7 +37,7 @@ class File
 
     /**
      * @ORM\Column(type="string", length=255, options={"default" : "ntm"})
-     * @Groups({"product_read","file_read","product_write", "user_read", "category_write","reservation_read"})
+     * @Groups({"product_read","file_read","product_write", "user_read", "category_write","reservation_read","category_read"})
      * @Assert\NotBlank
      */
     private $path;
