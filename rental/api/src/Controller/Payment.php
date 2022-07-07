@@ -52,7 +52,7 @@ Class Payment extends AbstractController{
             return $this->redirect($url);
         }
 
-        $url = getenv('RENTME_URL').'success';
+        $url = getenv('RENTME_URL').'account';
         return $this->redirect($url);
     }
 
@@ -89,6 +89,10 @@ Class Payment extends AbstractController{
 
         $tenant = $this->getUserRepository()->find($tenantId);
         if(!$tenant){
+            return $this->redirect($url);
+        }
+
+        if($product->getUser() === $user){
             return $this->redirect($url);
         }
 

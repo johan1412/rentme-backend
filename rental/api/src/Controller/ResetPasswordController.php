@@ -127,7 +127,7 @@ class ResetPasswordController extends AbstractController
             // The session is cleaned up after the password has been changed.
             $this->cleanSessionAfterReset();
 
-            return $this->redirect(getenv('RENTME_URL').'login');
+            return $this->redirect(getenv('RENTME_URL').'login?message=success');
         }
 
         return $this->render('reset_password/reset.html.twig', [
@@ -165,7 +165,7 @@ class ResetPasswordController extends AbstractController
         }
 
         $email = (new TemplatedEmail())
-            ->from(new Address('devfullstack44@gmail.com', 'developper'))
+            ->from(new Address('devfullstack44@gmail.com', 'Rentme Mail Bot'))
             ->to($user->getEmail())
             ->subject('Your password reset request')
             ->htmlTemplate('reset_password/email.html.twig')

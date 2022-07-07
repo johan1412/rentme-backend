@@ -33,7 +33,12 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *     }
  *     },
  *     itemOperations={
- *         "get",
+ *         "get"={"security_post_denormalize"="is_granted('ROLE_ADMIN') or object.getUser() == user"},
+ *         "get_product_valid"={
+ *              "method"="GET",
+ *              "path"="/products/valid/{id}",
+ *              "controller"=App\Controller\ValidProduct::class,
+ *          },
  *         "put"={"security_post_denormalize"="is_granted('ROLE_ADMIN') or object.getUser() == user"},
  *         "patch"={"security"="is_granted('ROLE_ADMIN') or object.getUser() == user"},
  *         "delete"={"security"="is_granted('ROLE_ADMIN') or object.getUser() == user"}
