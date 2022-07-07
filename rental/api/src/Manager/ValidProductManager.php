@@ -26,13 +26,16 @@ class ValidProductManager
 
     public function getProductValid($data){
 
+        if(!$data->getHasRight()){
+            return new JsonResponse(['message'=>'Access denied'],403);
+        }
         if($this->getUser() === null){
             if (!$data->getIsValid() || !$data->getHasRight()){
                 return new JsonResponse(['message'=>'Access denied'],403);
             }
         }else{
             if (!in_array('ROLE_ADMIN',$this->getUser()->getRoles()) && $this->getUser() !== $data->getUser()){
-                if (!$data->getIsValid() || !$data->getHasRight()){
+                if (!$data->getIsValid()){
                     return new JsonResponse(['message'=>'Access denied'],403);
                 }
             }
