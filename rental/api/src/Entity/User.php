@@ -18,6 +18,11 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *     denormalizationContext={"groups"={"user_write"}},
  *     collectionOperations={
  *         "get"={"security"="is_granted('ROLE_ADMIN')"},
+ *          "get_if_has_stripe_external_account"={
+ *              "method"="GET",
+ *              "path"="/renter-check-stripe-account",
+ *              "controller"=App\Controller\HasStripeAccount::class
+ *          },
  *         "post"={},
  *     },
  *     itemOperations={
@@ -120,6 +125,11 @@ class User implements UserInterface
      * @ORM\OneToMany(targetEntity=Reporting::class, mappedBy="sender", orphanRemoval=true)
      */
     private $reportings;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $stripeExternalAccount;
 
     public function __construct()
     {
@@ -423,6 +433,18 @@ class User implements UserInterface
                 $reporting->setSender(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getStripeExternalAccount(): ?string
+    {
+        return $this->stripeExternalAccount;
+    }
+
+    public function setStripeExternalAccount(?string $stripeExternalAccount): self
+    {
+        $this->stripeExternalAccount = $stripeExternalAccount;
 
         return $this;
     }
