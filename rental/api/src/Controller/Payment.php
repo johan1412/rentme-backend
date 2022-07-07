@@ -52,7 +52,7 @@ Class Payment extends AbstractController{
             return $this->redirect($url);
         }
 
-        $url = getenv('RENTME_URL').'success';
+        $url = getenv('RENTME_URL').'account';
         return $this->redirect($url);
     }
 
