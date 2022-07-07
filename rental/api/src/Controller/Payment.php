@@ -92,6 +92,10 @@ Class Payment extends AbstractController{
             return $this->redirect($url);
         }
 
+        if($product->getUser() === $user){
+            return $this->redirect($url);
+        }
+
         // This is your test secret API key.
         \Stripe\Stripe::setApiKey(getenv('STRIPE_KEY'));
 

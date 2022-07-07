@@ -15,7 +15,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *     attributes={"security"="is_granted('ROLE_USER')"},
  *     collectionOperations={
  *         "get",
- *         "post"={"security"="is_granted('ROLE_USER')"},
+ *         "post"={"security"="is_granted('ROLE_USER') or object.getTenant() == user"},
  *         "get_reservation_of_user"={
  *              "method"="GET",
  *              "path"="/reservations/user",
@@ -30,8 +30,8 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *     itemOperations={
  *         "get",
  *         "put"={"security_post_denormalize"="is_granted('RESERVATION_EDIT', reservation)"},
- *         "patch"={},
- *         "delete"={"security_post_denormalize"="is_granted('RESERVATION_DELETE', reservation)"},
+ *         "patch"={"security"="is_granted('ROLE_USER') or object.getTenant() == user or object.getRenter() == user"},
+ *         "delete"={"security_post_denormalize"="is_granted('ROLE_ADMIN')"},
  *     }
  * )
  * @ORM\Entity(repositoryClass=ReservationRepository::class)

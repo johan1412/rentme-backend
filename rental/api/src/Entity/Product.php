@@ -36,7 +36,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *         "get"={"security_post_denormalize"="is_granted('ROLE_ADMIN') or object.getUser() == user"},
  *         "get_product_valid"={
  *              "method"="GET",
- *              "path"="/products/{id}/valid",
+ *              "path"="/products/valid/{id}",
  *              "controller"=App\Controller\ValidProduct::class,
  *          },
  *         "put"={"security_post_denormalize"="is_granted('ROLE_ADMIN') or object.getUser() == user"},
