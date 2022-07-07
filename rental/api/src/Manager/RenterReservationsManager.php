@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 
-class UserReservationsManager extends AbstractController
+class RenterReservationsManager extends AbstractController
 {
     protected $reservationRepository;
     protected $tokenStorage;
@@ -41,7 +41,7 @@ class UserReservationsManager extends AbstractController
     }
 
     public function getReservations(){
-        $reservations = $this->reservationRepository->findBy(["tenant" => $this->getUser()]);
+        $reservations = $this->reservationRepository->findBy(["renter" => $this->getUser()]);
         return $reservations;
     }
 

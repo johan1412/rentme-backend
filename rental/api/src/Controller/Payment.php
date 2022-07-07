@@ -155,6 +155,83 @@ Class Payment extends AbstractController{
     }
 
     /**
+     * @Route("/create-stripe-external-account", name="create_stripe_external",methods={"POST"})
+     */
+    public function createExternalStripeAccount(Request $request,EntityManagerInterface $em): Response
+    {
+        $parameters = json_decode($request->getContent(), true);
+        if (! $parameters['renterId'] || !$parameters['code']){
+            return new JsonResponse(['message'=>'Access denied'],403);
+        }
+        $user = $this->getUserRepository()->find($parameters['renterId']);
+        if (!$user){
+            return new JsonResponse(['message'=>'Access denied'],403);
+        }
+
+        if ($user->getStripeExternalAccount() || !in_array('ROLE_RENTER',$user->getRoles())){
+            return new JsonResponse(['message'=>'Access denied'],403);
+        }
+
+        \Stripe\Stripe::setApiKey(getenv('STRIPE_KEY'));
+        $response = \Stripe\OAuth::token([
+            'grant_type' => 'authorization_code',
+            'code' => $parameters['code'],
+        ]);
+
+        if (!$response->stripe_user_id){
+            return new JsonResponse(['message'=>'Access denied'],403);
+        }
+
+        $user->setStripeExternalAccount($response->stripe_user_id);
+        $em->persist($user);
+        $em->flush();
+        return new JsonResponse(['message'=>'creation stripe external account is successfully completed']);
+    }
+
+    /**
+     * @Route("/transfer/{reservationId}", name="transfer",methods={"GET"})
+     */
+    public function transfer(Request $request,$reservationId,EntityManagerInterface $em): Response
+    {
+        if(!$reservationId){
+            return new JsonResponse(['message'=>'Access denied'],403);
+        }
+        $reservation = $this->reservationRepository->find($reservationId);
+        if (!$reservation){
+            return new JsonResponse(['message'=>'Access denied'],403);
+        }
+        if ($reservation->getRenter()->getId() !== $this->getUser()->getId()){
+            return new JsonResponse(['message'=>'Access denied'],403);
+        }
+        if ($reservation->getIsTransfered()){
+            return new JsonResponse(['message'=>'You have already get transfered']);
+        }
+        if($reservation->getState() !== 'restored'){
+            if ($reservation->getRentalEndDate() >= (new \DateTime())){
+                return new JsonResponse(['message'=>'Deadline is not finished yet']);
+            }
+        }
+        if (!$reservation->getRenter()->getStripeExternalAccount()){
+            return new JsonResponse(['message'=>'You have not right for transfer'],403);
+        }
+        $stripe = new \Stripe\StripeClient(
+            getenv('STRIPE_KEY')
+        );
+
+        $transfer = $stripe->transfers->create([
+            'amount' => $reservation->getPaymentIntent() === 'success' ? ($reservation->getPrice()*80/100)*100 : ($reservation->getPrice()*80/100 + $reservation->getProduct()->getCaution())*100,
+            'currency' => 'eur',
+            'destination' => $reservation->getRenter()->getStripeExternalAccount()
+        ]);
+
+        $reservation->setIsTransfered(true);
+        $em->persist($reservation);
+        $em->flush();
+        return new JsonResponse(['message'=>'Transfer is successfully completed']);
+    }
+
+
+    /**
      * @return ProductRepository
      */
     public function getProductRepository(): ProductRepository
@@ -169,7 +246,5 @@ Class Payment extends AbstractController{
     {
         return $this->userRepository;
     }
-
-
 
 }

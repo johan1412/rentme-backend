@@ -46,6 +46,10 @@ security:
         - { path: ^/regions, methods:["GET"], roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/reportings, methods: [ "GET","PATCH","PUT","DELETE" ], roles: ["ROLE_ADMIN"] }
         - { path: ^/reportings, methods: [ "POST" ], roles: [ "ROLE_USER" ] }
+        - { path: ^/create-stripe-external-account, methods: [ "POST" ], roles: [ "ROLE_RENTER" ]}
+        - { path: ^/renter-check-stripe-account, methods: [ "GET" ], roles: [ "ROLE_RENTER" ]}
+        - { path: ^/reservations/user, methods: [ "GET" ], roles: [ "ROLE_USER","ROLE_ADMIN" ]}
+        - { path: ^/reservations/renter, methods: [ "GET" ], roles: [ "ROLE_RENTER" ]}
         - { path: ^/success, methods:["GET"], roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/productsSearch, methods: [ "GET" ], roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/products/search, methods: [ "GET" ], roles: IS_AUTHENTICATED_ANONYMOUSLY }

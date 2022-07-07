@@ -2,14 +2,15 @@
 
 namespace App\Controller;
 
+use App\Manager\RenterReservationsManager;
 use App\Manager\UserReservationsManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class UserReservations extends AbstractController
+class RenterReservations extends AbstractController
 {
-    protected $userReservationsManager;
-    public function __construct(UserReservationsManager $userReservationsManager){
-        $this->userReservationsManager = $userReservationsManager;
+    protected $renterReservationsManager;
+    public function __construct(RenterReservationsManager $renterReservationsManager){
+        $this->renterReservationsManager = $renterReservationsManager;
     }
 
 
@@ -18,7 +19,7 @@ class UserReservations extends AbstractController
      */
     public function __invoke()
     {
-        return $this->userReservationsManager->getReservations();
+        return $this->renterReservationsManager->getReservations();
     }
 
 }

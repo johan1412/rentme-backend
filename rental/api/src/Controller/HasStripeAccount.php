@@ -2,15 +2,14 @@
 
 namespace App\Controller;
 
-use App\Manager\RenterReservationsManager;
-use App\Manager\UserReservationsManager;
+use App\Manager\HasStripeAccountManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class RenterReservations extends AbstractController
+class HasStripeAccount extends AbstractController
 {
-    protected $renterReservationsManager;
-    public function __construct(RenterReservationsManager $renterReservationsManager){
-        $this->renterReservationsManager = $renterReservationsManager;
+    protected $hasStripeAccountManager;
+    public function __construct(HasStripeAccountManager $hasStripeAccountManager){
+        $this->hasStripeAccountManager = $hasStripeAccountManager;
     }
 
 
@@ -19,7 +18,7 @@ class RenterReservations extends AbstractController
      */
     public function __invoke()
     {
-        return $this->renterReservationsManager->getReservations();
+        return $this->hasStripeAccountManager->checkStripeExternalAccount();
     }
 
 }

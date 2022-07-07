@@ -6,19 +6,18 @@ namespace App\Manager;
 use App\Entity\User;
 use App\Repository\ProductRepository;
 use App\Repository\ReservationRepository;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 
-class RenterReservationsManager extends AbstractController
+class HasStripeAccountManager extends AbstractController
 {
-    protected $reservationRepository;
     protected $tokenStorage;
 
-    public function __construct(ReservationRepository $reservationRepository,TokenStorageInterface $tokenStorage)
+    public function __construct(TokenStorageInterface $tokenStorage)
     {
-        $this->reservationRepository = $reservationRepository;
         $this->tokenStorage = $tokenStorage;
     }
 
@@ -40,9 +39,8 @@ class RenterReservationsManager extends AbstractController
         return $user;
     }
 
-    public function getReservations(){
-        $reservations = $this->reservationRepository->findBy(["renter" => $this->getUser()]);
-        return $reservations;
+    public function checkStripeExternalAccount(){
+        return $this->getUser()->getStripeExternalAccount() ? true : false;
     }
 
 }
