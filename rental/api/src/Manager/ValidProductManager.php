@@ -23,7 +23,7 @@ class ValidProductManager
     public function getProductValid($data){
 
         $data;
-        if (!$data->getIsValid()){
+        if (!$data->getIsValid() || !$data->getHasRight()){
            return new JsonResponse(['message'=>'Access denied'],403);
         }
         return $data;
