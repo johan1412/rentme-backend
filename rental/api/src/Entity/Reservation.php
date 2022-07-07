@@ -21,6 +21,11 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *              "path"="/reservations/user",
  *              "controller"=App\Controller\UserReservations::class
  *          },
+ *          "get_reservation_of_renter"={
+ *              "method"="GET",
+ *              "path"="/reservations-renter",
+ *              "controller"=App\Controller\RenterReservations::class
+ *          },
  *     },
  *     itemOperations={
  *         "get",
@@ -106,6 +111,12 @@ class Reservation
      * @ORM\JoinColumn(nullable=false)
      */
     private $tenant;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=false)
+     * @Groups({"reservation_read"})
+     */
+    private $isTransfered = false;
 
     public function getId(): ?int
     {
@@ -219,6 +230,18 @@ class Reservation
     public function setTenant(?User $tenant): self
     {
         $this->tenant = $tenant;
+
+        return $this;
+    }
+
+    public function getIsTransfered(): ?bool
+    {
+        return $this->isTransfered;
+    }
+
+    public function setIsTransfered(?bool $isTransfered): self
+    {
+        $this->isTransfered = $isTransfered;
 
         return $this;
     }
